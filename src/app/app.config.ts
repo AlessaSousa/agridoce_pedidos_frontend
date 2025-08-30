@@ -10,8 +10,8 @@ import { CustomHttpInterceptor } from './core/security/http-interceptor';
 import { AgridoceTheme, AgridoceTranslation } from './primeng.theme';
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     providePrimeNG({
@@ -20,10 +20,11 @@ export const appConfig: ApplicationConfig = {
         preset: AgridoceTheme,
         options: {
           prefix: 'p',
-          cssLayer: false
+          cssLayer: false,
+          darkModeSelector: 'off',
         }
       },
-      translation: AgridoceTranslation
+      // translation: AgridoceTranslation
     }),
     {
       provide: HTTP_INTERCEPTORS,
