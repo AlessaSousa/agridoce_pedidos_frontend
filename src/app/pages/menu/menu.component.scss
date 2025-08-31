@@ -1,0 +1,25 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+app-menu-bar {
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
+}
+
+.title-header {
+    font-family: "Qwigley", cursive;
+    font-weight: 400;
+    font-size: 30px;
+    color: #390202;
+}
+
+.container-items {
+  min-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
