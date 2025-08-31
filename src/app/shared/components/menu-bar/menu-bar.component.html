@@ -1,18 +1,16 @@
-<div class="menu-bar">
-    <div class="curve" [ngStyle]="{'left': (activeIndex() * 110 + 190) + 'px'}"></div>
-    <div class="curve-left"></div>
-    <div class="curve-right"></div>
-    <div class=""></div>
+<div class="navigation">
     <ul>
-        @for(item of menuItems(); track item; let i = $index) {
-        <li 
-        [class.active]="i === activeIndex()"
-        [routerLink]="item.route" 
-        routerLinkActive="active" 
-        [routerLinkActiveOptions]="{exact: true}"
-        (click)="setActive(i)">
-            <span class="material-icons icon">{{item.icon}}</span>
+        @for (item of menuItems(); track item; let i = $index) {
+        <li [class.active]="i === activeIndex()" (click)="setActive(i)">
+            <a [routerLink]="item.route">
+                <span class="icon">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                </span>
+                <span class="text">{{ item.label }}</span>
+                <span class="circle"></span>
+            </a>
         </li>
         }
+        <div class="indicator" [ngStyle]="{'transform': 'translateX(' + (70 * activeIndex()) + 'px)'}"></div>
     </ul>
 </div>
