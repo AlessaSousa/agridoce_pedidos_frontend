@@ -37,36 +37,45 @@ export class MenuComponent {
     this.itemFood.set([
       {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       },
       {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       },
       {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       },
       {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       },
       {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       },
       {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       }, {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       }, {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       }, {
         nome: 'Bolo de Morango',
-        valor: 40
+        valor: 40,
+        image: 'assets/menu/bolo_chocolate_3.jpeg'
       }
     ])
   }
@@ -83,36 +92,45 @@ export class MenuComponent {
       const lista = [
         {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         },
         {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         },
         {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         },
         {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         },
         {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         },
         {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         }, {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         }, {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         }, {
           nome: 'Bolo de Morango',
-          valor: 40
+          valor: 40,
+          image: 'assets/menu/bolo_chocolate_3.jpeg'
         }
       ]
       this.itemFood.set(lista)

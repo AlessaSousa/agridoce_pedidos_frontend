@@ -1,6 +1,10 @@
 <div class="card-container">
   <div class="descricao-content">
-    <div class="image-content"></div>
+    @if(card()?.image) {
+      <img class="image-content" [src]="card()?.image">
+    } @else {
+      <div class="image-content"></div>
+    }
 
     <div class="mt-4">
         <span class="font-bold">{{card()?.nome}}</span>
