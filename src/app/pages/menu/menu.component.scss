@@ -8,9 +8,13 @@
   flex-shrink: 0;
   padding: 1rem;
 }
-app-menu-bar {
+
+.app-menu {
   flex-shrink: 0;
+  bottom: 0;
+  position: fixed;
   z-index: 1000;
+  width: 100%;
 }
 
 .title-header {
@@ -20,14 +24,15 @@ app-menu-bar {
   color: #390202;
 }
 
-.container-items {
-  min-height: 300px;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-}
+// .container-items {
+//   min-height: 300px;
+//   overflow-y: auto;
+//   padding-right: 0.5rem;
+// }
 
 .content-cards {
-  flex: 1;
+  // flex: 1;
   overflow-y: auto;
-  padding: 0.5rem;
+  margin-bottom: 70px;
+  // padding: 0.5rem;
 }
