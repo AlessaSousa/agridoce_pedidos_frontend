@@ -23,22 +23,22 @@ export class MenuBarComponent {
       {
         label: 'Pedidos',
         icon: 'menu_book',
-        route: '/orders',
+        route: '',
       },
       {
         label: 'Cardápio',
         icon: 'manage_search',
-        route: '/menu',
+        route: '',
       },
       {
         label: 'Carrinho',
         icon: 'shopping_bag',
-        route: '/cart',
+        route: '',
       },
       {
         label: 'Perfil',
         icon: 'person',
-        route: '/profile',
+        route: '',
       }
     ])
   }
