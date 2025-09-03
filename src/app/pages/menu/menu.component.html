@@ -1,29 +1,30 @@
-<div class="page-container m-3">
-  <div>
+<div class="page-container">
+  
+  <div class="header">
     <div class="title-header mb-2">
       <span>Agridoce Delivery</span>
     </div>
-    
+
     <p-iconfield class="my-2">
       <p-inputicon styleClass="pi pi-search" />
       <input type="text" pInputText placeholder="Buscar..." />
     </p-iconfield>
 
-    <div class="content-category my-4">
+    <div class="content-category mt-4">
       <span class="text-xl">Categorias</span>
-      <div class="flex my-2 gap-2">
+      <div class="flex my-2 gap-2 flex-wrap justify-content-between">
         @for(item of categories(); track $index) {
-        <p-button [outlined]="item.outlined" [label]="item.nome" (click)="toogle(item.nome)" />
+          <p-button [outlined]="item.outlined" [label]="item.nome" (click)="toogle(item.nome)" />
         }
-        <div>
-        </div>
       </div>
+    </div>
+  </div>
 
-      <div class="grid container-items">
-        @for(item of itemFood(); track $index) {
+  <div class="content-cards">
+    <div class="grid container-items">
+      @for(item of itemFood(); track $index) {
         <app-card class="col-6 mt-7" [card]="item"></app-card>
-        }
-      </div>
+      }
     </div>
   </div>
 
