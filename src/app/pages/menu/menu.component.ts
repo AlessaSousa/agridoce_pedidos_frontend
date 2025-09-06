@@ -1,5 +1,4 @@
-import { Component, WritableSignal, signal } from '@angular/core';
-import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
+import { Component, WritableSignal, inject, signal } from '@angular/core';
 import { InputIcon } from 'primeng/inputicon';
 import { IconField } from 'primeng/iconfield';
 import { InputTextModule } from 'primeng/inputtext';
@@ -7,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface ICategories {
   nome: string;
@@ -24,7 +24,6 @@ interface IItems {
     IconField,
     InputTextModule,
     FormsModule,
-    MenuBarComponent,
     ButtonModule,
     CardComponent,
     CommonModule
@@ -33,6 +32,7 @@ interface IItems {
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
+  private router = inject(Router);
   public categories: WritableSignal<ICategories[]> = signal([]);
   public selected: WritableSignal<string> = signal('Bolos');
   public itemFood: WritableSignal<IItems[]> = signal([]);
@@ -46,7 +46,7 @@ export class MenuComponent {
     ])
 
     const itemBase = {
-      nome: 'Bolo de Morango',
+      nome: 'Bolo de Chocolate',
       valor: 40,
       image: 'assets/menu/bolo_chocolate_3.jpeg'
     }
@@ -64,7 +64,7 @@ export class MenuComponent {
 
     if (event === 'Bolos') {
       const itemBase = {
-        nome: 'Bolo de Morango',
+        nome: 'Bolo de Chocolate',
         valor: 40,
         image: 'assets/menu/bolo_chocolate_3.jpeg'
       }
@@ -97,5 +97,9 @@ export class MenuComponent {
       this.itemFood.set(lista)
     }
     this.selected.set(event);
+  }
+
+  showDetail(item: IItems) {
+    this.router.navigate(['/detail'])
   }
 }

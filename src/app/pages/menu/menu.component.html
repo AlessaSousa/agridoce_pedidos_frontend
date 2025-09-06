@@ -23,12 +23,12 @@
   <div class="content-cards">
     <div class="grid container-items m-0">
       @for(item of itemFood(); track $index) {
-        <app-card class="col-6 mt-7" [card]="item"></app-card>
+        <app-card class="col-6 mt-7" [card]="item" (click)="showDetail(item)"></app-card>
       }
     </div>
   </div>
-
+<!-- 
   <div class="app-menu">
     <app-menu-bar></app-menu-bar>
-  </div>
+  </div> -->
 </div>

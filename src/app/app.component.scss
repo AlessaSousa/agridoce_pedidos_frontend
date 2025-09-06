@@ -1,0 +1,13 @@
+.container-main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+app-menu-bar {
+  flex-shrink: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+}

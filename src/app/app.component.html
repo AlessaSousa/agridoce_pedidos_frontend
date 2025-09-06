@@ -1,1 +1,6 @@
-<router-outlet />
+<div class="container-main">
+    <router-outlet />
+    @if(showNavBar()) {
+        <app-menu-bar/>
+    }
+</div>
