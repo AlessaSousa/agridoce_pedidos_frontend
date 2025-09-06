@@ -1,0 +1,30 @@
+<div class="container-item flex gap-2">
+    <img class="col-3" [src]="item().image">
+    <div class="col">
+        <div class="flex justify-content-between">
+            <span>{{item().title}}</span>
+            <i class="pi pi-times"></i>
+        </div>
+        <div class="flex justify-content-between align-items-center">
+            <p-inputnumber
+            [(ngModel)]="item().quantidade" 
+            [showButtons]="true" 
+            buttonLayout="horizontal" 
+            spinnerMode="horizontal"
+            inputId="horizontal" 
+            decrementButtonClass="p-button-rounded p-button-secondary custom-btn"
+            incrementButtonClass="p-button-rounded p-button-secondary custom-btn"
+            inputStyleClass="custom-counter"
+            [inputStyle]="{ width: '3rem' }">
+                <ng-template #incrementbuttonicon>
+                    <span class="pi pi-plus"></span>
+                </ng-template>
+                <ng-template #decrementbuttonicon>
+                    <span class="pi pi-minus"></span>
+                </ng-template>
+            </p-inputnumber>
+            
+            <span class="font-bold">{{item().valor | currency}}</span>
+        </div>
+    </div>
+</div>
