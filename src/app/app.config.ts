@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: 'off',
         }
       },
-      // translation: AgridoceTranslation
+      translation: AgridoceTranslation
     }),
     {
       provide: HTTP_INTERCEPTORS,
