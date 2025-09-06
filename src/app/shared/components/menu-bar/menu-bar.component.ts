@@ -28,12 +28,12 @@ export class MenuBarComponent {
       {
         label: 'Cardápio',
         icon: 'manage_search',
-        route: '',
+        route: '/menu',
       },
       {
         label: 'Carrinho',
         icon: 'shopping_bag',
-        route: '',
+        route: '/cart',
       },
       {
         label: 'Perfil',
