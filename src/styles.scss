@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use 'variables.scss';
 
 body { 
     margin: 0; 
@@ -28,7 +28,7 @@ body {
 .p-button {
     background: var(--color-pink) !important;
     border: none !important;
-    border-radius: 20px !important;
+    border-radius: 15px !important;
     padding: 10px 15px !important;
 }
 
@@ -42,4 +42,12 @@ body {
     background: var(--color-warning) !important;
     border: none !important;
     color: white !important;
+}
+
+// title 
+.title-header {
+    font-family: "Qwigley", cursive;
+    font-weight: 400;
+    font-size: 30px;
+    color: #390202;
 }
