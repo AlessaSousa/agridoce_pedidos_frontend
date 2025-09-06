@@ -1,1 +1,12 @@
-<p>cart works!</p>
+<div class="page-cart">
+    <div class="flex justify-content-between mb-2">
+        <span class="title-header">Agridoce Delivery</span>
+        <p-button size="small" label="Avançar" (click)="showModal()"/>
+    </div>
+
+    <app-item/>
+
+    <app-dialog-form
+    [visible]="visible()"
+    (visibleChange)="closeDialog()"/>
+</div>
