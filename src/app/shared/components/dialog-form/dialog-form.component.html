@@ -35,17 +35,39 @@ class="w-full"
             <p-button size="small" label="Avançar" (click)="advance('payment')"/>
     } @else if(type() === 'payment') {
       <p-select 
+        [options]="typePayment()"
+        [(ngModel)]="selectedPayment" 
+        optionLabel="name" 
+        placeholder="Método de entrega"
+        class="w-full my-2" />
+
+        <p-select 
         [options]="typePayment()" 
         [(ngModel)]="selectedPayment" 
         optionLabel="name" 
-        placeholder="Select a City"
-        class="w-full" />
+        placeholder="Tipo de pagamento"
+        class="w-full my-2" />
+
+        <p-select 
+        [options]="typePayment()" 
+        [(ngModel)]="selectedPayment" 
+        optionLabel="name" 
+        placeholder="Total de pedidos"
+        class="w-full my-2" />
+
+        <p-select 
+        [options]="typePayment()" 
+        [(ngModel)]="selectedPayment" 
+        optionLabel="name" 
+        placeholder="Taxa de entrega"
+        class="w-full my-2" />
+
+        <div>
+            <span>Total</span>
+            <span>{{total()}}</span>
+        </div>
     
-        <p-floatlabel variant="on">
-            <p-inputmask id="on_label" [(ngModel)]="value2" mask="(99) 99999-9999" />
-            <label for="on_label">Telefone</label>
-        </p-floatlabel>
-        <p-button size="small" label="Avançar" (click)="advance('finalizar')"/>
+        <p-button size="small" label="Finalizar" (click)="advance('finalizar')"/>
     }
 
 </div>
