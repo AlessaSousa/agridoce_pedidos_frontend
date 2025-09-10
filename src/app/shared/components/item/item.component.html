@@ -1,13 +1,13 @@
 <div class="container-item flex gap-2">
-    <img class="col-3" [src]="item().image">
+    <img class="col-3" [src]="item()?.image">
     <div class="col">
         <div class="flex justify-content-between">
-            <span>{{item().title}}</span>
+            <span>{{item()?.nome}}</span>
             <i class="pi pi-times"></i>
         </div>
         <div class="flex justify-content-between align-items-center">
             <p-inputnumber
-            [(ngModel)]="item().quantidade" 
+            [ngModel]="item()?.quantidade" 
             [showButtons]="true" 
             buttonLayout="horizontal" 
             spinnerMode="horizontal"
@@ -24,7 +24,7 @@
                 </ng-template>
             </p-inputnumber>
             
-            <span class="font-bold">{{item().valor | currency}}</span>
+            <span class="font-bold">{{item()?.valor | currency}}</span>
         </div>
     </div>
 </div>

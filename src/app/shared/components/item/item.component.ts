@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, input, InputSignal, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputNumber } from 'primeng/inputnumber';
@@ -16,14 +16,5 @@ import { InputNumber } from 'primeng/inputnumber';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-  public item: WritableSignal<any | null> = signal(null);
-
-  ngOnInit() {
-    this.item.set({
-      title: 'Bolo de chocolate vulcão',
-      valor: 100,
-      quantidade: 2,
-      image: 'assets/menu/bolo_chocolate_3.jpeg'
-    })
-  }
+  public item: InputSignal<any | undefined> = input();
 }

@@ -4,9 +4,16 @@
         <p-button size="small" label="Avançar" (click)="showModal()"/>
     </div>
 
-    <app-item/>
+    @if(cart().nome) {
+        <app-item [item]="cart()"/>
+    } @else {
+        <div class="flex justify-content-center">
+            <span>Não há itens no carrinho</span>
+        </div>
+    }
 
     <app-dialog-form
+    [cart]="cart()"
     [visible]="visible()"
     (visibleChange)="closeDialog()"/>
 </div>

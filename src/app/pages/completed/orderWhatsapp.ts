@@ -19,20 +19,22 @@ export class OrderStructure {
         telefone: '(99) 99999-9999'
     };
     
-    gerarLinkWhatsApp() {
+    gerarLinkWhatsApp(order: any) {
         const numeroLoja = '5592996168194';
         let mensagem = `*Novo Pedido!*\n\n`;
 
-        this.pedido.forEach(item => {
-            mensagem += `• ${item.qtd}x ${item.nome} - ${this.formatarMoeda(item.preco)}\n`;
-        });
+        // this.pedido.forEach(item => {
+        //     mensagem += `• ${item.qtd}x ${item.nome} - ${this.formatarMoeda(item.preco)}\n`;
+        // });
 
-        const total = this.pedido.reduce((acc, item) => acc + (item.qtd * item.preco), 0);
+        mensagem += `• ${order.quantidade}x ${order.nome} - ${this.formatarMoeda(order.valor)}\n`;
 
-        mensagem += `\n---\n *Cliente*: ${this.cliente.nome}`;
-        mensagem += `\n *Endereço*: ${this.cliente.rua}, ${this.cliente.numero}, ${this.cliente.bairro}`;
-        mensagem += `\n *Telefone*: ${this.cliente.telefone}`;
-        mensagem += `\n---\n *Total*: ${this.formatarMoeda(total)}`;
+        // const total = this.pedido.reduce((acc, item) => acc + (item.qtd * item.preco), 0);
+
+        mensagem += `\n---\n *Cliente*: ${order.nome_user}`;
+        mensagem += `\n *Endereço*: ${order.rua}, ${order.numero}, ${order.bairro}`;
+        mensagem += `\n *Telefone*: ${order.telefone}`;
+        mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.valor * order.quantidade)}`;
 
         const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
 

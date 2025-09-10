@@ -35,10 +35,11 @@ export class DialogFormComponent {
   public typePayment: WritableSignal<any[]> = signal([]);
   public total: WritableSignal<number> = signal(110);
   public formUser: FormGroup;
+  public cart: InputSignal<any | undefined> = input();
 
   constructor() {
     this.formUser = this.formBuilder.group({
-      nome: [null, [Validators.required]],
+      nome_user: [null, [Validators.required]],
       telefone: [null, [Validators.required]],
       rua: [null, [Validators.required]],
       numero: [null, [Validators.required]],
@@ -73,8 +74,13 @@ export class DialogFormComponent {
     this.type.set(type);
     if (type === 'finalizar') {
       this.closeDialog()
-      this.router.navigate(['/final'])
-      console.log('Dados usuário salvo', this.formUser.value)
+
+      const pedidoFinal = {
+        ...this.cart(),
+        ...this.formUser.value
+      }
+      this.router.navigate(['/final', pedidoFinal])
+      console.log('Dados usuário salvo', pedidoFinal)
     }
 
   }
