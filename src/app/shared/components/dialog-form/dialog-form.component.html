@@ -10,61 +10,58 @@ class="w-full"
 [breakpoints]="{ '1199px': '75vw', '575px': '100vw' }"
 >
 
-<div class="mt-4 container-form flex flex-column gap-2">
+<div [formGroup]="formUser" class="mt-4 container-form flex flex-column gap-2">
     @if(type() === 'user') {
         <p-floatlabel variant="on">
-            <input pInputText id="on_label" [(ngModel)]="value1" autocomplete="off" />
+            <input pInputText id="on_label" formControlName="nome" autocomplete="off" />
             <label for="on_label">Nome</label>
         </p-floatlabel>
     
         <p-floatlabel variant="on">
-            <p-inputmask id="on_label" [(ngModel)]="value2" mask="(99) 99999-9999" />
+            <p-inputmask id="on_label" formControlName="telefone" mask="(99) 99999-9999" />
             <label for="on_label">Telefone</label>
         </p-floatlabel>
     <p-button size="small" label="Avançar" (click)="advance('address')"/>
     } @else if(type() === 'address') {
         <p-floatlabel variant="on">
-            <input pInputText id="on_label" [(ngModel)]="value1" autocomplete="off" />
-            <label for="on_label">Endereço</label>
+            <input pInputText id="on_label" formControlName="rua" autocomplete="off" />
+            <label for="on_label">Rua</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+            <input pInputText id="on_label" formControlName="numero" autocomplete="off" />
+            <label for="on_label">Número</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+            <input pInputText id="on_label" formControlName="bairro" autocomplete="off" />
+            <label for="on_label">Bairro</label>
         </p-floatlabel>
     
         <p-floatlabel variant="on">
-            <p-inputmask id="on_label" [(ngModel)]="value2" mask="(99) 99999-9999" />
-            <label for="on_label">Complemento (Opcional)</label>
+            <p-inputmask id="on_label" formControlName="cep" mask="99999-999" />
+            <label for="on_label">Cep</label>
         </p-floatlabel>
+
             <p-button size="small" label="Avançar" (click)="advance('payment')"/>
     } @else if(type() === 'payment') {
-      <p-select 
-        [options]="typePayment()"
-        [(ngModel)]="selectedPayment" 
-        optionLabel="name" 
-        placeholder="Método de entrega"
-        class="w-full my-2" />
 
         <p-select 
         [options]="typePayment()" 
-        [(ngModel)]="selectedPayment" 
+        formControlName="metodo_pgto" 
         optionLabel="name" 
+        optionValue="name"
         placeholder="Tipo de pagamento"
         class="w-full my-2" />
 
-        <p-select 
-        [options]="typePayment()" 
-        [(ngModel)]="selectedPayment" 
-        optionLabel="name" 
-        placeholder="Total de pedidos"
-        class="w-full my-2" />
+        <div class="flex justify-content-between m-2">
+            <span>Total dos pedidos</span>
+            <span>{{total() | currency}}</span>
+        </div>
 
-        <p-select 
-        [options]="typePayment()" 
-        [(ngModel)]="selectedPayment" 
-        optionLabel="name" 
-        placeholder="Taxa de entrega"
-        class="w-full my-2" />
-
-        <div>
-            <span>Total</span>
-            <span>{{total()}}</span>
+        <div class="m-2 flex justify-content-between align-items-center">
+            <span class="text-2xl">Total</span>
+            <span class="font-bold text-2xl">{{total() | currency}}</span>
         </div>
     
         <p-button size="small" label="Finalizar" (click)="advance('finalizar')"/>
