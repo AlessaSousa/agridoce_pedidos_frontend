@@ -15,4 +15,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class CardComponent {
   public card: InputSignal<any | undefined> = input();
+
+  addItem() {
+  }
 }

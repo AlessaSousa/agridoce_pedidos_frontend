@@ -12,7 +12,9 @@
             <span class="font-bold">R$ {{card()?.valor}}</span>
             <p-button
             [rounded]="true"
-            icon="pi pi-plus"/>
+            icon="pi pi-plus"
+            (click)="addItem()"
+            />
         </div>
     </div>
   </div>

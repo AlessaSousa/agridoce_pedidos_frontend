@@ -48,7 +48,9 @@ export class MenuComponent {
     const itemBase = {
       nome: 'Bolo de Chocolate',
       valor: 40,
-      image: 'assets/menu/bolo_chocolate_3.jpeg'
+      image: 'assets/menu/bolo_chocolate_3.jpeg',
+      descricao: 'Serve 8 à 10 pessoas.',
+      ingrediente: 'trigo, chocolate em pó, fermento, leite condensado, margarina, ovos, leite integral',
     }
     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }));
     this.itemFood.set(lista)
