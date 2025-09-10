@@ -1,0 +1,26 @@
+<div class="page-completed">
+    <div class="content-img">
+        <img src="assets/completed/confete.png">
+        <div class="circle-completed">
+            <div class="circle-inside">
+                <i class="pi pi-check"></i>
+            </div>
+        </div>
+    </div>
+
+    <span class="font-bold text-2xl my-4">Pedido Aceito!</span>
+    <span class="mb-5">Seu pedido está sendo preparado.</span>
+
+    <div class="content-actions flex flex-column gap-2 justify-content-center">
+        <p-button
+        size="small"
+        label="Gerar link para o whatsapp"
+        (click)="gerarLink()"
+        />
+        <p-button
+        size="small"
+        label="Voltar ao cardápio"
+        (click)="goToMenu()"
+        />
+    </div>
+</div>
