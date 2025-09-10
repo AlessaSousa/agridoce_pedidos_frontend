@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
     InputNumber,
     ButtonModule,
 ],
-  templateUrl: './item-details.component.html',
-  styleUrl: './item-details.component.scss'
+  templateUrl: './details.component.html',
+  styleUrl: './details.component.scss'
 })
-export class ItemDetailsComponent {
+export class DetailsComponent {
   private router = inject(Router);
   public detail: WritableSignal<any | null> = signal(null);
   
