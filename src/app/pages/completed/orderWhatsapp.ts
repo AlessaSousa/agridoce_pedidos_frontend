@@ -20,7 +20,7 @@ export class OrderStructure {
     };
     
     gerarLinkWhatsApp(order: any) {
-        const numeroLoja = '5592996168194';
+        const numeroLoja = '';
         let mensagem = `*Novo Pedido!*\n\n`;
 
         // this.pedido.forEach(item => {
