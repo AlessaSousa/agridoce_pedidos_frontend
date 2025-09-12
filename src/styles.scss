@@ -3,6 +3,7 @@
 body {
     margin: 0;
     font-family: "Sen", Roboto, "Helvetica Neue", sans-serif;
+    background: var(--color-bg-body);
 }
 
 // inputs
@@ -10,25 +11,29 @@ body {
     font-family: inherit;
     font-feature-settings: inherit;
     font-size: 1rem;
-    color: var(--p-inputtext-color);
-    background: var(--color-light-gray) !important;
+    color: var(--color-text-input) !important;
+    background: var(--color-bg-input) !important;
     padding-block: var(--p-inputtext-padding-y);
     padding-inline: var(--p-inputtext-padding-x);
     border: none !important;
     transition: background var(--p-inputtext-transition-duration), color var(--p-inputtext-transition-duration), border-color var(--p-inputtext-transition-duration), outline-color var(--p-inputtext-transition-duration), box-shadow var(--p-inputtext-transition-duration);
     appearance: none;
-    border-radius: 10px !important;
+    border-radius: 15px !important;
     outline-color: transparent;
     box-shadow: var(--p-inputtext-shadow);
     width: 100%;
     height: 50px;
 }
 
+.p-inputicon {
+    color: var(--color-text-input) !important;
+}
+
 // button 
 .p-button {
     background: var(--color-pink) !important;
     border: none !important;
-    border-radius: 15px !important;
+    // border-radius: 15px !important;
     padding: 10px 15px !important;
 }
 
@@ -54,7 +59,50 @@ body {
 
 // select 
 .p-select {
-    border: 1px solid var(--color-gray) !important;
-    background: none !important;
+    border: none !important;
+    background: var(--color-bg-input) !important;
     padding-block: var(--p-inputtext-padding-y);
+    color: var(--color-text-input)
+}
+
+.input-counter .p-inputtext {
+    // border: 1px solid white !important;
+    background: none !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.input-counter .p-inputnumber-button:hover {
+    background: none !important;
+    color: var(--p-inputnumber-button-hover-color);
+}
+
+.decrement-counter .p-inputnumber-button {
+    border: 1px solid var(--color-pink) !important;
+}
+
+.p-inputnumber-horizontal .p-inputnumber-button {
+    border: 1px solid var(--color-pink) !important;
+}
+
+.p-inputnumber-horizontal .p-inputnumber-decrement-button {
+    order: 1;
+    border-radius: 50% !important;
+    border-inline-end: 0 none;
+    width: 40px;
+    height: 40px;
+    color: var(--color-text-input);
+}
+
+.p-inputnumber-horizontal .p-inputnumber-increment-button {
+    order: 1;
+    border-radius: 50% !important;
+    border-inline-end: 0 none;
+    width: 40px;
+    height: 40px;
+    color: var(--color-text-input);
+}
+
+.increment-counter .p-inputnumber-button {
+    border: 1px solid var(--color-pink) !important;
 }

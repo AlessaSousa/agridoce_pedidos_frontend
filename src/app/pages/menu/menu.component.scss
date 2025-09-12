@@ -36,3 +36,33 @@
   margin-bottom: 70px;
   // padding: 0.5rem;
 }
+
+.btn-category {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-pink);
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+.btn-category-selected {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-input);
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+.item-category{
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.item-category::-webkit-scrollbar {
+  display: none;
+}

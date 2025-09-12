@@ -12,9 +12,14 @@
 
     <div class="content-category mt-4">
       <span class="text-xl">Categorias</span>
-      <div class="flex my-2 gap-2 flex-wrap justify-content-between">
+      <div class=" item-category flex my-2 gap-3 justify-content-between">
         @for(item of categories(); track $index) {
-          <p-button [outlined]="item.outlined" [label]="item.nome" (click)="toogle(item.nome)" />
+          <div 
+          [class]="item.outlined ? 'btn-category-selected' : 'btn-category'"
+          (click)="toogle(item.nome)">
+          <mat-icon>{{item.icon}}</mat-icon>
+          <span>{{item.nome}}</span>
+        </div>
         }
       </div>
     </div>

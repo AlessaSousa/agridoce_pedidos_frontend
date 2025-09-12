@@ -7,10 +7,12 @@ import { ButtonModule } from 'primeng/button';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 
 interface ICategories {
   nome: string;
   outlined: boolean;
+  icon: string;
 }
 interface IItems {
   nome: string;
@@ -26,7 +28,8 @@ interface IItems {
     FormsModule,
     ButtonModule,
     CardComponent,
-    CommonModule
+    CommonModule, 
+    MatIcon
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
@@ -36,13 +39,12 @@ export class MenuComponent {
   public categories: WritableSignal<ICategories[]> = signal([]);
   public selected: WritableSignal<string> = signal('Bolos');
   public itemFood: WritableSignal<IItems[]> = signal([]);
-
   ngOnInit() {
     this.categories.set([
-      { nome: 'Bolos', outlined: false },
-      { nome: 'Salgados', outlined: true },
-      { nome: 'Tortas', outlined: true },
-      { nome: 'Bebidas', outlined: true }
+      { nome: 'Bolos', outlined: false, icon: 'cake' },
+      { nome: 'Salgados', outlined: true, icon: 'bakery_dining' },
+      { nome: 'Tortas', outlined: true, icon: 'cookie' },
+      { nome: 'Bebidas', outlined: true, icon: 'water_loss' }
     ])
 
     const itemBase = {

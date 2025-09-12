@@ -3,13 +3,13 @@
 }
 
 ::ng-deep .dialog-form .p-dialog-header {
-    background: var(--color-light-gray) !important;
+    background: var(--color-bg-body) !important;
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
 }
 
 ::ng-deep .dialog-form .p-dialog-content {
-    background: var(--color-light-gray) !important;
+    background: var(--color-bg-body) !important;
 }
 
 ::ng-deep .dialog-form .p-dialog-bottom .p-dialog {
@@ -17,11 +17,7 @@
 }
 
 ::ng-deep .container-form .p-floatlabel-on:has(input:focus) label {
-    background: var(--color-light-gray) !important;
-}
-
-::ng-deep .container-form .p-inputtext {
-    border: 0.5px solid #000 !important;
+    background: var(--color-bg-body) !important;
 }
 
 ::ng-deep .container-form .p-button {
