@@ -4,14 +4,21 @@
         <p-button size="small" label="Avançar" (click)="showModal()"/>
     </div>
 
-    @if(cart().nome) {
-        <app-item [item]="cart()"/>
-    } @else {
-        <div class="flex justify-content-center">
-            <span>Não há itens no carrinho</span>
-        </div>
-    }
+    <div class="mb-6">
+        @if(cart().nome) {
+            <span class="font-bold text-xl my-2">Acompanhar pedido</span>
+            <app-item [item]="cart()"/>
+        } @else {
+            <div class="flex justify-content-center">
+                <span>Não há itens no carrinho</span>
+            </div>
+        }
+    </div>
 
+    <div>
+        <span class="font-bold text-xl my-2">Últimos pedidos</span>
+        <app-item [item]="cart()"/>
+    </div>
     <app-dialog-form
     [cart]="cart()"
     [visible]="visible()"

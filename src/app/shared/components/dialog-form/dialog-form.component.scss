@@ -17,7 +17,7 @@
 }
 
 ::ng-deep .container-form .p-floatlabel-on:has(input:focus) label {
-    background: var(--color-bg-body) !important;
+    background: none !important;
 }
 
 ::ng-deep .container-form .p-button {

@@ -1,10 +1,12 @@
 .container-item {
-    border-bottom: 0.5px solid var(--color-light-gray
-    );
+    border-bottom: 0.5px solid var(--color-light-gray);
+    background: var(--color-bg-content);
+    padding: 7px;
+    border-radius: 15px;
     img {
         border-radius: 15px;
         object-fit: cover;
-        height: 80px;
+        height: 90px;
         width: 100px;
     }
 }

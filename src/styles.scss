@@ -20,9 +20,13 @@ body {
     appearance: none;
     border-radius: 15px !important;
     outline-color: transparent;
-    box-shadow: var(--p-inputtext-shadow);
+    box-shadow: none !important;
     width: 100%;
     height: 50px;
+}
+
+.p-floatlabel-on:has(input:focus) label {
+    background: none !important;
 }
 
 .p-inputicon {
@@ -72,17 +76,30 @@ body {
     height: 40px !important;
 }
 
+.p-inputnumber-horizontal .p-inputnumber-input {
+    order: 2;
+    border-radius: 0;
+    background: none !important;
+    border: none !important;
+}
+
+.p-inputnumber {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+}
+
 .input-counter .p-inputnumber-button:hover {
     background: none !important;
     color: var(--p-inputnumber-button-hover-color);
 }
 
 .decrement-counter .p-inputnumber-button {
-    border: 1px solid var(--color-pink) !important;
+    border: 1px solid white !important;
 }
 
 .p-inputnumber-horizontal .p-inputnumber-button {
-    border: 1px solid var(--color-pink) !important;
+    border: 1px solid white !important;
 }
 
 .p-inputnumber-horizontal .p-inputnumber-decrement-button {
@@ -105,4 +122,10 @@ body {
 
 .increment-counter .p-inputnumber-button {
     border: 1px solid var(--color-pink) !important;
+}
+
+// options do select 
+.p-select-option.p-select-option-selected.p-focus {
+    background: var(--color-bg-content) !important;
+    color: #000 !important;
 }

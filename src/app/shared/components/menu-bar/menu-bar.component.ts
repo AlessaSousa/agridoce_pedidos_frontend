@@ -20,10 +20,15 @@ export class MenuBarComponent {
   readonly activeIndex: WritableSignal<number> = signal(1);
   ngOnInit() {
     this.menuItems.set([
+      // {
+      //   label: 'Pedidos',
+      //   icon: 'menu_book',
+      //   route: '',
+      // },
       {
-        label: 'Pedidos',
-        icon: 'menu_book',
-        route: '',
+        label: 'Carrinho',
+        icon: 'shopping_bag',
+        route: '/cart',
       },
       {
         label: 'Cardápio',
@@ -31,14 +36,9 @@ export class MenuBarComponent {
         route: '/menu',
       },
       {
-        label: 'Carrinho',
-        icon: 'shopping_bag',
-        route: '/cart',
-      },
-      {
         label: 'Perfil',
         icon: 'person',
-        route: '',
+        route: '/login',
       }
     ])
   }
