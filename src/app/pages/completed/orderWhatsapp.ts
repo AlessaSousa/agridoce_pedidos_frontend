@@ -4,20 +4,6 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
 })
 export class OrderStructure {
-
-    pedido = [
-        { nome: 'Bolo de chocolate', qtd: 2, preco: 40 },
-        { nome: 'Salgado Jacaré', qtd: 1, preco: 10 }
-    ];
-
-    cliente = {
-        nome: 'Alessandra Sousa',
-        rua: 'teste rua',
-        numero: 'teste numero',
-        bairro: 'teste bairro',
-        cep: '9999-999',
-        telefone: '(99) 99999-9999'
-    };
     
     gerarLinkWhatsApp(order: any) {
         const numeroLoja = '';
@@ -30,10 +16,20 @@ export class OrderStructure {
         mensagem += `• ${order.quantidade}x ${order.nome} - ${this.formatarMoeda(order.valor)}\n`;
 
         // const total = this.pedido.reduce((acc, item) => acc + (item.qtd * item.preco), 0);
-
-        mensagem += `\n---\n *Cliente*: ${order.nome_user}`;
-        mensagem += `\n *Endereço*: ${order.rua}, ${order.numero}, ${order.bairro}`;
+        mensagem += `\n -----------------------\n`;
+        mensagem += `*Cliente*: ${order.nome_user}`;
         mensagem += `\n *Telefone*: ${order.telefone}`;
+        mensagem += `\n -----------------------\n`;
+        mensagem += `*Endereço de Entrega*`;
+        mensagem += `\n *Rua*: ${order.rua}`;
+        mensagem += `\n *N°*: ${order.numero}`;
+        mensagem += `\n *Bairro*: ${order.bairro}`;
+        mensagem += `\n *CEP*: ${order.cep}`;
+        mensagem += `\n-----------------------\n`;
+        mensagem += `*Método de pagamento: ${order.metodo_pgto}*`;
+        if(order.metodo_pgto === 'dinheiro' && order.valor ) {
+
+        }
         mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.valor * order.quantidade)}`;
 
         const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;

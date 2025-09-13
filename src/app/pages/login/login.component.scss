@@ -5,6 +5,7 @@
     // background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, var(--color-bg-body) 51%, var(--color-pink) 100%);
     background: var(--color-bg-content);
     position: relative;
+    overflow: hidden;
 }
 
 .container {
@@ -65,4 +66,42 @@
     top: 25%;
     left: 5%;
     border-radius: 15px;
+}
+
+.page-login img {
+    width: 500px;
+    height: 100%;
+    position: absolute;
+    z-index: 4;
+    filter: brightness(60%)
+}
+
+.text-logo {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    color: white;
+    font-family: "Qwigley", cursive;
+    font-size: 55px;
+}
+
+.container-actions {
+    position: absolute;
+    z-index: 5;
+    bottom: 5%;
+    // left: 25%;
+    width: 100%;
+    padding: 20px;
+    span {
+        color: white;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
 }

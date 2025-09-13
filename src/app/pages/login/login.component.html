@@ -1,4 +1,4 @@
-<div class="page-login">
+<!-- <div class="page-login">
     <div class="container">
         <span class="font-agridoce">Agridoce Delivery</span>
       
@@ -14,4 +14,34 @@
     <div class="form-login-content">
         <span class="font-bold text-2xl"></span>
     </div>
+</div> -->
+
+
+<div class="page-login">
+  <div class="text-logo">
+    <span>Agridoce Delivery</span>
+  </div>
+  <img src="../../../assets/splash/bolo-red-velvet.jpg" />
+
+
+  @if(visibleLogin()) {
+  <div class="form-login">
+    <span>login</span>
+  </div>
+  } @else if(visibleRegister()) {
+  <div class="form-register">
+    <span>register</span>
+  </div>
+  } @else {
+  <div class="container-actions">
+    <div class="flex flex-column mb-4">
+      <span class="font-bold text-4xl">Boas Vindas!</span>
+      <span class="text-xl">Acesse sua conta</span>
+    </div>
+    <div class="buttons">
+      <p-button label="Criar conta" (click)="showForm('register')" />
+      <p-button label="Entrar" (click)="showForm('login')" />
+    </div>
+  </div>
+  }
 </div>

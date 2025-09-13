@@ -2,12 +2,14 @@ import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from './shared/components/menu-bar/menu-bar.component';
 import { CommonModule } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet, 
     MenuBarComponent,
     CommonModule,
+    ToastModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

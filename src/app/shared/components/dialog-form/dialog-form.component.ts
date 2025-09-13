@@ -8,6 +8,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { InputMaskModule } from 'primeng/inputmask';
 import { SelectModule } from 'primeng/select';
 import { Router } from '@angular/router';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-dialog-form',
@@ -20,7 +21,8 @@ import { Router } from '@angular/router';
     FloatLabel,
     InputMaskModule,
     SelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputNumberModule
   ],
   templateUrl: './dialog-form.component.html',
   styleUrl: './dialog-form.component.scss'
@@ -36,6 +38,7 @@ export class DialogFormComponent {
   public total: WritableSignal<number> = signal(110);
   public formUser: FormGroup;
   public cart: InputSignal<any | undefined> = input();
+  public metodo_pgto: WritableSignal<string> = signal('');
 
   constructor() {
     this.formUser = this.formBuilder.group({
@@ -45,7 +48,8 @@ export class DialogFormComponent {
       numero: [null, [Validators.required]],
       bairro: [null, [Validators.required]],
       cep: [null, [Validators.required]],
-      metodo_pgto: [null, [Validators.required]]
+      metodo_pgto: [null, [Validators.required]],
+      troco: [null]
     })
   }
 
@@ -56,6 +60,8 @@ export class DialogFormComponent {
       { name: 'Crédito' },
       { name: 'Débito' }
     ])
+
+    this.changeValue()
   }
 
   get _visible(): boolean {
@@ -82,7 +88,12 @@ export class DialogFormComponent {
       this.router.navigate(['/final', pedidoFinal])
       console.log('Dados usuário salvo', pedidoFinal)
     }
+  }
 
+  changeValue() {
+    this.formUser.valueChanges.subscribe(value => {
+      this.metodo_pgto.set(value.metodo_pgto);
+    })
   }
 
 }
