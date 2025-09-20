@@ -6,10 +6,11 @@ import { providePrimeNG } from 'primeng/config';
 import { MessageService } from 'primeng/api';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { CustomHttpInterceptor, authInterceptor } from './core/security/http-interceptor';
 import { AgridoceTheme, AgridoceTranslation } from './primeng.theme';
 import { LoadingInterceptor } from './core/interceptors/loadingInterceptor';
 import { BasicAuthInterceptor } from './core/interceptors/basicAuthInterceptor';
+import { authInterceptor } from './core/interceptors/authInterceptor';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

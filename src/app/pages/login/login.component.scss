@@ -57,15 +57,18 @@
     top: 158px;
 }
 
-.form-login-content {
+.form-login-content, .form-register-content {
     width: 90%;
-    height: 350px;
+    height: 400px;
     box-shadow: 0px -1px 30px var(--color-card);
     position: absolute;
     z-index: 5;
     top: 25%;
     left: 5%;
     border-radius: 15px;
+    span {
+        color: white;
+    }
 }
 
 .page-login img {
@@ -95,9 +98,11 @@
     // left: 25%;
     width: 100%;
     padding: 20px;
+
     span {
         color: white;
     }
+
     .buttons {
         display: flex;
         justify-content: center;

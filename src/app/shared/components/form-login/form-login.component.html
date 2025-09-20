@@ -1,0 +1,13 @@
+<div [formGroup]="formLogin" class="flex flex-column gap-3">
+    <div class="flex flex-column gap-2">
+        <p-floatlabel variant="on">
+            <input pInputText id="on_label" formControlName="email" autocomplete="off" />
+            <label for="on_label">E-mail</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+            <input pInputText id="on_label" formControlName="senha" autocomplete="off" />
+            <label for="on_label">Senha</label>
+        </p-floatlabel>
+    </div>
+    <p-button class="flex justify-content-center" label="Criar" (click)="signin()" />
+</div>

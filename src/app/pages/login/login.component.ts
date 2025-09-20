@@ -1,30 +1,46 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormLoginComponent } from '../../shared/components/form-login/form-login.component';
+import { FormRegisterComponent } from '../../shared/components/form-register/form-register.component';
 
 @Component({
   selector: 'app-login',
   imports: [
     CommonModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule,
+    FloatLabelModule,
+    FormLoginComponent,
+    FormRegisterComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  readonly visibleLogin: WritableSignal<boolean> = signal(false);
-  readonly visibleRegister: WritableSignal<boolean> = signal(false);
- 
+  private formBuilder = inject(FormBuilder);
+  readonly type: WritableSignal<string> = signal('');
+  readonly formLogin: FormGroup;
+
+  constructor() {
+    this.formLogin = this.formBuilder.group({
+      user: [null],
+      email: [null, [Validators.required, Validators.email]],
+      senha: [null, Validators.required],
+      confirmSenha: [null]
+    })
+  }
+
   showForm(type: string) {
-    if(type === 'login') {
-      this.visibleLogin.set(true);
-    } else  {
-      this.visibleLogin.set(false);
-    }
-    if(type === 'register') {
-      this.visibleRegister.set(true);
-    } else {
-      this.visibleRegister.set(false);
-    }
+    this.type.set(type)
+  }
+
+  signin() { }
+
+  backToLogin(event: string) {
+    this.type.set(event)
   }
 }

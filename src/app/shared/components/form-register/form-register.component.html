@@ -1,0 +1,21 @@
+<div [formGroup]="formRegister" class="flex flex-column gap-2">
+    <div class="flex flex-column gap-2">
+    <p-floatlabel variant="on">
+        <input pInputText id="on_label" formControlName="nome" autocomplete="off" />
+        <label for="on_label">Nome</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+        <input pInputText id="on_label" formControlName="email" autocomplete="off" />
+        <label for="on_label">E-mail</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+        <input pInputText id="on_label" formControlName="senha" autocomplete="off" />
+        <label for="on_label">Senha</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on">
+        <input pInputText id="on_label" formControlName="confirmSenha" autocomplete="off" />
+        <label for="on_label">Confirmr Senha</label>
+    </p-floatlabel>
+</div>
+<p-button class="flex justify-content-center" label="Criar" (click)="signin()" />
+</div>
