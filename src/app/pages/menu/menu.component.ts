@@ -8,6 +8,10 @@ import { CardComponent } from '../../shared/components/card/card.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import { SharedService } from '../../shared/services/shared.service'
+import { LoadingService } from '../../shared/services/loading.service';
+import { ToastService } from '../../shared/services/toast.service';
+import { IProduto } from '../../shared/models/IProduto';
 
 interface ICategories {
   nome: string;
@@ -36,9 +40,16 @@ interface IItems {
 })
 export class MenuComponent {
   private router = inject(Router);
+  private sharedService = inject(SharedService);
+  private loadingService = inject(LoadingService);
+  private toastService = inject(ToastService);
+
   public categories: WritableSignal<ICategories[]> = signal([]);
   public selected: WritableSignal<string> = signal('Bolos');
   public itemFood: WritableSignal<IItems[]> = signal([]);
+  
+  public produtos: WritableSignal<IProduto[]> = signal([]);
+
   ngOnInit() {
     this.categories.set([
       { nome: 'Bolos', outlined: false, icon: 'cake' },
@@ -57,6 +68,8 @@ export class MenuComponent {
     }
     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }));
     this.itemFood.set(lista)
+
+    this.getListProdutos()
   }
 
   toogle(event: string) {
@@ -106,5 +119,19 @@ export class MenuComponent {
 
   showDetail(item: IItems) {
     this.router.navigate(['/detail', item])
+  }
+
+  getListProdutos(){
+    this.loadingService.show()
+    this.sharedService.getProduto()
+    .then((res) => {
+      this.produtos.set(res)
+    })
+    .catch((err) => {
+      this.toastService.showToastError('Erro ao buscar listagem de produtos.')
+    })
+    .finally(() => {
+      this.loadingService.hide()
+    })
   }
 }

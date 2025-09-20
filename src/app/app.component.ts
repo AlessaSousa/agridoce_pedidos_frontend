@@ -3,14 +3,16 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from './shared/components/menu-bar/menu-bar.component';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
+import { LoadingComponent } from "./shared/components/loading/loading.component";
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet, 
+    RouterOutlet,
     MenuBarComponent,
     CommonModule,
-    ToastModule
-  ],
+    ToastModule,
+    LoadingComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
