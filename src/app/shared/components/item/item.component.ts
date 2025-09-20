@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, InputSignal, signal, WritableSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputNumber } from 'primeng/inputnumber';
+import { IProduto } from '../../models/IProduto';
+import { CartService, ICartItem } from '../../services/cart.service';
 
 @Component({
   selector: 'app-item',
@@ -16,5 +18,10 @@ import { InputNumber } from 'primeng/inputnumber';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
-  public item: InputSignal<any | undefined> = input();
+  private cartService = inject(CartService);
+  public item: InputSignal<ICartItem | undefined> = input();
+
+  removeItem(id?: number) {
+    this.cartService.removeFromCart(id!)
+  }
 }

@@ -9,6 +9,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { SelectModule } from 'primeng/select';
 import { Router } from '@angular/router';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { CartService, ICartItem, IItemFinalizado } from '../../services/cart.service';
 
 @Component({
   selector: 'app-dialog-form',
@@ -30,19 +31,20 @@ import { InputNumberModule } from 'primeng/inputnumber';
 export class DialogFormComponent {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
+  private cartService = inject(CartService);
 
   public visible: InputSignal<boolean> = input.required();
   public visibleChange: OutputEmitterRef<boolean> = output();
   public type: WritableSignal<string> = signal('user');
   public typePayment: WritableSignal<any[]> = signal([]);
-  public total: WritableSignal<number> = signal(110);
+  public total: WritableSignal<number> = signal(0);
   public formUser: FormGroup;
-  public cart: InputSignal<any | undefined> = input();
+  public cart: InputSignal<ICartItem[] | undefined> = input();
   public metodo_pgto: WritableSignal<string> = signal('');
 
   constructor() {
     this.formUser = this.formBuilder.group({
-      nome_user: [null, [Validators.required]],
+      nome: [null, [Validators.required]],
       telefone: [null, [Validators.required]],
       rua: [null, [Validators.required]],
       numero: [null, [Validators.required]],
@@ -62,6 +64,7 @@ export class DialogFormComponent {
     ])
 
     this.changeValue()
+    this.total.set(this.cartService.getTotal())
   }
 
   get _visible(): boolean {
@@ -81,11 +84,13 @@ export class DialogFormComponent {
     if (type === 'finalizar') {
       this.closeDialog()
 
-      const pedidoFinal = {
-        ...this.cart(),
-        ...this.formUser.value
+      const pedidoFinal: IItemFinalizado  = {
+        pedido: this.cart()!,
+        usuario: {...this.formUser.value},
+        total: this.total()
       }
-      this.router.navigate(['/final', pedidoFinal])
+      this.router.navigate(['/final'])
+      this.cartService.setPedido(pedidoFinal)
       console.log('Dados usuário salvo', pedidoFinal)
     }
   }

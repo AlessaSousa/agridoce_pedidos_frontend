@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, WritableSignal, inject, signal } from '@angular/core';
+import { Component, InputSignal, WritableSignal, computed, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputNumber } from 'primeng/inputnumber';
 import { Button, ButtonModule } from "primeng/button";
 import { ActivatedRoute, Router } from '@angular/router';
+import { IProduto, PRODUTOS } from '../../shared/models/IProduto';
+import { SharedService } from '../../shared/services/shared.service';
+import { CartService } from '../../shared/services/cart.service';
 
 @Component({
   selector: 'app-item-details',
@@ -18,28 +21,38 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailsComponent {
   private router = inject(Router);
-  public detail: WritableSignal<any | null> = signal(null);
   private activateRoute = inject(ActivatedRoute);
+  private sharedService = inject(SharedService);
+  private cartService = inject(CartService);
+
+  public detailProduto: WritableSignal<IProduto | undefined> = signal(undefined);
+  public detail = computed(() => {
+    return {
+      ...this.detailProduto()!,
+      quantidade: 0
+    }
+  })
 
   constructor() {
-    this.activateRoute.params.subscribe(params => {
-      this.detail.set({
-        nome: params['nome'],
-        valor: params['valor'],
-        subtitle: params['subtitle'],
-        ingrediente: params['ingrediente'],
-        image: params['image'],
-        quantidade: params['quantidade']
-      });
-    })
+    const id = Number(this.activateRoute.snapshot.paramMap.get('id'));
+    const found = PRODUTOS.find(p => p.id === id) || null;
+    this.detailProduto.set(found!)
   }
 
   goToMenu() {
     this.router.navigate(['/menu'])
   }
 
-  goToCart(detail: any) {
-    const cart = detail
-    this.router.navigate(['/cart', cart])
+  goToCart(detail: IProduto) {
+    this.router.navigate(['/cart'])
+    // this.cartService.addToCart(detail);
+  }
+
+  addItem(item: IProduto) {
+    this.cartService.addToCart(item);
+  }
+
+  updateQuantity(novaQuantidade: number, item: IProduto) {
+    this.cartService.updateQuantity(novaQuantidade, item)
   }
 }

@@ -1,13 +1,13 @@
-<div class="container-item flex gap-2">
-    <img class="col-3" [src]="item()?.image">
+<div class="container-item flex gap-2 my-2">
+    <img class="col-3" [src]="item()?.produto?.image">
     <div class="col">
         <div class="flex justify-content-between mb-2">
-            <span>{{item()?.nome}}</span>
-            <i class="pi pi-times text-xl"></i>
+            <span>{{item()?.produto?.nomeProduto}}</span>
+            <i class="pi pi-times text-xl cursor-pointer" (click)="removeItem(item()?.produto?.id)"></i>
         </div>
         <div class="flex justify-content-between align-items-center">
             <p-inputnumber
-            [(ngModel)]="item().quantidade" 
+            [ngModel]="item()?.quantidade" 
             [showButtons]="true" 
             buttonLayout="horizontal" 
             spinnerMode="horizontal"
@@ -23,7 +23,7 @@
                 <span class="pi pi-minus"></span>
             </ng-template>
         </p-inputnumber>
-        <span class="font-bold text-xl">{{item().valor * item().quantidade| currency}}</span>
+        <span class="font-bold text-xl">{{item()?.produto?.precoProd| currency}}</span>
         </div>
     </div>
 </div>

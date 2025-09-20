@@ -9,7 +9,7 @@ export const routes: Routes = [
     { path: '', component: SplashComponent },
     { path: 'menu', component: MenuComponent },
     { path: 'cart', component: CartComponent },
-    { path: 'detail', component: DetailsComponent },
+    { path: 'detail/:id', component: DetailsComponent },
     { path: 'final', component: CompletedComponent },
     { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '' }

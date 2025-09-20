@@ -44,6 +44,6 @@ export class CompletedComponent {
   }
 
   gerarLink() {
-    this.orderStructure.gerarLinkWhatsApp(this.finalOrder())
+    this.orderStructure.gerarLinkWhatsApp()
   }
 }

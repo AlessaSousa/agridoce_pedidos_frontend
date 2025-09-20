@@ -13,7 +13,7 @@ class="w-full"
 <div [formGroup]="formUser" class="mt-4 container-form flex flex-column gap-2">
     @if(type() === 'user') {
         <p-floatlabel variant="on">
-            <input pInputText id="on_label" formControlName="nome_user" autocomplete="off" />
+            <input pInputText id="on_label" formControlName="nome" autocomplete="off" />
             <label for="on_label">Nome</label>
         </p-floatlabel>
     
@@ -56,16 +56,16 @@ class="w-full"
         appendTo="body"
         />
 
-        @if(metodo_pgto() === 'Dinheiro') {
+        <!-- @if(metodo_pgto() === 'Dinheiro') {
         <p-floatlabel variant="on">
-            <p-input-number [min]="cart().valor * cart().quantidade" [fluid]="true" id="on_label" formControlName="troco" autocomplete="off" />
+            <p-input-number [min]="" [fluid]="true" id="on_label" formControlName="troco" autocomplete="off" />
             <label for="on_label">Troco para</label>
         </p-floatlabel>
-        }
+        } -->
 
         <div class="m-2 flex justify-content-between align-items-center">
             <span class="text-2xl">Total</span>
-            <span class="font-bold text-2xl">{{cart().valor * cart().quantidade | currency}}</span>
+            <span class="font-bold text-2xl">{{total()| currency}}</span>
         </div>
     
         <p-button size="small" label="Finalizar" (click)="advance('finalizar')"/>

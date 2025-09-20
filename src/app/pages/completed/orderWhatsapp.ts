@@ -1,36 +1,45 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { CartService } from "../../shared/services/cart.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class OrderStructure {
-    
-    gerarLinkWhatsApp(order: any) {
+    private cartService = inject(CartService);
+
+    gerarLinkWhatsApp() {
+
+        const order = this.cartService.getPedido();
         const numeroLoja = '';
         let mensagem = `*Novo Pedido!*\n\n`;
 
-        // this.pedido.forEach(item => {
-        //     mensagem += `• ${item.qtd}x ${item.nome} - ${this.formatarMoeda(item.preco)}\n`;
+        // order?.pedido?.forEach(item => {
+        //     mensagem += `• ${item.quantidade}x ${item.produto.nomeProduto} - ${this.formatarMoeda(item.produto.precoProd)}\n`;
         // });
 
-        mensagem += `• ${order.quantidade}x ${order.nome} - ${this.formatarMoeda(order.valor)}\n`;
+        for (let item of order?.pedido) {
+            mensagem += `• ${item.quantidade}x ${item.produto.nomeProduto} - ${this.formatarMoeda(item.produto.precoProd)}\n`;
+        }
+
+
+        // mensagem += `• ${order.quantidade}x ${order.nome} - ${this.formatarMoeda(order.valor)}\n`;
 
         // const total = this.pedido.reduce((acc, item) => acc + (item.qtd * item.preco), 0);
         mensagem += `\n -----------------------\n`;
-        mensagem += `*Cliente*: ${order.nome_user}`;
-        mensagem += `\n *Telefone*: ${order.telefone}`;
+        mensagem += `*Cliente*: ${order?.usuario.nome}`;
+        mensagem += `\n *Telefone*: ${order?.usuario.telefone}`;
         mensagem += `\n -----------------------\n`;
         mensagem += `*Endereço de Entrega*`;
-        mensagem += `\n *Rua*: ${order.rua}`;
-        mensagem += `\n *N°*: ${order.numero}`;
-        mensagem += `\n *Bairro*: ${order.bairro}`;
-        mensagem += `\n *CEP*: ${order.cep}`;
+        mensagem += `\n *Rua*: ${order?.usuario.rua}`;
+        mensagem += `\n *N°*: ${order?.usuario.numero}`;
+        mensagem += `\n *Bairro*: ${order?.usuario.bairro}`;
+        mensagem += `\n *CEP*: ${order?.usuario.cep}`;
         mensagem += `\n-----------------------\n`;
-        mensagem += `*Método de pagamento: ${order.metodo_pgto}*`;
-        if(order.metodo_pgto === 'dinheiro' && order.valor ) {
+        mensagem += `*Método de pagamento: ${order?.usuario.metodo_pgto}*`;
+        // if (order?.usuario.metodo_pgto === 'dinheiro' && order?.usuario.valor) {
 
-        }
-        mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.valor * order.quantidade)}`;
+        // }
+        mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.total)}`;
 
         const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
 

@@ -5,9 +5,11 @@
     </div>
 
     <div class="mb-6">
-        @if(cart().nome) {
+        @if(cartItems().length) {
             <span class="font-bold text-xl my-2">Acompanhar pedido</span>
-            <app-item [item]="cart()"/>
+            @for(item of cartItems(); track $index) {
+                <app-item [item]="item"/>
+            }
         } @else {
             <div class="flex justify-content-center">
                 <span>Não há itens no carrinho</span>
@@ -20,7 +22,7 @@
         <app-item [item]="cart()"/>
     </div> -->
     <app-dialog-form
-    [cart]="cart()"
+    [cart]="cartItems()"
     [visible]="visible()"
     (visibleChange)="closeDialog()"/>
 </div>

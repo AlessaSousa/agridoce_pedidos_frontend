@@ -7,13 +7,13 @@
     }
 
     <div class="mt-4 w-full px-3">
-        <span class="font-bold">{{card()?.nome}}</span>
+        <span class="font-bold">{{card()?.nomeProduto}}</span>
         <div class="flex justify-content-between align-items-center mt-2">
-            <span class="font-bold">{{card()?.valor | currency}}</span>
+            <span class="font-bold">{{card()?.precoProd| currency}}</span>
             <p-button
             [rounded]="true"
             icon="pi pi-plus"
-            (click)="addItem(card())"
+            (click)="addItem(card()!)"
             />
         </div>
     </div>

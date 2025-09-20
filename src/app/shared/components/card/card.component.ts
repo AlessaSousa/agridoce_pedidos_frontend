@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, InputSignal, WritableSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { IProduto } from '../../models/IProduto';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -14,8 +16,14 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  public card: InputSignal<any | undefined> = input();
+  private cartService = inject(CartService);
+  public card: InputSignal<IProduto | undefined> = input();
 
-  addItem(item: any) {
+  addItem(item: IProduto) {
+    this.cartService.addToCart(item);
+  }
+
+  showDetail(item: IProduto) {
+    
   }
 }
