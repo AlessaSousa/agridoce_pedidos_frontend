@@ -13,7 +13,7 @@ export class AuthService {
   constructor() { }
 
   login(credentials: { email: string; senha: string }) {
-    return this.http.post<{ token: string }>(`${environment.apiURL}/login`, credentials)
+    return this.http.post<{ token: string }>(`${environment.apiURL}/auth/login`, credentials)
       .pipe(
         tap(res => {
           localStorage.setItem('token', res.token);
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   register(data: IUserRegister) {
-    return this.http.post(`${environment.apiURL}/register`, data)
+    return this.http.post(`${environment.apiURL}/auth/register`, data)
   }
 
   logout() {

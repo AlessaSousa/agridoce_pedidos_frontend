@@ -29,7 +29,7 @@ export class FormLoginComponent {
   readonly formLogin: FormGroup;
   constructor() {
     this.formLogin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      login: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]]
     })
   }

@@ -29,12 +29,13 @@ export class FormRegisterComponent {
   public backToLogin: OutputEmitterRef<string> = output()
   constructor() {
     this.formRegister = this.formBuilder.group({
-      nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      // nome: ['', Validators.required],
+      login: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmSenha: ['', Validators.required]
     })
   }
+  
   signin() {
     if (this.formRegister.invalid) return;
 

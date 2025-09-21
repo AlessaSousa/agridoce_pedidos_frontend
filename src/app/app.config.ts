@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([authInterceptor]), withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     providePrimeNG({
       ripple: true,
       theme: {
