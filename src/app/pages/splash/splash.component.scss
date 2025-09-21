@@ -2,53 +2,27 @@
     display: block;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, var(--color-bg-body) 51%, var(--color-pink) 100%);
-}
-
-.splash-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    background: var(--color-bg-content);
     position: relative;
-    z-index: 1;
-}
-
-.font-agridoce {
-    font-family: "Qwigley", cursive;
-    font-weight: 400;
-    font-size: 55px;
-    color: #390202;
-}
-
-.images-food {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    gap: 10px;
-    z-index: 2;
     overflow: hidden;
 }
 
-.image-bolo img {
-    position: relative;
-    width: 350px;
-    height: 350px;
-    z-index: 3;
-    right: 117px;
-    top: 70px;
+.splash-container img {
+    width: 500px;
+    height: 100%;
+    position: absolute;
+    z-index: 4;
+    filter: brightness(60%)
 }
 
-.image-salgado img {
+.text-logo {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    z-index: 4;
-    right: 121px;
-    top: 158px;
+    z-index: 5;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    color: white;
+    font-family: "Qwigley", cursive;
+    font-size: 55px;
 }
