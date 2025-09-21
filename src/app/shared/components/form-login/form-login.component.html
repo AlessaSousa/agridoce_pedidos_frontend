@@ -2,10 +2,10 @@
     <div class="flex flex-column gap-2">
         <p-floatlabel variant="on">
             <input pInputText id="on_label" formControlName="login" autocomplete="off" />
-            <label for="on_label">E-mail</label>
+            <label for="on_label">Usuário</label>
         </p-floatlabel>
         <p-floatlabel variant="on">
-            <input pInputText id="on_label" formControlName="senha" autocomplete="off" />
+            <p-password id="on_label" [feedback]="false" [toggleMask]="true" [fluid]="true" formControlName="senha" autocomplete="off" />
             <label for="on_label">Senha</label>
         </p-floatlabel>
     </div>

@@ -13,22 +13,22 @@ export class AuthService {
   constructor() { }
 
   login(credentials: { email: string; senha: string }) {
-    return this.http.post<{ token: string }>(`${environment.apiURL}/auth/login`, credentials)
+    return lastValueFrom(this.http.post<{ token: string }>(`${environment.apiURL}/auth/login`, credentials)
       .pipe(
         tap(res => {
           localStorage.setItem('token', res.token);
         })
-      );
+      ));
   }
 
   register(data: IUserRegister) {
-    return this.http.post(`${environment.apiURL}/auth/register`, data)
+    return lastValueFrom(this.http.post(`${environment.apiURL}/auth/register`, data))
   }
 
   logout() {
     localStorage.removeItem('token')
   }
-  
+
   getToken(): string | null {
     return localStorage.getItem('token')
   }

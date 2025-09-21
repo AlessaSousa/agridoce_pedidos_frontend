@@ -7,7 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastService } from '../../services/toast.service';
 import { AuthService } from '../../services/auth.service';
 import { LoadingService } from '../../services/loading.service';
-
+import { PasswordModule } from 'primeng/password';
 @Component({
   selector: 'app-form-register',
   imports: [
@@ -15,7 +15,8 @@ import { LoadingService } from '../../services/loading.service';
     ButtonModule,
     InputTextModule,
     FloatLabelModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordModule
   ],
   templateUrl: './form-register.component.html',
   styleUrl: './form-register.component.scss'
@@ -29,29 +30,32 @@ export class FormRegisterComponent {
   public backToLogin: OutputEmitterRef<string> = output()
   constructor() {
     this.formRegister = this.formBuilder.group({
-      // nome: ['', Validators.required],
-      login: ['', [Validators.required, Validators.email]],
+      login: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmSenha: ['', Validators.required]
     })
   }
-  
+
   signin() {
     if (this.formRegister.invalid) return;
-
+    
     const { senha, confirmSenha } = this.formRegister.value;
     if (senha !== confirmSenha) {
       return this.toastService.showToastError('As senhas não coincidem');
     }
-
-    this.authService.register(this.formRegister.value).subscribe({
-      next: () => {
+    
+    this.loadingService.show()
+    this.authService.register(this.formRegister.value)
+      .then((res) => {
         this.toastService.showToastSuccess('Cadastro realizado.')
         this.backToLogin.emit('login')
-      },
-      error: (err) => {
+      })
+      .catch((err) => {
         this.toastService.showToastError('Erro no cadastro.')
-      }
-    });
+      })
+      .finally(() => {
+        this.loadingService.hide()
+      })
   }
 }

@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
 import { SharedService } from '../../services/shared.service';
 import { LoadingService } from '../../services/loading.service';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
   selector: 'app-form-login',
@@ -16,7 +17,8 @@ import { LoadingService } from '../../services/loading.service';
     ButtonModule,
     InputTextModule,
     FloatLabelModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordModule
   ],
   templateUrl: './form-login.component.html',
   styleUrl: './form-login.component.scss'
@@ -34,16 +36,18 @@ export class FormLoginComponent {
     })
   }
 
-  signin(){
+  signin() {
     if (this.formLogin.invalid) return;
     this.loadingService.show()
-    this.authService.login(this.formLogin.value).subscribe({
-      next: () => {
+    this.authService.login(this.formLogin.value)
+      .then((res) => {
         this.toastService.showToastSuccess('Login realizado')
-      },
-      error: (err) => {
+      })
+      .catch((err) => {
         this.toastService.showToastError('Erro no login')
-      }
-    })
+      })
+      .finally(() => {
+        this.loadingService.hide()
+      })
   }
 }
