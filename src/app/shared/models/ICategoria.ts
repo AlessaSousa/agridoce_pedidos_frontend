@@ -3,3 +3,7 @@ export interface ICategoria {
     nomeCategoria: string;
     descricao: string;
 }
+
+export interface ICategoriaCustom extends ICategoria {
+    
+}

@@ -9,7 +9,7 @@ export interface IProduto {
     precoProd: number;
     categoria: ICategoria;
     restaurante?: IRestaurante;
-    image: string;
+    fotoProd: string;
 }
 
 export enum IDisponibilidadeProduto {
@@ -31,7 +31,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Bolo'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 2,
@@ -44,7 +44,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Tortas'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 3,
@@ -57,7 +57,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Salgado'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 4,
@@ -70,7 +70,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Tortas'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 5,
@@ -83,7 +83,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Bolos'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 6,
@@ -96,7 +96,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Tortas'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 7,
@@ -109,7 +109,7 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Bebidas'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
     {
         id: 8,
@@ -122,6 +122,6 @@ export const PRODUTOS: IProduto[] = [
             descricao: 'Bebidas'
         } as ICategoria,
         restaurante: {} as any,
-        image: 'assets/menu/bolo_chocolate.jpg'
+        fotoProd: 'assets/menu/bolo_chocolate.jpg'
     }
 ]

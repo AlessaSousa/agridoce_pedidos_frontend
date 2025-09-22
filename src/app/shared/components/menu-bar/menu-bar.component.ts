@@ -4,29 +4,35 @@ import { FormsModule } from '@angular/forms';
 import { IMenuItems } from '../../models/IMenuItems';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { BadgeModule } from 'primeng/badge';
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-menu-bar',
-  imports: [ 
+  imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    MatIconModule
-],
+    MatIconModule,
+    BadgeModule
+  ],
   templateUrl: './menu-bar.component.html',
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent {
+  private router = inject(Router);
+  private cartService = inject(CartService);
   readonly menuItems: WritableSignal<IMenuItems[]> = signal([]);
   readonly activeIndex: WritableSignal<number> = signal(1);
-  private router = inject(Router);
+  readonly totalItems: WritableSignal<number> = signal(0);
 
-  constructor(){
+  constructor() {
     effect(() => {
       const currentRoute = this.router.url;
       const index = this.menuItems().findIndex(item => currentRoute.startsWith(item.route));
-      if(index !== -1) {
+      if (index !== -1) {
         this.activeIndex.set(index);
       }
+      this.totalItems.set(this.cartService.cartItems.length)
     })
   }
 

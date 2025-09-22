@@ -63,7 +63,7 @@ export class MenuComponent {
     const itemBase = {
       nome: 'Bolo de Chocolate',
       valor: 40,
-      image: 'assets/menu/bolo_chocolate_3.jpeg',
+      fotoProd: 'assets/menu/bolo_chocolate_3.jpeg',
       subtitle: 'Serve 8 à 10 pessoas.',
       ingrediente: 'trigo, chocolate em pó, fermento, leite condensado, margarina, ovos, leite integral',
       quantidade: 1
@@ -72,57 +72,13 @@ export class MenuComponent {
     this.itemFood.set(lista)
 
     this.getListProdutos()
+    this.getListCategorias()
 
-    // this.produtos.set(PRODUTOS)
+    this.produtos.set(PRODUTOS)
     this.filteredProdutos.set(
-      this.produtos().filter(produto => produto?.categoria?.nomeCategoria === "Bolos" )
+      this.produtos().filter(produto => produto?.categoria?.nomeCategoria === "Bolos")
     );
   }
-
-  // toogle(event: string) {
-  //   this.categories.update(categories =>
-  //     categories.map(cat => ({
-  //       ...cat,
-  //       outlined: cat.nome !== event
-  //     }))
-  //   )
-
-  //   if (event === 'Bolos') {
-  //     const itemBase = {
-  //       nome: 'Bolo de Chocolate',
-  //       valor: 40,
-  //       image: 'assets/menu/bolo_chocolate_3.jpeg'
-  //     }
-  //     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }));
-  //     this.itemFood.set(lista)
-
-  //   } else if (event === 'Salgados') {
-  //     const itemBase = {
-  //       nome: 'Salgado de presunto',
-  //       valor: 40,
-  //       image: 'assets/menu/salgado_jacare.jpeg'
-  //     }
-  //     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }));
-  //     this.itemFood.set(lista);
-
-  //   } else if (event === 'Tortas') {
-  //     const itemBase = {
-  //       nome: 'Torta de Chocolate',
-  //       valor: 40,
-  //       image: 'assets/menu/torta_chocolate.jpeg'
-  //     }
-  //     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }))
-  //     this.itemFood.set(lista)
-  //   } else {
-  //     const itemBase = {
-  //       nome: '-------------',
-  //       valor: 0,
-  //     }
-  //     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }))
-  //     this.itemFood.set(lista)
-  //   }
-  //   this.selected.set(event);
-  // }
 
   toogle(event: string) {
     this.categories.update(categories =>
@@ -152,6 +108,27 @@ export class MenuComponent {
       })
       .catch((err) => {
         this.toastService.showToastError('Erro ao buscar listagem de produtos.')
+      })
+      .finally(() => {
+        this.loadingService.hide()
+      })
+  }
+
+  getListCategorias() {
+    this.loadingService.show()
+    this.sharedService.getCategoria()
+      .then((res) => {
+        this.categories.set([
+          { nome: res[0].nomeCategoria, outlined: false, icon: 'cake' },
+          { nome: res[1].nomeCategoria, outlined: true, icon: 'bakery_dining' },
+          { nome: res[2].nomeCategoria, outlined: true, icon: 'cookie' },
+          { nome: res[3].nomeCategoria, outlined: true, icon: 'water_loss' }
+        ])
+
+        console.log('resposta categorias', res)
+      })
+      .catch((err) => {
+        this.toastService.showToastError('Erro ao buscar categorias.')
       })
       .finally(() => {
         this.loadingService.hide()

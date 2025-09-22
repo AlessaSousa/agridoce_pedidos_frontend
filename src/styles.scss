@@ -129,3 +129,18 @@ body {
     background: var(--color-bg-content) !important;
     color: #000 !important;
 }
+
+// badge
+.p-badge {
+    display: inline-flex;
+    border-radius: var(--p-badge-border-radius);
+    justify-content: center;
+    padding: var(--p-badge-padding);
+    background: var(--color-primary) !important;
+    color: var(--p-badge-primary-color);
+    font-size: var(--p-badge-font-size);
+    font-weight: var(--p-badge-font-weight);
+    min-width: var(--p-badge-min-width);
+    height: var(--p-badge-height);
+    line-height: var(--p-badge-height);
+}
