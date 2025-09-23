@@ -35,4 +35,8 @@ export class SharedService {
   getRestaurante() {
     return lastValueFrom(this.http.get<IRestaurante[]>(`${environment.apiURL}/api/restaurantes`))
   }
+
+  getProdutoById(produtoId: number) {
+    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produto/${produtoId}`))
+  }
 }

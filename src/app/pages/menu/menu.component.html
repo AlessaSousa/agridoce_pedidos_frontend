@@ -27,7 +27,7 @@
 
   <div class="content-cards">
     <div class="grid container-items m-0">
-      @for(item of produtos(); track $index) {
+      @for(item of filteredProdutos(); track $index) {
         <app-card class="col-6 mt-7" [card]="item" (click)="showDetail(item)"></app-card>
       }
     </div>

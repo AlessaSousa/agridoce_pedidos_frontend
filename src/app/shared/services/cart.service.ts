@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { IProduto } from '../models/IProduto';
 import { BehaviorSubject } from 'rxjs';
 
@@ -18,34 +18,34 @@ export interface IItemFinalizado {
 })
 
 export class CartService {
-  public cartItems: ICartItem[] = [];
+  public cartItems: WritableSignal<ICartItem[]> = signal([]);
   private cartSubject = new BehaviorSubject<ICartItem[]>([]);
   public pedidoFinalizado!: IItemFinalizado;
 
   cart$ = this.cartSubject.asObservable();
 
   addToCart(produto: IProduto) {
-    const existing = this.cartItems.find(i => i.produto.id === produto.id);
+    const existing = this.cartItems().find(i => i.produto.id === produto.id);
     if (existing) {
       existing.quantidade += 1;
     } else {
-      this.cartItems.push({ produto, quantidade: 1 });
-      this.cartSubject.next(this.cartItems);
+      this.cartItems().push({ produto, quantidade: 1 });
+      this.cartSubject.next(this.cartItems());
     }
   }
 
   removeFromCart(produtoId: number) {
-    this.cartItems = this.cartItems.filter(i => i.produto.id !== produtoId);
-    this.cartSubject.next(this.cartItems);
+    this.cartItems.set(this.cartItems().filter(i => i.produto.id !== produtoId));
+    this.cartSubject.next(this.cartItems());
   }
 
   clearCart() {
-    this.cartItems = [];
-    this.cartSubject.next(this.cartItems);
+    this.cartItems.set([]);
+    this.cartSubject.next(this.cartItems());
   }
 
   getTotal() {
-    return this.cartItems.reduce((sum, i) => sum + (i.produto.precoProd * i.quantidade), 0);
+    return this.cartItems().reduce((sum, i) => sum + (i.produto.precoProd * i.quantidade), 0);
   }
 
   updateQuantity(novaQuantidade: number, item: IProduto) {
@@ -53,14 +53,14 @@ export class CartService {
 
     if (!produto) return;
 
-    const cartItem = this.cartItems.find(i => i.produto.id === produto.id)
+    const cartItem = this.cartItems().find(i => i.produto.id === produto.id)
 
     if (cartItem) {
       if (novaQuantidade <= 0) {
         this.removeFromCart(produto.id);
       } else {
         cartItem.quantidade = novaQuantidade;
-        this.cartItems = [...this.cartItems];
+        this.cartItems.set([...this.cartItems()]);
       }
     } else if (novaQuantidade > 0) {
       this.addToCart({ ...produto })
@@ -74,6 +74,10 @@ export class CartService {
 
   getPedido() {
     return this.pedidoFinalizado;
+  }
+
+  getCartTotal(){
+    return this.cartItems().length
   }
   
 }

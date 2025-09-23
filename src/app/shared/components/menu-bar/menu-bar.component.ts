@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject, signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IMenuItems } from '../../models/IMenuItems';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -23,7 +23,9 @@ export class MenuBarComponent {
   private cartService = inject(CartService);
   readonly menuItems: WritableSignal<IMenuItems[]> = signal([]);
   readonly activeIndex: WritableSignal<number> = signal(1);
-  readonly totalItems: WritableSignal<number> = signal(0);
+  readonly totalItens = computed(() => {
+    return this.cartService.getCartTotal()
+  });
 
   constructor() {
     effect(() => {
@@ -32,7 +34,6 @@ export class MenuBarComponent {
       if (index !== -1) {
         this.activeIndex.set(index);
       }
-      this.totalItems.set(this.cartService.cartItems.length)
     })
   }
 

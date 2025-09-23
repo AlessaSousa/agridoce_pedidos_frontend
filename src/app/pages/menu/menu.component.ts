@@ -52,7 +52,7 @@ export class MenuComponent {
   public produtos: WritableSignal<IProduto[]> = signal([]);
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
 
-  ngOnInit() {
+  async ngOnInit() {
     this.categories.set([
       { nome: 'Bolos', outlined: false, icon: 'cake' },
       { nome: 'Salgados', outlined: true, icon: 'bakery_dining' },
@@ -71,12 +71,12 @@ export class MenuComponent {
     const lista = Array.from({ length: 8 }, () => ({ ...itemBase }));
     this.itemFood.set(lista)
 
-    this.getListProdutos()
-    this.getListCategorias()
+    await this.getListProdutos()
+    // this.getListCategorias()
 
-    this.produtos.set(PRODUTOS)
+    // this.produtos.set(PRODUTOS)
     this.filteredProdutos.set(
-      this.produtos().filter(produto => produto?.categoria?.nomeCategoria === "Bolos")
+      this.produtos().filter(produto => produto?.categoriaNome === "Bolos")
     );
   }
 
@@ -91,7 +91,7 @@ export class MenuComponent {
     this.selected.set(event);
 
     this.filteredProdutos.set(
-      this.produtos().filter(produto => produto.categoria.nomeCategoria === event)
+      this.produtos().filter(produto => produto.categoriaNome === event)
     );
   }
 
@@ -99,9 +99,9 @@ export class MenuComponent {
     this.router.navigate(['/detail', item.id])
   }
 
-  getListProdutos() {
+  async getListProdutos() {
     this.loadingService.show()
-    this.sharedService.getProduto()
+    await this.sharedService.getProduto()
       .then((res) => {
         this.produtos.set(res)
         console.log('resposta', res)

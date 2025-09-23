@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProduto, PRODUTOS } from '../../shared/models/IProduto';
 import { SharedService } from '../../shared/services/shared.service';
 import { CartService } from '../../shared/services/cart.service';
+import { LoadingService } from '../../shared/services/loading.service';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-item-details',
@@ -24,6 +26,8 @@ export class DetailsComponent {
   private activateRoute = inject(ActivatedRoute);
   private sharedService = inject(SharedService);
   private cartService = inject(CartService);
+  private loadingService = inject(LoadingService);
+  private toastService = inject(ToastService);
 
   public detailProduto: WritableSignal<IProduto | undefined> = signal(undefined);
   public detail = computed(() => {
@@ -32,11 +36,30 @@ export class DetailsComponent {
       quantidade: 0
     }
   })
+  public produtoId: WritableSignal<number> = signal(0);
 
   constructor() {
-    const id = Number(this.activateRoute.snapshot.paramMap.get('id'));
-    const found = PRODUTOS.find(p => p.id === id) || null;
-    this.detailProduto.set(found!)
+    this.activateRoute.params.subscribe(params => {
+      this.produtoId.set(params['id'])
+    })
+  }
+
+  ngOnInit() {
+    this.getDetailProduto()
+  }
+
+  getDetailProduto() {
+    this.loadingService.show()
+    this.sharedService.getProdutoById(this.produtoId())
+    .then((res) => {
+      this.detailProduto.set(res)
+    })
+    .catch((err) => {
+      this.toastService.showToastError('Erro ao buscar detalhes do produto')
+    })
+    .finally(() => {
+      this.loadingService.hide()
+    })
   }
 
   goToMenu() {

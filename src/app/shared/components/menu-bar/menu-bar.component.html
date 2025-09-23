@@ -4,8 +4,8 @@
         <li [class.active]="i === activeIndex()" (click)="setActive(i)">
             <a [routerLink]="item.route">
                 <span class="icon">
-                    @if(item.route === '/cart' && totalItems() > 0) {
-                        <p-badge class="bagde-icon" [value]="totalItems()" />
+                    @if(item.route === '/cart' && totalItens() > 0) {
+                        <p-badge class="bagde-icon" [value]="totalItens()" />
                     }
                     <mat-icon>{{ item.icon }}</mat-icon>
                 </span>

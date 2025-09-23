@@ -7,7 +7,7 @@ export interface IProduto {
     disponibilidadeProduto: IDisponibilidadeProduto;
     descricaoProduto: string;
     precoProd: number;
-    categoria: ICategoria;
+    categoriaNome: string;
     restaurante?: IRestaurante;
     fotoProd: string;
 }
@@ -26,10 +26,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Delicioso bolo de chocolate cremoso',
         precoProd: 20,
         disponibilidadeProduto: IDisponibilidadeProduto.Disponivel,
-        categoria: {
-            nomeCategoria: 'Bolos',
-            descricao: 'Bolo'
-        } as ICategoria,
+        categoriaNome: 'Bolos',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -39,10 +36,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Massa crocante com recheio de limão',
         precoProd: 15,
         disponibilidadeProduto: IDisponibilidadeProduto.Disponivel,
-        categoria: {
-            nomeCategoria: 'Tortas',
-            descricao: 'Tortas'
-        } as ICategoria,
+        categoriaNome: 'Tortas',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -52,10 +46,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Coxinha tradicional com recheio cremoso',
         precoProd: 8,
         disponibilidadeProduto: IDisponibilidadeProduto.Esgotado,
-        categoria: {
-            nomeCategoria: 'Salgados',
-            descricao: 'Salgado'
-        } as ICategoria,
+        categoriaNome: 'Salgados',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -65,10 +56,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Pastel frito recheado com carne moída',
         precoProd: 7,
         disponibilidadeProduto: IDisponibilidadeProduto.Disponivel,
-        categoria: {
-            nomeCategoria: 'Tortas',
-            descricao: 'Tortas'
-        } as ICategoria,
+        categoriaNome: 'Salgados',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -78,10 +66,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Bolo macio com cobertura de cream cheese',
         precoProd: 30,
         disponibilidadeProduto: IDisponibilidadeProduto.Indisponivel,
-        categoria: {
-            nomeCategoria: 'Bolos',
-            descricao: 'Bolos'
-        } as ICategoria,
+       categoriaNome: 'Bolos',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -91,10 +76,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Recheada com creme e coberta com morangos frescos',
         precoProd: 25,
         disponibilidadeProduto: IDisponibilidadeProduto.Disponivel,
-        categoria: {
-            nomeCategoria: 'tortas',
-            descricao: 'Tortas'
-        } as ICategoria,
+        categoriaNome: 'Tortas',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -104,10 +86,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Bebida gelada para acompanhar seu pedido',
         precoProd: 6,
         disponibilidadeProduto: IDisponibilidadeProduto.Disponivel,
-        categoria: {
-            nomeCategoria: 'Bebidas',
-            descricao: 'Bebidas'
-        } as ICategoria,
+        categoriaNome: 'Bebidas',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     },
@@ -117,10 +96,7 @@ export const PRODUTOS: IProduto[] = [
         descricaoProduto: 'Suco fresco espremido na hora',
         precoProd: 10,
         disponibilidadeProduto: IDisponibilidadeProduto.Esgotado,
-        categoria: {
-            nomeCategoria: 'Bebidas',
-            descricao: 'Bebidas'
-        } as ICategoria,
+        categoriaNome: 'Bebidas',
         restaurante: {} as any,
         fotoProd: 'assets/menu/bolo_chocolate.jpg'
     }
