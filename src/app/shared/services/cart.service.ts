@@ -1,6 +1,7 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { IProduto } from '../models/IProduto';
 import { BehaviorSubject } from 'rxjs';
+import { ICreatePedido } from '../models/IPedido';
 
 export interface ICartItem {
   produto: IProduto;
@@ -20,7 +21,7 @@ export interface IItemFinalizado {
 export class CartService {
   public cartItems: WritableSignal<ICartItem[]> = signal([]);
   private cartSubject = new BehaviorSubject<ICartItem[]>([]);
-  public pedidoFinalizado!: IItemFinalizado;
+  public pedidoFinalizado!: ICreatePedido;
 
   cart$ = this.cartSubject.asObservable();
 
@@ -67,7 +68,7 @@ export class CartService {
     }
   }
 
-  setPedido(pedido: IItemFinalizado) {
+  setPedido(pedido: ICreatePedido) {
     this.pedidoFinalizado = pedido
     this.clearCart();
   }
@@ -77,7 +78,9 @@ export class CartService {
   }
 
   getCartTotal(){
+    console.log('items cart', this.cartItems())
     return this.cartItems().length
+    
   }
   
 }

@@ -10,6 +10,8 @@ import { SelectModule } from 'primeng/select';
 import { Router } from '@angular/router';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CartService, ICartItem, IItemFinalizado } from '../../services/cart.service';
+import { SharedService } from '../../services/shared.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-dialog-form',
@@ -32,6 +34,8 @@ export class DialogFormComponent {
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
   private cartService = inject(CartService);
+  private sharedService = inject(SharedService);
+  private toastService = inject(ToastService);
 
   public visible: InputSignal<boolean> = input.required();
   public visibleChange: OutputEmitterRef<boolean> = output();
@@ -51,16 +55,15 @@ export class DialogFormComponent {
       bairro: [null, [Validators.required]],
       cep: [null, [Validators.required]],
       metodo_pgto: [null, [Validators.required]],
-      troco: [null]
     })
   }
 
   ngOnInit() {
     this.typePayment.set([
-      { name: 'Dinheiro' },
-      { name: 'Pix' },
-      { name: 'Crédito' },
-      { name: 'Débito' }
+      { name: 'Dinheiro', value: 'DINHEIRO' },
+      { name: 'Pix', value: 'PIX' },
+      { name: 'Crédito', value: 'CREDITO' },
+      { name: 'Débito', value: 'DEBITO' }
     ])
 
     this.changeValue()
@@ -80,18 +83,61 @@ export class DialogFormComponent {
   }
 
   advance(type: string) {
+    
+    const lista = this.cart()?.map(i => ({
+      produtoId: i.produto.id,
+      quantidade: i.quantidade
+    }));
+
+    const date = new Date;
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // meses começam em 0
+    const year = date.getFullYear();
+
+    const formattedDate = `${day}/${month}/${year}`;
+
+    const formulario = {
+      dataPedido: formattedDate,
+      statusPedido: 'PENDENTE',
+      valorTotal: this.total(),
+      usuario: {
+        nome: this.formUser.value.nome,
+        telefone: this.formUser.value.telefone,
+      },
+      endereco: {
+        bairro: this.formUser.value.bairro,
+        cep: this.formUser.value.cep,
+        rua: this.formUser.value.rua,
+        numero: this.formUser.value.numero
+      },
+      pagamento: {
+        metodo_pag: this.formUser.value.metodo_pgto,
+        valor_pag: this.total()
+      },
+      pedido: lista || []
+    }
+
+
     this.type.set(type);
     if (type === 'finalizar') {
       this.closeDialog()
 
-      const pedidoFinal: IItemFinalizado  = {
-        pedido: this.cart()!,
-        usuario: {...this.formUser.value},
-        total: this.total()
-      }
+      // const pedidoFinal: IItemFinalizado = {
+      //   pedido: this.cart()!,
+      //   usuario: { ...this.formUser.value },
+      //   total: this.total()
+      // }
       this.router.navigate(['/final'])
-      this.cartService.setPedido(pedidoFinal)
-      console.log('Dados usuário salvo', pedidoFinal)
+      this.cartService.setPedido(formulario)
+      console.log('Dados usuário salvo', formulario)
+      this.sharedService.createPedido(formulario)
+      .then((res) => {
+        this.toastService.showToastSuccess('Pedido realizado.')
+      })
+      .catch((err) => {
+        console.log('erro ao criar pedido', err)
+        this.toastService.showToastError('Erro ao criar pedido.')
+      })
     }
   }
 

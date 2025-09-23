@@ -18,7 +18,7 @@ export class OrderStructure {
         // });
 
         for (let item of order?.pedido) {
-            mensagem += `• ${item.quantidade}x ${item.produto.nomeProduto} - ${this.formatarMoeda(item.produto.precoProd)}\n`;
+            mensagem += `• ${item.quantidade}x ${item.produtoId} - ${this.formatarMoeda(0)}\n`;
         }
 
 
@@ -30,16 +30,16 @@ export class OrderStructure {
         mensagem += `\n *Telefone*: ${order?.usuario.telefone}`;
         mensagem += `\n -----------------------\n`;
         mensagem += `*Endereço de Entrega*`;
-        mensagem += `\n *Rua*: ${order?.usuario.rua}`;
-        mensagem += `\n *N°*: ${order?.usuario.numero}`;
-        mensagem += `\n *Bairro*: ${order?.usuario.bairro}`;
-        mensagem += `\n *CEP*: ${order?.usuario.cep}`;
+        mensagem += `\n *Rua*: ${order?.endereco.numero}`;
+        mensagem += `\n *N°*: ${order?.endereco.numero}`;
+        mensagem += `\n *Bairro*: ${order?.endereco.bairro}`;
+        mensagem += `\n *CEP*: ${order?.endereco.cep}`;
         mensagem += `\n-----------------------\n`;
-        mensagem += `*Método de pagamento: ${order?.usuario.metodo_pgto}*`;
+        mensagem += `*Método de pagamento: ${order?.pagamento.metodo_pag}*`;
         // if (order?.usuario.metodo_pgto === 'dinheiro' && order?.usuario.valor) {
 
         // }
-        mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.total)}`;
+        mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.valorTotal)}`;
 
         const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
 

@@ -5,7 +5,7 @@ import { environment } from '../../environments/environments'
 import { IProduto } from '../models/IProduto';
 import { ICategoria } from '../models/ICategoria';
 import { ICliente } from '../models/ICliente';
-import { IPedido } from '../models/IPedido';
+import { ICreatePedido, IPedido } from '../models/IPedido';
 import { IRestaurante } from '../models/IRestaurante';
 
 @Injectable({
@@ -37,10 +37,10 @@ export class SharedService {
   }
 
   getProdutoById(produtoId: number) {
-    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produto/${produtoId}`, { withCredentials: true }))
+    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produtos/${produtoId}`, { withCredentials: true}))
   }
 
-  createPedido() {
-
+  createPedido(form: ICreatePedido) {
+    return lastValueFrom(this.http.post<any>(`${environment.apiURL}/api/pedidos`, form, { withCredentials: true}))
   }
 }

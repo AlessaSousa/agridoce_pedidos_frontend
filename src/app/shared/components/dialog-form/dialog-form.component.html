@@ -18,7 +18,7 @@ class="w-full"
         </p-floatlabel>
     
         <p-floatlabel variant="on">
-            <p-inputmask id="on_label" formControlName="telefone" mask="(99) 99999-9999" />
+            <p-inputmask id="on_label" formControlName="telefone" mask="99999999999" />
             <label for="on_label">Telefone</label>
         </p-floatlabel>
     <p-button size="small" label="Avançar" (click)="advance('address')"/>
@@ -39,7 +39,7 @@ class="w-full"
         </p-floatlabel>
     
         <p-floatlabel variant="on">
-            <p-inputmask id="on_label" formControlName="cep" mask="99999-999" />
+            <p-inputmask id="on_label" formControlName="cep" mask="99999999" />
             <label for="on_label">Cep</label>
         </p-floatlabel>
 
@@ -50,7 +50,7 @@ class="w-full"
         [options]="typePayment()" 
         formControlName="metodo_pgto" 
         optionLabel="name" 
-        optionValue="name"
+        optionValue="value"
         placeholder="Tipo de pagamento"
         class="w-full my-2" 
         appendTo="body"

@@ -15,24 +15,33 @@ export enum IStatusPedido {
 }
 
 export interface ICreatePedido {
-    id?: number;
     dataPedido: string;
     statusPedido: string;
     valorTotal: number;
-    pagamentos?: Pagamento[];
-    entregas?: Entrega[];
+    usuario: UsuarioPedidoInfo;
+    endereco: EnderecoUsuarioInfo;
+    pagamento: PagamentoPedido;
+    pedido: IListProduto[];
 }
 
-export interface Pagamento {
-    id?: number;
-    formaPagamento: string;
-    valor: number;
-    dataPagamento: string;
+export interface UsuarioPedidoInfo {
+    nome: string;
+    telefone: string;
 }
 
-export interface Entrega {
-    id?: number;
-    enderecoEntrega: string;
-    dataEntrega: string;
-    statusEntrega: string;
+export interface EnderecoUsuarioInfo {
+    bairro: string;
+    cep: string;
+    rua: string;
+    numero: string;
+}
+
+export interface PagamentoPedido {
+    metodo_pag: string;
+    valor_pag: number;
+}
+
+export interface IListProduto {
+    produtoId: number,
+    quantidade: number
 }
