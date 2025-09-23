@@ -16,6 +16,7 @@ export class AuthService {
     return lastValueFrom(this.http.post<{ token: string }>(`${environment.apiURL}/api/auth/login`, credentials)
       .pipe(
         tap(res => {
+          console.log('Resposta do login:', res);
           localStorage.setItem('token', res.token);
         })
       ));

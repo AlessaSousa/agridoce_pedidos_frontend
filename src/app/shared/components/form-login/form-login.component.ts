@@ -31,7 +31,7 @@ export class FormLoginComponent {
   readonly formLogin: FormGroup;
   constructor() {
     this.formLogin = this.formBuilder.group({
-      login: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       senha: ['', [Validators.required]]
     })
   }
