@@ -1,12 +1,12 @@
 <div [formGroup]="formLogin" class="flex flex-column gap-3">
     <div class="flex flex-column gap-2">
         <p-floatlabel variant="on">
-            <input pInputText id="on_label" formControlName="login" autocomplete="off" />
-            <label for="on_label">Usuário</label>
+            <input pInputText id="login_input" formControlName="login" autocomplete="off" />
+            <label for="login_input">Usuário</label>
         </p-floatlabel>
         <p-floatlabel variant="on">
-            <p-password id="on_label" [feedback]="false" [toggleMask]="true" [fluid]="true" formControlName="senha" autocomplete="off" />
-            <label for="on_label">Senha</label>
+            <p-password id="senha_input" [feedback]="false" [toggleMask]="true" [fluid]="true" formControlName="senha" autocomplete="off" />
+            <label for="senha_input">Senha</label>
         </p-floatlabel>
     </div>
     <p-button class="flex justify-content-center" label="Criar" (click)="signin()" />

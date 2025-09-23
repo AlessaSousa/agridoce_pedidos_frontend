@@ -31,15 +31,15 @@ export class FormLoginComponent {
   readonly formLogin: FormGroup;
   constructor() {
     this.formLogin = this.formBuilder.group({
-      login: ['', [Validators.required, Validators.email]],
+      login: ['', [Validators.required]],
       senha: ['', [Validators.required]]
     })
   }
 
-  signin() {
-    if (this.formLogin.invalid) return;
+  async signin() {
+    // if (this.formLogin.invalid) return;
     this.loadingService.show()
-    this.authService.login(this.formLogin.value)
+    await this.authService.login(this.formLogin.value)
       .then((res) => {
         this.toastService.showToastSuccess('Login realizado')
       })

@@ -1,21 +1,27 @@
 <div [formGroup]="formRegister" class="flex flex-column gap-2">
     <div class="flex flex-column gap-2">
-    <p-floatlabel variant="on">
-        <input pInputText id="on_label" formControlName="login" autocomplete="off" />
-        <label for="on_label">Nome</label>
-    </p-floatlabel>
-    <p-floatlabel variant="on">
-        <input pInputText id="on_label" formControlName="email" autocomplete="off" />
-        <label for="on_label">E-mail</label>
-    </p-floatlabel>
-    <p-floatlabel variant="on">
-        <p-password id="on_label" [toggleMask]="true" [fluid]="true" formControlName="senha" autocomplete="off" />
-        <label for="on_label">Senha</label>
-    </p-floatlabel>
-    <p-floatlabel variant="on">
-        <p-password id="on_label"  [toggleMask]="true" [fluid]="true" formControlName="confirmSenha" autocomplete="off" />
-        <label for="on_label">Confirmr Senha</label>
-    </p-floatlabel>
-</div>
-<p-button class="flex justify-content-center" label="Criar" (click)="signin()" />
+
+        <p-floatlabel variant="on">
+            <input pInputText id="login_input" formControlName="login" autocomplete="off" />
+            <label for="login_input">Nome</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+            <input pInputText id="email_input" formControlName="email" autocomplete="off" />
+            <label for="email_input">E-mail</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+            <p-password id="senha_input" [toggleMask]="true" [fluid]="true" formControlName="senha" autocomplete="off" />
+            <label for="senha_input">Senha</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+            <p-password id="confirm_senha_input" [toggleMask]="true" [fluid]="true" formControlName="confirmSenha" autocomplete="off" />
+            <label for="confirm_senha_input">Confirmar Senha</label>
+        </p-floatlabel>
+
+    </div>
+
+    <p-button class="flex justify-content-center" label="Criar" (click)="signin()" />
 </div>

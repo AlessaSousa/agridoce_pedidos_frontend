@@ -32,13 +32,14 @@ export class FormRegisterComponent {
     this.formRegister = this.formBuilder.group({
       login: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]],
+      senha: ['', [Validators.required]],
       confirmSenha: ['', Validators.required]
     })
   }
 
-  signin() {
-    if (this.formRegister.invalid) return;
+  async signin() {
+    // if (this.formRegister.invalid) return this.toastService.showToastError('Erro');
+    
     
     const { senha, confirmSenha } = this.formRegister.value;
     if (senha !== confirmSenha) {
@@ -46,8 +47,9 @@ export class FormRegisterComponent {
     }
     
     this.loadingService.show()
-    this.authService.register(this.formRegister.value)
+    await this.authService.register(this.formRegister.value)
       .then((res) => {
+        console.log('resposta register', res)
         this.toastService.showToastSuccess('Cadastro realizado.')
         this.backToLogin.emit('login')
       })
