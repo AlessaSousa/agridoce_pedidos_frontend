@@ -29,7 +29,7 @@ export class SharedService {
   }
 
   getPedido() {
-    return lastValueFrom(this.http.get<IPedido[]>(`${environment.apiURL}/api/pedidos`))
+    return lastValueFrom(this.http.get<IPedido[]>(`${environment.apiURL}/api/pedido`))
   }
 
   getRestaurante() {
@@ -37,6 +37,10 @@ export class SharedService {
   }
 
   getProdutoById(produtoId: number) {
-    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produto/${produtoId}`))
+    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produto/${produtoId}`, { withCredentials: true }))
+  }
+
+  createPedido() {
+
   }
 }

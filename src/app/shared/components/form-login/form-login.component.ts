@@ -9,6 +9,7 @@ import { ToastService } from '../../services/toast.service';
 import { SharedService } from '../../services/shared.service';
 import { LoadingService } from '../../services/loading.service';
 import { PasswordModule } from 'primeng/password';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-login',
@@ -28,6 +29,7 @@ export class FormLoginComponent {
   private authService = inject(AuthService);
   private toastService = inject(ToastService);
   private loadingService = inject(LoadingService);
+  private router = inject(Router);
   readonly formLogin: FormGroup;
   constructor() {
     this.formLogin = this.formBuilder.group({
@@ -42,8 +44,10 @@ export class FormLoginComponent {
     await this.authService.login(this.formLogin.value)
       .then((res) => {
         this.toastService.showToastSuccess('Login realizado')
+        this.router.navigate(['/menu'])
       })
       .catch((err) => {
+        console.log('erro login', err)
         this.toastService.showToastError('Erro no login')
       })
       .finally(() => {

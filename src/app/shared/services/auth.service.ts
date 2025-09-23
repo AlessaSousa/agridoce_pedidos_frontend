@@ -12,19 +12,34 @@ export class AuthService {
 
   constructor() { }
 
+  // login(credentials: { email: string; senha: string }) {
+  //   return lastValueFrom(this.http.post<{ token: string }>(`${environment.apiURL}/api/auth/login`, credentials)
+  //     .pipe(
+  //       tap(res => {
+  //         console.log('Resposta do login:', res);
+  //         localStorage.setItem('token', res.token);
+  //       })
+  //     ));
+  // }
+
   login(credentials: { email: string; senha: string }) {
-    return lastValueFrom(this.http.post<{ token: string }>(`${environment.apiURL}/api/auth/login`, credentials)
-      .pipe(
-        tap(res => {
-          console.log('Resposta do login:', res);
-          localStorage.setItem('token', res.token);
-        })
-      ));
+    return lastValueFrom(
+      this.http.post(`${environment.apiURL}/api/auth/login`, credentials, {
+        withCredentials: true,
+        responseType: 'text'
+      })
+    );
   }
 
   register(data: IUserRegister) {
-    return lastValueFrom(this.http.post(`${environment.apiURL}/api/auth/register`, data))
+    return lastValueFrom(
+      this.http.post(`${environment.apiURL}/api/auth/register`, data, {
+        withCredentials: true,
+        responseType: 'text'
+      })
+    );
   }
+
 
   logout() {
     localStorage.removeItem('token')
