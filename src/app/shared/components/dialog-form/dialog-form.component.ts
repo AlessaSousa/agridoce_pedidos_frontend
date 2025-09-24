@@ -12,6 +12,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CartService, ICartItem, IItemFinalizado } from '../../services/cart.service';
 import { SharedService } from '../../services/shared.service';
 import { ToastService } from '../../services/toast.service';
+import { IProduto } from '../../models/IProduto';
 
 @Component({
   selector: 'app-dialog-form',
@@ -45,6 +46,7 @@ export class DialogFormComponent {
   public formUser: FormGroup;
   public cart: InputSignal<ICartItem[] | undefined> = input();
   public metodo_pgto: WritableSignal<string> = signal('');
+  public produtos: WritableSignal<IProduto[]> = signal([])
 
   constructor() {
     this.formUser = this.formBuilder.group({
@@ -68,6 +70,7 @@ export class DialogFormComponent {
 
     this.changeValue()
     this.total.set(this.cartService.getTotal())
+    this.getProduto()
   }
 
   get _visible(): boolean {
@@ -83,11 +86,19 @@ export class DialogFormComponent {
   }
 
   advance(type: string) {
-    
-    const lista = this.cart()?.map(i => ({
-      produtoId: i.produto.id,
-      quantidade: i.quantidade
-    }));
+
+    const lista = this.cart()?.map(i => {
+      const produto = this.produtos().find(p => p.id === i.produto.id);
+      console.log('teste forms', produto)
+
+      return {
+        produtoId: i.produto.id,
+        nomeProduto: produto?.nomeProduto,
+        precoProd: produto?.precoProd,
+        quantidade: i.quantidade
+      };
+    });
+
 
     const date = new Date;
     const day = String(date.getDate()).padStart(2, '0');
@@ -128,16 +139,16 @@ export class DialogFormComponent {
       //   total: this.total()
       // }
       this.router.navigate(['/final'])
-      this.cartService.setPedido(formulario)
       console.log('Dados usuário salvo', formulario)
       this.sharedService.createPedido(formulario)
-      .then((res) => {
-        this.toastService.showToastSuccess('Pedido realizado.')
-      })
-      .catch((err) => {
-        console.log('erro ao criar pedido', err)
-        this.toastService.showToastError('Erro ao criar pedido.')
-      })
+        .then((res) => {
+          this.toastService.showToastSuccess('Pedido realizado.')
+          this.cartService.setPedido(formulario)
+        })
+        .catch((err) => {
+          console.log('erro ao criar pedido', err)
+          this.toastService.showToastError('Erro ao criar pedido.')
+        })
     }
   }
 
@@ -147,4 +158,15 @@ export class DialogFormComponent {
     })
   }
 
+  async getProduto() {
+    await this.sharedService.getProduto()
+      .then((res) => {
+        this.produtos.set(res)
+        console.log('lista produtos', res)
+      })
+      .catch((err) => {
+        this.toastService.showToastError('Erro ao buscar listagem de produtos.')
+      })
+  }
 }
+
