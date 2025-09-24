@@ -24,7 +24,7 @@ export class AppComponent {
   constructor() {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
-        this.showNavBar.set(['/menu', '/cart'].includes(event.urlAfterRedirects))
+        this.showNavBar.set(['/menu', '/cart', '/profile'].includes(event.urlAfterRedirects))
       }
     })
   }

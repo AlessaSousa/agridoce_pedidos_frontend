@@ -26,6 +26,7 @@ export class MenuBarComponent {
   readonly totalItens = computed(() => {
     return this.cartService.getCartTotal()
   });
+  readonly isLogged: WritableSignal<string> = signal('');
 
   constructor() {
     effect(() => {
@@ -35,6 +36,9 @@ export class MenuBarComponent {
         this.activeIndex.set(index);
       }
     })
+    const isLogged = localStorage.getItem('isLogged')
+    this.isLogged.set(isLogged!)
+    console.log('está logado', isLogged)
   }
 
   ngOnInit() {
@@ -52,7 +56,7 @@ export class MenuBarComponent {
       {
         label: 'Perfil',
         icon: 'person',
-        route: '/login',
+        route: this.isLogged() === 'true' ? '/profile' : '/login',
       }
     ])
   }
