@@ -42,9 +42,11 @@ export class FormLoginComponent {
     // if (this.formLogin.invalid) return;
     this.loadingService.show()
     await this.authService.login(this.formLogin.value)
-      .then((res) => {
+      .then(() => {
         this.toastService.showToastSuccess('Login realizado')
         this.router.navigate(['/menu'])
+        localStorage.getItem('isLogged')
+        localStorage.setItem('isLogged', 'true')
       })
       .catch((err) => {
         console.log('erro login', err)
