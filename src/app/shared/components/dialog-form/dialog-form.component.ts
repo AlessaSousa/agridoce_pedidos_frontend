@@ -88,11 +88,12 @@ export class DialogFormComponent {
   advance(type: string) {
 
     const lista = this.cart()?.map(i => {
-      const produto = this.produtos().find(p => p.id === i.produto.id);
-      console.log('teste forms', produto)
+      const produtoId = i.produto.id;
+
+      const produto = this.produtos()?.find(p => p.id === produtoId);
 
       return {
-        produtoId: i.produto.id,
+        produtoId,
         nomeProduto: produto?.nomeProduto,
         precoProd: produto?.precoProd,
         quantidade: i.quantidade
