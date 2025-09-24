@@ -18,7 +18,7 @@ export class OrderStructure {
         // });
 
         for (let item of order?.pedido) {
-            mensagem += `• ${item.quantidade}x ${item.produtoId} - ${this.formatarMoeda(0)}\n`;
+            mensagem += `• ${item.quantidade}x ${item.nomeProduto} - ${this.formatarMoeda(item.precoProd || 0)}\n`;
         }
 
 
@@ -39,7 +39,7 @@ export class OrderStructure {
         // if (order?.usuario.metodo_pgto === 'dinheiro' && order?.usuario.valor) {
 
         // }
-        mensagem += `\n---\n *Total*: ${this.formatarMoeda(order.valorTotal)}`;
+        mensagem += `\n-----------------------\n *Total*: ${this.formatarMoeda(order.valorTotal)}`;
 
         const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
 

@@ -139,11 +139,11 @@ export class DialogFormComponent {
       //   usuario: { ...this.formUser.value },
       //   total: this.total()
       // }
-      this.router.navigate(['/final'])
       console.log('Dados usuário salvo', formulario)
       this.sharedService.createPedido(formulario)
-        .then((res) => {
-          this.toastService.showToastSuccess('Pedido realizado.')
+      .then((res) => {
+        this.toastService.showToastSuccess('Pedido realizado.')
+        this.router.navigate(['/final'])
           this.cartService.setPedido(formulario)
         })
         .catch((err) => {

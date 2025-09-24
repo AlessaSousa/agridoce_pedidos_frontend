@@ -44,4 +44,6 @@ export interface PagamentoPedido {
 export interface IListProduto {
     produtoId: number,
     quantidade: number
+    nomeProduto?: string;
+    precoProd?: number;
 }
