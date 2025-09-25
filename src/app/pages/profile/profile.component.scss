@@ -8,8 +8,23 @@
 }
 
 .page-profile .image-profile {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     background: var(--color-light-gray);
     border-radius: 50%;
+    position: relative;
+}
+
+.mat-icon {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    z-index: 3;
+    left: 33px;
+    top: 33px;
+}
+
+.material-icons {
+    font-size: 114px;
+    color: var(--color-bg-body)
 }

@@ -7,13 +7,15 @@ import { AuthService } from '../../shared/services/auth.service';
 import { LoadingService } from '../../shared/services/loading.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile',
   imports: [
     ButtonModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
