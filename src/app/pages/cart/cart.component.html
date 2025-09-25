@@ -1,7 +1,9 @@
 <div class="page-cart">
     <div class="flex justify-content-between mb-2">
         <span class="title-header">Agridoce Delivery</span>
-        <p-button size="small" label="Avançar" (click)="showModal()"/>
+        @if(cartItems().length && isLogged() === 'true') {
+            <p-button size="small" label="Avançar" (click)="showModal()"/>
+        }
     </div>
 
     <div class="mb-6">
@@ -11,7 +13,8 @@
                 <app-item [item]="item"/>
             }
         } @else {
-            <div class="flex justify-content-center">
+            <div class="content-vazio flex flex-column justify-content-center align-items-center gap-2">
+                <mat-icon>production_quantity_limits</mat-icon>
                 <span>Não há itens no carrinho</span>
             </div>
         }

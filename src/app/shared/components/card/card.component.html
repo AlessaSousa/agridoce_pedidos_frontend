@@ -13,7 +13,7 @@
             <p-button
             [rounded]="true"
             icon="pi pi-plus"
-            (click)="addItem(card()!)"
+            (click)="addItem(card()!); $event.stopPropagation()"
             />
         </div>
     </div>

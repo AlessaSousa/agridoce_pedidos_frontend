@@ -76,6 +76,8 @@ export class DetailsComponent {
   }
 
   updateQuantity(novaQuantidade: number, item: IProduto) {
-    this.cartService.updateQuantity(novaQuantidade, item)
+    if(novaQuantidade > 0) {
+      this.cartService.updateQuantity(novaQuantidade, item)
+    }
   }
 }

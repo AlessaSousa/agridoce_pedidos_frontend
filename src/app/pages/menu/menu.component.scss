@@ -24,17 +24,17 @@
   color: #390202;
 }
 
-// .container-items {
-//   min-height: 300px;
-//   overflow-y: auto;
-//   padding-right: 0.5rem;
-// }
+.container-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-gap: 1.5rem;
+}
 
 .content-cards {
-  // flex: 1;
   overflow-y: auto;
   margin-bottom: 70px;
-  // padding: 0.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .btn-category {
@@ -57,7 +57,7 @@
   padding: 8px 12px;
 }
 
-.item-category{
+.item-category {
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;

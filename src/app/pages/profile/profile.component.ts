@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { SharedService } from '../../shared/services/shared.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { LoadingService } from '../../shared/services/loading.service';
+import { ToastService } from '../../shared/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +19,23 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+  private sharedService = inject(SharedService);
+  private authService = inject(AuthService);
+  private loadingService = inject(LoadingService);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+
   logout() {
-    localStorage.setItem('isLogged', 'false')
+    this.loadingService.show()
+    this.authService.logout()
+      .then((res) => {
+        this.router.navigate(['/login']);
+      })
+      .catch(() => {
+        this.toastService.showToastError('Erro ao sair da conta.')
+      })
+      .finally(() => {
+        this.loadingService.hide()
+      })
   }
 }

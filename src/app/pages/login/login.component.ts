@@ -6,6 +6,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormLoginComponent } from '../../shared/components/form-login/form-login.component';
 import { FormRegisterComponent } from '../../shared/components/form-register/form-register.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ import { FormRegisterComponent } from '../../shared/components/form-register/for
 })
 export class LoginComponent {
   private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
   readonly type: WritableSignal<string> = signal('');
   readonly formLogin: FormGroup;
 
@@ -42,5 +44,9 @@ export class LoginComponent {
 
   backToLogin(event: string) {
     this.type.set(event)
+  }
+
+  goToMenu() {
+    this.router.navigate(['/menu'])
   }
 }

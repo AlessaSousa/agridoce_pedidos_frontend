@@ -4,3 +4,22 @@
     flex-direction: column;
     height: 100vh;
 }
+
+.content-vazio {
+    height: 50vh;
+}
+
+.content-vazio .mat-icon {
+    -webkit-user-select: none;
+    user-select: none;
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 75px;
+    width: 75px;
+    overflow: hidden;
+}
+
+.content-vazio .material-icons {
+    font-size: 75px;
+}

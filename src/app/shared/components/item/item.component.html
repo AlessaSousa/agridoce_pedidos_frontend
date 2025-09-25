@@ -15,7 +15,9 @@
             incrementButtonClass="increment-counter"
             inputId="horizontal"
             styleClass="input-counter"
-            [inputStyle]="{ width: '3rem' }">
+            [inputStyle]="{ width: '3rem' }"
+            (ngModelChange)="updateQuantity($event, item()!)"
+            >
             <ng-template #incrementbuttonicon>
                 <span class="pi pi-plus"></span>
             </ng-template>

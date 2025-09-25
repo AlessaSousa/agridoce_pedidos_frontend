@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { BadgeModule } from 'primeng/badge';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-menu-bar',
   imports: [
@@ -23,10 +24,9 @@ export class MenuBarComponent {
   private cartService = inject(CartService);
   readonly menuItems: WritableSignal<IMenuItems[]> = signal([]);
   readonly activeIndex: WritableSignal<number> = signal(1);
-  readonly totalItens = computed(() => {
-    return this.cartService.getCartTotal()
-  });
-  readonly isLogged: WritableSignal<string> = signal('');
+  readonly totalItens: WritableSignal<number> = signal(0);
+  private authService = inject(AuthService);
+  readonly loggedIn: WritableSignal<boolean> = signal(false);
 
   constructor() {
     effect(() => {
@@ -36,12 +36,10 @@ export class MenuBarComponent {
         this.activeIndex.set(index);
       }
     })
-    const isLogged = localStorage.getItem('isLogged')
-    this.isLogged.set(isLogged!)
-    console.log('está logado', isLogged)
   }
 
   ngOnInit() {
+    this.loggedIn.set(this.authService.isLogged());
     this.menuItems.set([
       {
         label: 'Carrinho',
@@ -53,15 +51,21 @@ export class MenuBarComponent {
         icon: 'manage_search',
         route: '/menu',
       },
-      {
-        label: 'Perfil',
-        icon: 'person',
-        route: this.isLogged() === 'true' ? '/profile' : '/login',
-      }
-    ])
+      this.loggedIn()
+        ? { label: 'Perfil', icon: 'person', route: '/profile' }
+        : { label: 'Login', icon: 'person', route: '/login' }
+    ]);
+    this.getItemsCart();
   }
 
   setActive(index: number) {
     this.activeIndex.set(index);
+    console.log('index', this.activeIndex())
+  }
+
+  getItemsCart() {
+    this.cartService.cart$.subscribe(items => {
+      this.totalItens.set(items.length)
+    })
   }
 }

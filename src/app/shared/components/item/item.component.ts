@@ -24,4 +24,13 @@ export class ItemComponent {
   removeItem(id?: number) {
     this.cartService.removeFromCart(id!)
   }
+
+  updateQuantity(novaQuantidade: number, item: ICartItem) {
+    if (novaQuantidade > 0) {
+      this.cartService.updateQuantity(novaQuantidade, item.produto)
+    } else {
+      this.removeItem(item.produto.id)
+    }
+
+  }
 }

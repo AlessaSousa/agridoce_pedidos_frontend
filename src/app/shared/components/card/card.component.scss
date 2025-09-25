@@ -29,3 +29,26 @@
     position: relative;
     z-index: 1;
 }
+
+::ng-deep .card-container .p-button {
+    box-shadow: 0px -1px 20px #cfa8b0;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+::ng-deep .card-container .p-button:active {
+    animation: pulse-animation 0.3s ease;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(0.6);
+    }
+
+    50% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

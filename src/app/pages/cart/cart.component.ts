@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CartService, ICartItem } from '../../shared/services/cart.service';
 import { LoadingService } from '../../shared/services/loading.service';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-cart',
   imports: [
@@ -15,7 +16,8 @@ import { LoadingService } from '../../shared/services/loading.service';
     ButtonModule,
     DialogFormComponent,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatIcon
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
@@ -30,21 +32,10 @@ export class CartComponent {
 
   public cartItems: WritableSignal<ICartItem[]> = signal([]);
   public total: number = 0;
+  readonly isLogged: WritableSignal<string> = signal('');
   constructor() {
-    // this.activateRoute.params.subscribe(params => {
-    //   if(params) {       
-    //     this.cart.set({
-    //       nome: params['nome'],
-    //       valor: params['valor'],
-    //       subtitle: params['subtitle'],
-    //       ingrediente: params['ingrediente'],
-    //       image: params['image'],
-    //       quantidade: params['quantidade']
-    //     });
-    //   } else {
-    //     this.cart.set(null)
-    //   }
-    // })
+    const isLogged = localStorage.getItem('isLogged')
+    this.isLogged.set(isLogged!)
   }
 
   ngOnInit() {
@@ -58,7 +49,7 @@ export class CartComponent {
   closeDialog() {
     this.visible.set(false);
   }
-  
+
   getItemsCart() {
     this.loadingService.show()
     this.cartService.cart$.subscribe(items => {

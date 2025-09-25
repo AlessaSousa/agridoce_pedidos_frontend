@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { lastValueFrom, tap } from 'rxjs';
 import { environment } from '../../environments/environments';
 import { IUserRegister } from '../models/IUserRegister';
@@ -9,26 +9,21 @@ import { IUserRegister } from '../models/IUserRegister';
 })
 export class AuthService {
   private http = inject(HttpClient);
+  public isLogged = signal(!!localStorage.getItem('isLogged'));
+
 
   constructor() { }
-
-  // login(credentials: { email: string; senha: string }) {
-  //   return lastValueFrom(this.http.post<{ token: string }>(`${environment.apiURL}/api/auth/login`, credentials)
-  //     .pipe(
-  //       tap(res => {
-  //         console.log('Resposta do login:', res);
-  //         localStorage.setItem('token', res.token);
-  //       })
-  //     ));
-  // }
-
   login(credentials: { email: string; senha: string }) {
     return lastValueFrom(
       this.http.post(`${environment.apiURL}/api/auth/login`, credentials, {
         withCredentials: true,
         responseType: 'text'
       })
-    );
+    ).then(res => {
+      localStorage.setItem('isLogged', 'true');
+      this.isLogged.set(true);
+      return res;
+    });
   }
 
   register(data: IUserRegister) {
@@ -42,14 +37,19 @@ export class AuthService {
 
 
   logout() {
-    localStorage.removeItem('token')
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token')
+    return lastValueFrom(
+      this.http.post(`${environment.apiURL}/api/auth/logout`, {}, {
+        withCredentials: true,
+        responseType: 'text'
+      })
+    ).then(res => {
+      localStorage.removeItem('isLogged');
+      this.isLogged.set(false);
+      return res;
+    });
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return localStorage.getItem('isLogged') === 'true';
   }
 }
