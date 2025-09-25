@@ -130,27 +130,51 @@ export class DialogFormComponent {
     }
 
 
-    this.type.set(type);
-    if (type === 'finalizar') {
-      this.closeDialog()
+    // this.type.set(type);
+    if (type === 'address') {
+      const nome = this.formUser.value.nome
+      const telefone = this.formUser.value.telefone
 
-      // const pedidoFinal: IItemFinalizado = {
-      //   pedido: this.cart()!,
-      //   usuario: { ...this.formUser.value },
-      //   total: this.total()
-      // }
-      console.log('Dados usuário salvo', formulario)
-      this.sharedService.createPedido(formulario)
-      .then((res) => {
-        this.toastService.showToastSuccess('Pedido realizado.')
-        this.router.navigate(['/final'])
-          this.cartService.setPedido(formulario)
-        })
-        .catch((err) => {
-          console.log('erro ao criar pedido', err)
-          this.toastService.showToastError('Erro ao criar pedido.')
-        })
+      if (!nome || !telefone) {
+        return this.toastService.showToastWarn('Por favor, preencha os campos para prosseguir.')
+      } else {
+        this.type.set(type)
+      }
     }
+    if (type === 'payment') {
+      const rua = this.formUser.value.rua
+      const numero = this.formUser.value.numero
+      const bairro = this.formUser.value.bairro
+      const cep = this.formUser.value.cep
+
+      if (!rua || !numero || !bairro || !cep) {
+        return this.toastService.showToastWarn('Por favor, preencha os campos para prosseguir.')
+      } else {
+        this.type.set(type)
+      }
+    }
+    if (type === 'finalizar') {
+      const pagamento = this.formUser.value.metodo_pgto
+
+      if (!pagamento) {
+        return this.toastService.showToastWarn('Por favor, preencha os campos para prosseguir.')
+      } else {
+        this.closeDialog()
+        console.log('Dados usuário salvo', formulario)
+        this.sharedService.createPedido(formulario)
+          .then((res) => {
+            this.toastService.showToastSuccess('Pedido realizado.')
+            this.router.navigate(['/final'])
+            this.cartService.setPedido(formulario)
+          })
+          .catch((err) => {
+            console.log('erro ao criar pedido', err)
+            this.toastService.showToastError('Erro ao criar pedido.')
+          })
+      }
+    }
+
+    console.log('type: ', type)
   }
 
   changeValue() {
