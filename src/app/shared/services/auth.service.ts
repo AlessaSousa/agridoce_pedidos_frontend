@@ -10,6 +10,7 @@ import { IUserRegister } from '../models/IUserRegister';
 export class AuthService {
   private http = inject(HttpClient);
   public isLogged = signal(!!localStorage.getItem('isLogged'));
+  public emailUser = signal('');
 
 
   constructor() { }
@@ -22,6 +23,8 @@ export class AuthService {
     ).then(res => {
       localStorage.setItem('isLogged', 'true');
       this.isLogged.set(true);
+      const limpa = res.replace(/\s*signed in/, "");
+      this.emailUser.set(limpa)
       return res;
     });
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { SharedService } from '../../shared/services/shared.service';
@@ -26,6 +26,11 @@ export class ProfileComponent {
   private loadingService = inject(LoadingService);
   private toastService = inject(ToastService);
   private router = inject(Router);
+  public email = signal('');
+
+  constructor() {
+    this.email.set(this.authService.emailUser())
+  }
 
   logout() {
     this.loadingService.show()
