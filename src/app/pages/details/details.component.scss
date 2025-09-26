@@ -35,63 +35,10 @@
     padding: 1rem;
 }
 
-
-// button-counter
-// :host ::ng-deep .p-inputnumber {
-//     background-color: var(--color-bg-counter);
-//     border-radius: 15px;
-//     padding: 5px 10px;
-//     display: inline-flex;
-//     align-items: center;
-// }
-
-// :host ::ng-deep .p-inputnumber .p-button.p-button-icon-only.custom-btn {
-//     border-radius: 50% !important;
-//     width: 36px !important;
-//     height: 36px !important;
-//     background-color: var(--color-bg-counter-button);
-//     border: none;
-//     margin: 0 4px;
-// }
-
-// :host ::ng-deep .p-inputnumber-horizontal .p-inputnumber-decrement-button {
-//     order: 1;
-//     border-start-start-radius: none !important;
-//     border-end-start-radius: none !important;
-//     border-inline-end: 0 none;
-// }
-
-// :host ::ng-deep .p-inputnumber-horizontal .p-inputnumber-button {
-//     border: 1px solid var(--p-inputnumber-button-border-color);
-//     background: var(--color-bg-button-counter) !important;
-// }
-
-// :host ::ng-deep .p-inputnumber-button {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     flex: 0 0 auto;
-//     cursor: pointer;
-//     background: var(--color-bg-button-counter) !important;
-//     color: var(--p-inputnumber-button-color);
-//     width: 30px !important;
-//     height: 30px !important;
-//     border-radius: 50%;
-//     transition: background var(--p-inputnumber-transition-duration), color var(--p-inputnumber-transition-duration), border-color var(--p-inputnumber-transition-duration), outline-color var(--p-inputnumber-transition-duration);
-// }
-
-// :host ::ng-deep .p-inputnumber .p-button.p-button-icon-only.custom-btn:hover {
-//     background-color: #fff;
-// }
-
-// :host ::ng-deep .p-inputnumber .custom-counter {
-//     text-align: center;
-//     font-weight: bold;
-//     border: none;
-//     background: var(--color-bg-counter) !important;
-//     color: #fff;
-//     width: 50px;
-// }
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
 
 ::ng-deep .btn-actions .p-button {
     width: 100%;

@@ -37,7 +37,7 @@ export class SharedService {
   }
 
   getProdutoById(produtoId: number) {
-    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produtos/${produtoId}`, { withCredentials: true}))
+    return lastValueFrom(this.http.get<IProduto>(`${environment.apiURL}/api/produtos/${produtoId}`))
   }
 
   createPedido(form: ICreatePedido) {

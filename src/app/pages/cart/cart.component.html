@@ -8,7 +8,7 @@
 
     <div class="mb-6">
         @if(cartItems().length) {
-            <span class="font-bold text-xl my-2">Acompanhar pedido</span>
+            <!-- <span class="font-bold text-xl my-2">Acompanhar pedido</span> -->
             @for(item of cartItems(); track $index) {
                 <app-item [item]="item"/>
             }

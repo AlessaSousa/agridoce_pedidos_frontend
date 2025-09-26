@@ -17,12 +17,13 @@
             styleClass="input-counter"
             [inputStyle]="{ width: '3rem' }"
             (ngModelChange)="updateQuantity($event, item()!)"
+            [min]="1"
             >
             <ng-template #incrementbuttonicon>
                 <span class="pi pi-plus"></span>
             </ng-template>
             <ng-template #decrementbuttonicon>
-                <span class="pi pi-minus"></span>
+                <span class="pi pi-minus" [class.disabled]="item()?.quantidade === 1"></span>
             </ng-template>
         </p-inputnumber>
         <span class="font-bold text-xl">{{item()?.produto?.precoProd| currency}}</span>

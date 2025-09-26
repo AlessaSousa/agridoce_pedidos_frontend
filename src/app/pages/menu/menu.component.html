@@ -16,7 +16,7 @@
       <span class="text-xl">Categorias</span>
       <div class=" item-category flex my-2 gap-3 justify-content-between">
         @for(item of categories(); track $index) {
-        <div [class]="item.outlined ? 'btn-category-selected' : 'btn-category'" (click)="toogle(item.nome)">
+        <div class="cursor-pointer" [class]="item.outlined ? 'btn-category-selected' : 'btn-category'" (click)="toogle(item.nome)">
           <mat-icon>{{item.icon}}</mat-icon>
           <span>{{item.nome}}</span>
         </div>
@@ -28,7 +28,7 @@
   <div class="content-cards">
     <div class="grid container-items m-0">
       @for(item of filteredProdutos(); track $index) {
-      <app-card class="flex flex-wrap column-gap-6 row-gap-12 mt-7 justify-content-center" [card]="item"
+      <app-card class="flex flex-wrap column-gap-6 row-gap-12 mt-7 justify-content-center cursor-pointer" [card]="item"
         (click)="showDetail(item)"></app-card>
       }
     </div>
