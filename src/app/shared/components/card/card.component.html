@@ -1,21 +1,18 @@
 <div class="card-container">
-  <div class="descricao-content">
     @if(card()?.fotoProd) {
-      <img class="image-content" [src]="card()?.fotoProd">
+    <img class="image-content m-2" [src]="card()?.fotoProd">
     } @else {
-      <div class="image-content"></div>
+    <div class="image-content m-2"></div>
     }
 
-    <div class="mt-4 w-full px-3">
-        <span class="font-bold">{{card()?.nomeProduto}}</span>
-        <div class="flex justify-content-between align-items-center mt-2">
-            <span class="font-bold">{{card()?.precoProd| currency}}</span>
-            <p-button
-            [rounded]="true"
-            icon="pi pi-plus"
-            (click)="addItem(card()!); $event.stopPropagation()"
-            />
-        </div>
+    <div class="grid flex-column col-12 px-3">
+      <span class="font-bold ellipsis">{{card()?.nomeProduto}}</span>
+      <div class="flex w-full justify-content-between align-items-center mt-2">
+        <span class="font-bold">{{card()?.precoProd| currency}}</span>
+        <p-button 
+        [rounded]="true" 
+        icon="pi pi-plus" 
+        (click)="addItem(card()!); $event.stopPropagation()" />
+      </div>
     </div>
-  </div>
 </div>
