@@ -13,6 +13,7 @@ import { LoadingService } from '../../shared/services/loading.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { IDisponibilidadeProduto, IProduto, PRODUTOS } from '../../shared/models/IProduto';
 import { ICategoria } from '../../shared/models/ICategoria';
+import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
 
 interface ICategories {
   nome: string;
@@ -34,7 +35,8 @@ interface IItems {
     ButtonModule,
     CardComponent,
     CommonModule,
-    MatIcon
+    MatIcon,
+    CarouselComponent
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
@@ -52,7 +54,8 @@ export class MenuComponent {
   public produtos: WritableSignal<IProduto[]> = signal([]);
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
   readonly isVisible: WritableSignal<boolean> = signal(true);
-
+  protected images: WritableSignal<any[] | undefined> = signal(undefined);
+ 
   async ngOnInit() {
     this.categories.set([
       { nome: 'Todos', outlined: false, icon: 'list' },
@@ -64,6 +67,7 @@ export class MenuComponent {
 
     await this.getListProdutos()
     this.filteredProdutos.set(this.produtos());
+     this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0,9))
   }
 
   toogle(event: string) {
@@ -80,6 +84,8 @@ export class MenuComponent {
       this.isVisible.set(true)
 
       this.filteredProdutos.set(this.produtos());
+      this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0,9))
+      console.log('images filtered', this.images())
     } else {
       this.isVisible.set(false);
 

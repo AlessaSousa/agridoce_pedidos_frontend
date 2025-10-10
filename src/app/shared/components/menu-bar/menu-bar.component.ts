@@ -41,19 +41,19 @@ export class MenuBarComponent {
   ngOnInit() {
     this.loggedIn.set(this.authService.isLogged());
     this.menuItems.set([
-      {
-        label: 'Carrinho',
-        icon: 'shopping_bag',
-        route: '/cart',
-      },
+      this.loggedIn()
+      ? { label: 'Perfil', icon: 'person', route: '/profile' }
+      : { label: 'Login', icon: 'person', route: '/login' },
       {
         label: 'Cardápio',
         icon: 'manage_search',
         route: '/menu',
       },
-      this.loggedIn()
-        ? { label: 'Perfil', icon: 'person', route: '/profile' }
-        : { label: 'Login', icon: 'person', route: '/login' }
+      {
+        label: 'Carrinho',
+        icon: 'shopping_bag',
+        route: '/cart',
+      },
     ]);
     this.getItemsCart();
   }

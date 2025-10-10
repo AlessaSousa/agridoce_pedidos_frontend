@@ -1,9 +1,9 @@
 <div class="page-container">
 
   <div class="header">
-    <div class="title-header mb-2">
+    <!-- <div class="title-header mb-2">
       <span>Agridoce Delivery</span>
-    </div>
+    </div> -->
 
     @if(isVisible()) {
       <p-iconfield class="my-2">
@@ -13,7 +13,7 @@
     }
 
     <div class="content-category mt-4">
-      <span class="text-xl">Categorias</span>
+      <!-- <span class="text-xl">Categorias</span> -->
       <div class=" item-category flex my-2 gap-3 justify-content-between">
         @for(item of categories(); track $index) {
         <div class="cursor-pointer" [class]="item.outlined ? 'btn-category-selected' : 'btn-category'" (click)="toogle(item.nome)">
@@ -24,6 +24,11 @@
       </div>
     </div>
   </div>
+
+  @if(isVisible()) {
+    <!-- <span class="pl-4 font-bold text-xl">Os mais pedidos</span> -->
+    <app-carousel class="p-4 pt-0" [images]="images()"/>
+  }
 
   <div class="content-cards">
     <div class="grid container-items m-0">

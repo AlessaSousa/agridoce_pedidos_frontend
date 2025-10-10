@@ -1,0 +1,16 @@
+.carousel-image {
+  width: 100%;
+  height: 177px;
+  object-fit: cover;
+  border-radius: 20px;
+  position: relative;
+}
+
+::ng-deep .p-carousel-content-container {
+    position: relative;
+}
+::ng-deep .p-carousel-indicator-list {
+    position: absolute;
+    padding-bottom: 0px;
+    bottom: 5px;
+}
