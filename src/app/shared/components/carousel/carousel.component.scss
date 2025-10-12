@@ -7,10 +7,17 @@
 }
 
 ::ng-deep .p-carousel-content-container {
-    position: relative;
+  position: relative;
 }
+
 ::ng-deep .p-carousel-indicator-list {
-    position: absolute;
-    padding-bottom: 0px;
-    bottom: 5px;
+  position: absolute;
+  padding-bottom: 0px;
+  bottom: 10px;
+  display: flex;
+  width: 100%;
+}
+
+::ng-deep .p-carousel-indicator-button {
+  width: 1.5rem;
 }

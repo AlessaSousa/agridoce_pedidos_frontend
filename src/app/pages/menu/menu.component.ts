@@ -55,7 +55,7 @@ export class MenuComponent {
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
   readonly isVisible: WritableSignal<boolean> = signal(true);
   protected images: WritableSignal<any[] | undefined> = signal(undefined);
- 
+
   async ngOnInit() {
     this.categories.set([
       { nome: 'Todos', outlined: false, icon: 'list' },
@@ -67,7 +67,7 @@ export class MenuComponent {
 
     await this.getListProdutos()
     this.filteredProdutos.set(this.produtos());
-     this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0,9))
+    this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0, 9))
   }
 
   toogle(event: string) {
@@ -84,7 +84,7 @@ export class MenuComponent {
       this.isVisible.set(true)
 
       this.filteredProdutos.set(this.produtos());
-      this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0,9))
+      this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0, 9))
       console.log('images filtered', this.images())
     } else {
       this.isVisible.set(false);
@@ -116,16 +116,22 @@ export class MenuComponent {
     const target = event.target as HTMLInputElement;
     const term = target.value.toLowerCase().trim();
 
-    if (!term) {
-      this.filteredProdutos.set(this.produtos());
-      return;
+    let produtosFiltrados = this.produtos();
+
+
+    if (this.selected() !== 'Todos') {
+      produtosFiltrados = produtosFiltrados.filter(p =>
+        p.categoriaNome.toLowerCase() === this.selected().toLowerCase()
+      )
     }
 
-    const filtrados = this.produtos().filter(p =>
-      p.nomeProduto.toLowerCase().includes(term)
-    );
+    if (term) {
+      produtosFiltrados = produtosFiltrados.filter(p =>
+        p.nomeProduto.toLowerCase().includes(term)
+      );
+    }
 
-    this.filteredProdutos.set(filtrados);
+    this.filteredProdutos.set(produtosFiltrados);
   }
 
 }
