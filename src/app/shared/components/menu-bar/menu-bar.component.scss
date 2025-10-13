@@ -40,9 +40,10 @@
     line-height: 75px;
     font-size: 1.5em;
     text-align: center;
-    color: #fff;
+    color: #000;
     transition: .5s;
     text-decoration: none;
+    font-family: 'Material Icons Outlined' !important;
 }
 
 .navigation ul li.active a .icon {
@@ -51,7 +52,7 @@
 
 .navigation ul li a .text {
     position: absolute;
-    color: #fff;
+    color: #000;
     font-weight: 400;
     font-size: .75em;
     letter-spacing: .05em;
@@ -139,4 +140,20 @@ mat-icon {
     position: absolute;
     top: 12%;
     left: 58%;
+}
+
+.outlined-mat-icon {
+    font-family: 'Material Icons Outlined' !important;
+}
+
+::ng-deep .icon {
+    .mat-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .material-icons {
+        font-size: 30px;
+        color: #000;
+    }
 }

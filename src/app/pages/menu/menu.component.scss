@@ -67,14 +67,34 @@
   display: none;
 }
 
-::ng-deep .search-icon 
-{
+::ng-deep .search-icon {
   .mat-icon {
     width: 100px;
     height: 100px;
   }
+
   .material-icons {
     font-size: 100px;
   }
+}
 
+.outlined-mat-icon {
+  font-family: 'Material Icons Outlined';
+}
+
+::ng-deep .item-category {
+  .mat-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .material-icons {
+    font-size: 25px;
+  }
+}
+
+.image-logo {
+  width: 50px;
+  height: 50px;
+  // filter: brightness(0%);
 }

@@ -3,12 +3,12 @@
   [numVisible]="1"
   [numScroll]="1"
   [circular]="true"
-  [autoplayInterval]="3000"
+  [autoplayInterval]="4000"
   [showNavigators]="false"
   [showIndicators]="true"
   containerClass="custom-carousel"
 >
   <ng-template pTemplate="item" let-item>
-    <img [src]="item" class="carousel-image" />
+    <img [src]="item.image" class="carousel-image" (click)="showDetailProduct(item.id)"/>
   </ng-template>
 </p-carousel>

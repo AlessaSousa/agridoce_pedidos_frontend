@@ -54,7 +54,7 @@ export class MenuComponent {
   public produtos: WritableSignal<IProduto[]> = signal([]);
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
   readonly isVisible: WritableSignal<boolean> = signal(true);
-  protected images: WritableSignal<any[] | undefined> = signal(undefined);
+  protected images: WritableSignal<{image: string, id: number}[] | undefined> = signal(undefined);
 
   async ngOnInit() {
     this.categories.set([
@@ -67,7 +67,7 @@ export class MenuComponent {
 
     await this.getListProdutos()
     this.filteredProdutos.set(this.produtos());
-    this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0, 9))
+    this.images.set(this.filteredProdutos().map(produto => ({image: produto.fotoProd, id: produto.id})).slice(0, 9))
   }
 
   toogle(event: string) {
@@ -84,7 +84,7 @@ export class MenuComponent {
       this.isVisible.set(true)
 
       this.filteredProdutos.set(this.produtos());
-      this.images.set(this.filteredProdutos().map(produto => produto.fotoProd).slice(0, 9))
+        this.images.set(this.filteredProdutos().map(produto => ({image: produto.fotoProd, id: produto.id})).slice(0, 9))
       console.log('images filtered', this.images())
     } else {
       this.isVisible.set(false);

@@ -2,8 +2,14 @@
 
   <div class="header">
     <!-- <div class="title-header mb-2">
-      <span>Agridoce Delivery</span>
+       <img class='image-logo' src="assets/logo/logo-agridoce.svg">
     </div> -->
+
+    
+  <!-- @if(isVisible()) { -->
+    <!-- <span class="pl-4 font-bold text-xl">Os mais pedidos</span> -->
+    <app-carousel class="p-4 pt-0" [images]="images()"/>
+  <!-- } -->
 
     <!-- @if(isVisible()) { -->
       <p-iconfield class="my-2">
@@ -17,18 +23,13 @@
       <div class=" item-category flex my-2 gap-3 justify-content-between">
         @for(item of categories(); track $index) {
         <div class="cursor-pointer" [class]="item.outlined ? 'btn-category' : 'btn-category-selected'" (click)="toogle(item.nome)">
-          <mat-icon>{{item.icon}}</mat-icon>
+          <mat-icon class="outlined-mat-icon">{{item.icon}}</mat-icon>
           <span>{{item.nome}}</span>
         </div>
         }
       </div>
     </div>
   </div>
-
-  @if(isVisible()) {
-    <!-- <span class="pl-4 font-bold text-xl">Os mais pedidos</span> -->
-    <app-carousel class="p-4 pt-0" [images]="images()"/>
-  }
 
   @if(filteredProdutos().length) {
   <div class="content-cards">
@@ -41,7 +42,7 @@
       </div>
     } @else {
       <div class="search-icon flex flex-column justify-content-center align-items-center m-4">
-        <mat-icon>search_off</mat-icon>
+        <mat-icon class="outlined-mat-icon">search_off</mat-icon>
         <span class="">Produto indisponível ou não encontrado.</span>
       </div>
     }

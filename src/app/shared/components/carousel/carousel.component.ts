@@ -1,6 +1,7 @@
-import { Component, effect, input, InputSignal } from '@angular/core';
+import { Component, effect, inject, input, InputSignal } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -12,19 +13,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
-  public images: InputSignal<any[] | undefined> = input();
+  private router = inject(Router);
+  public images: InputSignal<{image: string, id: number}[] | undefined> = input();
 
   constructor() {
     effect(() => {
       this.images()
     })
   }
-//   images = [
-//   'assets/img1.jpg',
-//   'assets/img2.jpg',
-//   'assets/img3.jpg',
-//   'assets/img4.jpg'
-// ];
 
+  protected showDetailProduct(idProduct: number) {
+    this.router.navigate(['detail', idProduct])
+  }
   
 }
