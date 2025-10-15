@@ -37,8 +37,16 @@ body {
 .p-button {
     background: var(--color-pink) !important;
     border: none !important;
-    // border-radius: 15px !important;
-    padding: 10px 15px !important;
+    border-radius: 50px !important;
+    padding: 15px 15px !important;
+
+    .pi {
+        color: #000;
+    }
+    .p-button-label {
+        color: #000;
+        font-size: 18px;
+    }
 }
 
 .p-button-outlined {
@@ -87,6 +95,9 @@ body {
     display: inline-flex;
     position: relative;
     align-items: center;
+    background: #fff !important;
+    border-radius: 50px !important;
+    padding: 0.5rem;
 }
 
 .input-counter .p-inputnumber-button:hover {
@@ -109,6 +120,7 @@ body {
     width: 40px;
     height: 40px;
     color: var(--color-text-input);
+    background: var(--color-light-gray) !important;
 }
 
 .p-inputnumber-horizontal .p-inputnumber-increment-button {
@@ -118,6 +130,7 @@ body {
     width: 40px;
     height: 40px;
     color: var(--color-text-input);
+    background: var(--color-light-gray) !important;
 }
 
 .increment-counter .p-inputnumber-button {
@@ -143,4 +156,8 @@ body {
     min-width: var(--p-badge-min-width);
     height: var(--p-badge-height);
     line-height: var(--p-badge-height);
+}
+
+.mat-icon {
+     font-family: 'Material Icons Outlined' !important;
 }

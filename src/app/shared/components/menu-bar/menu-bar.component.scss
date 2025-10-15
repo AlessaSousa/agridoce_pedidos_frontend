@@ -136,11 +136,7 @@ mat-icon {
     position: relative;
 }
 
-.bagde-icon {
-    position: absolute;
-    top: 12%;
-    left: 58%;
-}
+
 
 .outlined-mat-icon {
     font-family: 'Material Icons Outlined' !important;
@@ -155,5 +151,12 @@ mat-icon {
     .material-icons {
         font-size: 30px;
         color: #000;
+    }
+
+    .bagde-icon {
+        position: absolute;
+        top: 12%;
+        left: 58%;
+        z-index: 1;
     }
 }

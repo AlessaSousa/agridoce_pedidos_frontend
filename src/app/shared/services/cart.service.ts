@@ -25,15 +25,17 @@ export class CartService {
 
   cart$ = this.cartSubject.asObservable();
 
-  addToCart(produto: IProduto) {
+  addToCart(produto: IProduto, quantidade: number = 1) {
     const existing = this.cartItems().find(i => i.produto.id === produto.id);
+
     if (existing) {
-      existing.quantidade += 1;
+      existing.quantidade += quantidade;
     } else {
-      this.cartItems().push({ produto, quantidade: 1 });
-      this.cartSubject.next(this.cartItems());
+      this.cartItems().push({ produto, quantidade });
     }
+    this.cartSubject.next(this.cartItems());
   }
+
 
   removeFromCart(produtoId: number) {
     this.cartItems.set(this.cartItems().filter(i => i.produto.id !== produtoId));
@@ -77,10 +79,10 @@ export class CartService {
     return this.pedidoFinalizado;
   }
 
-  getCartTotal(){
+  getCartTotal() {
     console.log('items cart', this.cartItems())
     return this.cartItems().length
-    
+
   }
-  
+
 }

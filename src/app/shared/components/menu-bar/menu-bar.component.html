@@ -3,11 +3,12 @@
         @for (item of menuItems(); track item; let i = $index) {
         <li [class.active]="i === activeIndex()" (click)="setActive(i)">
             <a [routerLink]="item.route">
-                <span class="icon">
+                <span class="icon relative">
                     @if(item.route === '/cart' && totalItens() > 0) {
-                        <p-badge class="bagde-icon" [value]="totalItens()" />
+                        <!-- resolver bug que não está redenrizando no badge o valor -->
+                        <p-badge class="bagde-icon" [value]="totalItens()" severity="info" />
                     }
-                    <mat-icon class="outlined-mat-icon">{{ item.icon }}</mat-icon>
+                    <mat-icon>{{ item.icon }}</mat-icon>
                 </span>
                 <span class="text">{{ item.label }}</span>
                 <span class="circle"></span>

@@ -1,0 +1,10 @@
+<div class="card flex gap-4 p-3">
+    <div class="image-product">
+        <img [src]="product()?.fotoProd">
+    </div>
+    <div class="flex flex-column">
+        <span class="font-bold">{{product()?.nomeProduto}}</span>
+        <span class="text-sm text-gray-500">{{product()?.descricaoProduto}}</span>
+        <span class="font-bold">{{product()?.precoProd | currency}}</span>
+    </div>
+</div>

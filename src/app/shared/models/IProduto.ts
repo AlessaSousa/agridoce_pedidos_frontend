@@ -18,6 +18,10 @@ export enum IDisponibilidadeProduto {
     Indisponivel
 }
 
+export interface IProdutoWithQuantity extends IProduto {
+    quantidade: number
+}
+
 
 export const PRODUTOS: IProduto[] = [
     {

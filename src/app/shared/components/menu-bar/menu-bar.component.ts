@@ -66,6 +66,7 @@ export class MenuBarComponent {
   getItemsCart() {
     this.cartService.cart$.subscribe(items => {
       this.totalItens.set(items.length)
+      console.log('item lengh', this.totalItens())
     })
   }
 }
