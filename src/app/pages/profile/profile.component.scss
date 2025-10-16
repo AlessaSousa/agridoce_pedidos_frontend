@@ -28,3 +28,20 @@
     font-size: 114px;
     color: var(--color-bg-body)
 }
+
+.image-logo {
+    width: 50px;
+    height: 50px;
+    filter: brightness(0%);
+}
+
+.title {
+    font-family: "Cherry Bomb One", system-ui;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 16px;
+}
