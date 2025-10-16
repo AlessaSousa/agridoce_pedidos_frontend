@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { CartService, ICartItem } from '../../shared/services/cart.service';
 import { LoadingService } from '../../shared/services/loading.service';
 import { MatIcon } from '@angular/material/icon';
+import { CardV2Component } from '../../shared/components/card-v2/card-v2.component';
 @Component({
   selector: 'app-cart',
   imports: [
@@ -17,7 +18,8 @@ import { MatIcon } from '@angular/material/icon';
     DialogFormComponent,
     FormsModule,
     CommonModule,
-    MatIcon
+    MatIcon,
+    CardV2Component
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'

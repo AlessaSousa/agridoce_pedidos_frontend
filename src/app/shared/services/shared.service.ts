@@ -5,7 +5,7 @@ import { environment } from '../../environments/environments'
 import { IProduto } from '../models/IProduto';
 import { ICategoria } from '../models/ICategoria';
 import { ICliente } from '../models/ICliente';
-import { ICreatePedido, IPedido } from '../models/IPedido';
+import { ICreatePedido, IMaisPedidos, IPedido } from '../models/IPedido';
 import { IRestaurante } from '../models/IRestaurante';
 
 @Injectable({
@@ -42,5 +42,9 @@ export class SharedService {
 
   createPedido(form: ICreatePedido) {
     return lastValueFrom(this.http.post<any>(`${environment.apiURL}/api/pedidos`, form, { withCredentials: true}))
+  }
+
+  getMaisPedidos() {
+    return lastValueFrom(this.http.get<any[]>(`${environment.apiURL}/api/pedidos/maisPedidos`, {withCredentials: true}))
   }
 }

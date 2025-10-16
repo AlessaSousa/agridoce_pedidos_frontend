@@ -32,12 +32,6 @@ export class DetailsComponent {
   private toastService = inject(ToastService);
 
   public detail: WritableSignal<IProdutoWithQuantity | undefined> = signal(undefined);
-  // public detail = computed(() => {
-  //   return {
-  //     ...this.detailProduto()!,
-  //     quantidade: 1
-  //   }
-  // })
   public produtoId: WritableSignal<number> = signal(0);
   public products: WritableSignal<IProduto[]> = signal([])
   constructor() {

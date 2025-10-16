@@ -3,13 +3,15 @@
         @for (item of menuItems(); track item; let i = $index) {
         <li [class.active]="i === activeIndex()" (click)="setActive(i)">
             <a [routerLink]="item.route">
-                <span class="icon relative">
+                <div class="relative">
+                    <div class="icon relative">
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                    </div>
+
                     @if(item.route === '/cart' && totalItens() > 0) {
-                        <!-- resolver bug que não está redenrizando no badge o valor -->
-                        <p-badge class="bagde-icon" [value]="totalItens()" severity="info" />
+                    <p-badge class="bagde-icon" [value]="totalItens()" severity="info" />
                     }
-                    <mat-icon>{{ item.icon }}</mat-icon>
-                </span>
+                </div>
                 <span class="text">{{ item.label }}</span>
                 <span class="circle"></span>
             </a>

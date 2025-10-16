@@ -153,10 +153,11 @@ mat-icon {
         color: #000;
     }
 
-    .bagde-icon {
-        position: absolute;
-        top: 12%;
-        left: 58%;
-        z-index: 1;
-    }
+}
+
+.bagde-icon {
+    position: absolute;
+    top: 12%;
+    left: 58%;
+    z-index: 5;
 }

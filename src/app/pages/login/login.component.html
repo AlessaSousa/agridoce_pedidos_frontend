@@ -1,7 +1,13 @@
 <div class="page-login">
-  <p-button class="btn-voltar" size="small" icon="pi pi-arrow-left" (click)="goToMenu()"/>
-  <div class="text-logo">
-    <span>Agridoce Delivery</span>
+  @if(type() === '') {
+    <p-button class="btn-voltar" rounded icon="pi pi-arrow-left" (click)="goToMenu()"/>
+  }
+  <div class="image-logo">
+    <img class='' src="assets/logo/logo-agridoce.svg">
+    <div class="font flex flex-column line-height-1">
+      <span class="text1">Agridoce</span>
+      <span class="text2">Delivery</span>
+    </div>
   </div>
   <img src="../../../assets/splash/bolo-red-velvet.jpg" />
 
@@ -9,7 +15,7 @@
   @if(type() === 'login') {
   <div class="form-login-content p-4 flex flex-column justify-content-around">
     <div class="flex gap-2">
-      <p-button icon="pi pi-arrow-left" (click)="showForm('')" />
+      <p-button icon="pi pi-arrow-left" rounded (click)="showForm('')" />
       <span class="text-4xl font-bold">Login</span>
     </div>
     <app-form-login />
@@ -19,7 +25,7 @@
   @if(type() === 'register') {
   <div class="form-register-content p-4 flex flex-column justify-content-around">
      <div class="flex gap-2">
-      <p-button icon="pi pi-arrow-left" (click)="showForm('')" />
+      <p-button icon="pi pi-arrow-left" rounded (click)="showForm('')" />
       <span class="text-4xl font-bold">Register</span>
     </div>
     <app-form-register (backToLogin)="backToLogin($event)" />

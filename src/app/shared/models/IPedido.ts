@@ -47,3 +47,9 @@ export interface IListProduto {
     nomeProduto?: string;
     precoProd?: number;
 }
+
+export interface IMaisPedidos {
+    idProduto: number,
+    nomeProduto: string
+    totalVendido: number
+}

@@ -1,14 +1,26 @@
 <div class="page-cart">
     <div class="flex justify-content-between mb-2">
-        <span class="title-header">Agridoce Delivery</span>
+        <!-- <span class="title-header">Agridoce Delivery</span> -->
+         <div class="flex gap-2 align-items-center">
+             <img class='image-logo' src="assets/logo/logo-agridoce.svg">
+             <div class="flex flex-column line-height-2">
+                <span class="title">Agridoce</span>
+                <span class="text-sm">Delivery</span>
+             </div>
+         </div>
         @if(cartItems().length && isLogged() === 'true') {
             <p-button size="small" label="Avançar" (click)="showModal()"/>
         }
     </div>
 
+    <div class="flex justify-content-end my-2">
+        <div class="flex gap-2">
+            <span class="text-xl">Subtotal -</span>
+            <span class="font-bold text-xl">{{total | currency}}</span>
+        </div>
+    </div>
     <div class="mb-6">
         @if(cartItems().length) {
-            <!-- <span class="font-bold text-xl my-2">Acompanhar pedido</span> -->
             @for(item of cartItems(); track $index) {
                 <app-item [item]="item"/>
             }
@@ -20,10 +32,6 @@
         }
     </div>
 
-    <!-- <div>
-        <span class="font-bold text-xl my-2">Últimos pedidos</span>
-        <app-item [item]="cart()"/>
-    </div> -->
     <app-dialog-form
     [cart]="cartItems()"
     [visible]="visible()"

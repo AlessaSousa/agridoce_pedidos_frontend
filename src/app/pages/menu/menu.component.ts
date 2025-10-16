@@ -54,7 +54,7 @@ export class MenuComponent {
   public produtos: WritableSignal<IProduto[]> = signal([]);
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
   readonly isVisible: WritableSignal<boolean> = signal(true);
-  protected images: WritableSignal<{image: string, id: number}[] | undefined> = signal(undefined);
+  protected images: WritableSignal<{ image: string, id: number }[] | undefined> = signal(undefined);
 
   async ngOnInit() {
     this.categories.set([
@@ -67,7 +67,7 @@ export class MenuComponent {
 
     await this.getListProdutos()
     this.filteredProdutos.set(this.produtos());
-    this.images.set(this.filteredProdutos().map(produto => ({image: produto.fotoProd, id: produto.id})).slice(0, 9))
+    await this.getMaisPedidos()
   }
 
   toogle(event: string) {
@@ -84,7 +84,6 @@ export class MenuComponent {
       this.isVisible.set(true)
 
       this.filteredProdutos.set(this.produtos());
-        this.images.set(this.filteredProdutos().map(produto => ({image: produto.fotoProd, id: produto.id})).slice(0, 9))
       console.log('images filtered', this.images())
     } else {
       this.isVisible.set(false);
@@ -132,6 +131,33 @@ export class MenuComponent {
     }
 
     this.filteredProdutos.set(produtosFiltrados);
+  }
+
+  async getMaisPedidos() {
+    this.loadingService.show();
+
+    await this.sharedService.getMaisPedidos()
+      .then((res) => {
+        if (res && Array.isArray(res)) {
+          const produtosMaisPedidos = this.produtos().filter(p =>
+            res.some(mp => mp.idProduto === p.id)
+          );
+
+          const imageProdutos = produtosMaisPedidos.map(p => ({
+            id: p.id ?? 0,
+            image: p.fotoProd
+          }));
+
+          this.images.set(imageProdutos.slice(0, 9));
+          console.log('recebe imagens', res);
+        }
+      })
+      .catch(() => {
+        // this.toastService.showToastError('Erro ao buscar listagem de produtos.');
+      })
+      .finally(() => {
+        this.loadingService.hide();
+      });
   }
 
 }

@@ -1,12 +1,12 @@
 .container-item {
     border-bottom: 0.5px solid var(--color-light-gray);
-    background: var(--color-bg-content);
+    background: var(--color-card);
     padding: 7px;
     border-radius: 15px;
     img {
         border-radius: 15px;
         object-fit: cover;
-        height: 90px;
+        height: 100px;
         width: 100px;
     }
 }
@@ -14,4 +14,24 @@
 .disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.descricao-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* número de linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// .descricao-ellipsis {
+//   display: block;
+//   max-width: 180px; /* ajuste conforme o layout */
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+
+:host ::ng-deep .p-inputnumber {
+  background: none !important;
+  padding: 0.2rem;
 }
