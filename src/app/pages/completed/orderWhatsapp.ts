@@ -30,7 +30,7 @@ export class OrderStructure {
         mensagem += `\n *Telefone*: ${order?.usuario.telefone}`;
         mensagem += `\n -----------------------\n`;
         mensagem += `*Endereço de Entrega*`;
-        mensagem += `\n *Rua*: ${order?.endereco.numero}`;
+        mensagem += `\n *Rua*: ${order?.endereco.rua}`;
         mensagem += `\n *N°*: ${order?.endereco.numero}`;
         mensagem += `\n *Bairro*: ${order?.endereco.bairro}`;
         mensagem += `\n *CEP*: ${order?.endereco.cep}`;
