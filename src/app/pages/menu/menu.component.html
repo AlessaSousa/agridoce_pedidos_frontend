@@ -2,13 +2,15 @@
 
   <div class="header">
     <div class="flex justify-content-between">
-      <div class="flex gap-2 align-items-center">
-        <img class='image-logo' src="assets/logo/logo-agridoce.svg">
-        <div class="flex flex-column line-height-2">
-          <span class="title">Agridoce</span>
-          <span class="text-sm">Delivery</span>
+      @if(isMobile()) {
+        <div class="flex gap-2 align-items-center">
+          <img class='image-logo' src="assets/logo/logo-agridoce.svg">
+          <div class="flex flex-column line-height-2">
+            <span class="title">Agridoce</span>
+            <span class="text-sm">Delivery</span>
+          </div>
         </div>
-      </div>
+      }
 
       @if(!isMobile()) {
       <p-iconfield class="">
@@ -43,7 +45,7 @@
   </div>
 
   @if(filteredProdutos().length) {
-  <div class="content-cards">
+  <div class="content-cards" [class.margin-card]="isMobile()">
     <div class="grid container-items m-0">
       @for(item of filteredProdutos(); track $index) {
       <app-card class="flex flex-wrap column-gap-6 row-gap-12 justify-content-center cursor-pointer" [card]="item"

@@ -32,7 +32,6 @@
 
 .content-cards {
   overflow-y: auto;
-  margin-bottom: 80px;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -101,4 +100,8 @@
 
 .title {
     font-family: "Cherry Bomb One", system-ui;
+}
+
+.margin-card {
+    margin-bottom: 80px;
 }

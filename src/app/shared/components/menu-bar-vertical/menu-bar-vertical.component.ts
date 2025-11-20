@@ -1,26 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, HostListener, inject, signal, WritableSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { IMenuItems } from '../../models/IMenuItems';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, effect, HostListener, inject, signal, WritableSignal } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { BadgeModule } from 'primeng/badge';
+import { MenuModule } from 'primeng/menu';
+import { RippleModule } from 'primeng/ripple';
+import { AvatarModule } from 'primeng/avatar';
+import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { IMenuItems } from '../../models/IMenuItems';
 import { AuthService } from '../../services/auth.service';
+import { MatIcon } from "@angular/material/icon";
 import { IS_MOBILE } from '../../services/is-mobile.service';
 @Component({
-  selector: 'app-menu-bar',
+  selector: 'app-menu-bar-vertical',
   imports: [
-    CommonModule,
-    FormsModule,
+    BadgeModule,
+    MenuModule,
+    RippleModule,
+    AvatarModule,
     RouterModule,
-    MatIconModule,
-    BadgeModule
-  ],
-  templateUrl: './menu-bar.component.html',
-  styleUrl: './menu-bar.component.scss'
+    MatIcon
+],
+  templateUrl: './menu-bar-vertical.component.html',
+  styleUrl: './menu-bar-vertical.component.scss'
 })
-export class MenuBarComponent {
+export class MenuBarVerticalComponent {
   private router = inject(Router);
   private cartService = inject(CartService);
   readonly menuItems: WritableSignal<IMenuItems[]> = signal([]);
@@ -29,6 +32,7 @@ export class MenuBarComponent {
   private authService = inject(AuthService);
   readonly loggedIn: WritableSignal<boolean> = signal(false);
   protected isMobile = inject(IS_MOBILE);
+
   constructor() {
     effect(() => {
       const currentRoute = this.router.url;

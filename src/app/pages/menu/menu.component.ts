@@ -14,6 +14,7 @@ import { ToastService } from '../../shared/services/toast.service';
 import { IDisponibilidadeProduto, IProduto, PRODUTOS } from '../../shared/models/IProduto';
 import { ICategoria } from '../../shared/models/ICategoria';
 import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
+import { IS_MOBILE } from '../../shared/services/is-mobile.service';
 
 interface ICategories {
   nome: string;
@@ -55,12 +56,8 @@ export class MenuComponent {
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
   readonly isVisible: WritableSignal<boolean> = signal(true);
   protected images: WritableSignal<{ image: string, id: number }[] | undefined> = signal(undefined);
-  protected isMobile: WritableSignal<boolean> = signal(false);
+  protected isMobile = inject(IS_MOBILE);
 
-  @HostListener('window: resize', ['$event'])
-  onResize(event: any) {
-    this.isMobile.set(window.innerWidth < 768)
-  }
   async ngOnInit() {
     this.categories.set([
       { nome: 'Todos', outlined: false, icon: 'list' },

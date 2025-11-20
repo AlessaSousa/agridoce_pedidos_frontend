@@ -10,6 +10,7 @@ import { AgridoceTheme, AgridoceTranslation } from './primeng.theme';
 import { LoadingInterceptor } from './core/interceptors/loadingInterceptor';
 import { BasicAuthInterceptor } from './core/interceptors/basicAuthInterceptor';
 import { authInterceptor } from './core/interceptors/authInterceptor';
+import { IS_MOBILE, IsMobileService } from './shared/services/is-mobile.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -47,6 +48,13 @@ export const appConfig: ApplicationConfig = {
       useClass: LoadingInterceptor,
       multi: true
     },
-    MessageService
+    MessageService,
+    {
+      provide: IS_MOBILE,
+      useFactory: (mobileService: IsMobileService) => {
+        return mobileService.isMobile;
+      },
+      deps: [IsMobileService]
+    }
   ]
 };

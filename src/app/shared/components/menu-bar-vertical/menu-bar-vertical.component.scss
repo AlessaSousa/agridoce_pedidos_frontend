@@ -1,0 +1,64 @@
+.side-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background: var(--color-pink);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    z-index: 100;
+}
+
+.side-menu {
+    background: transparent !important;
+    border: none !important;
+    width: 100%;
+}
+
+:host ::ng-deep .p-menu {
+    width: 100% !important;
+}
+
+:host ::ng-deep .p-menuitem-link {
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+:host ::ng-deep .p-menuitem-link:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+:host ::ng-deep .p-menu {
+    background: none;
+}
+
+.logo-area {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.image-logo {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0%);
+}
+
+.title {
+    font-family: "Cherry Bomb One", system-ui;
+}
+
+::ng-deep .icon {
+    .mat-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .material-icons {
+        font-size: 25px;
+        color: #000;
+    }
+
+}
