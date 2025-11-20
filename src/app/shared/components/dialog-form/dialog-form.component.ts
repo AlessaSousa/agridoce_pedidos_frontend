@@ -73,7 +73,6 @@ export class DialogFormComponent {
     this.cartService.cart$.subscribe(items => {
       this.total.set(this.cartService.getTotal())
     })
-    // this.total.set(this.cartService.getTotal())
     this.getProduto()
   }
 

@@ -16,14 +16,16 @@
     <div class="flex justify-content-end my-2">
         <div class="flex gap-2">
             <span class="text-xl">Subtotal -</span>
-            <span class="font-bold text-xl">{{total | currency}}</span>
+            <span class="font-bold text-xl">{{total() | currency}}</span>
         </div>
     </div>
     <div class="mb-6">
         @if(cartItems().length) {
-            @for(item of cartItems(); track $index) {
-                <app-item [item]="item"/>
-            }
+            <div class="cart-items">
+                @for(item of cartItems(); track $index) {
+                    <app-item [item]="item"/>
+                }
+            </div>
         } @else {
             <div class="content-vazio flex flex-column justify-content-center align-items-center gap-2">
                 <mat-icon>production_quantity_limits</mat-icon>

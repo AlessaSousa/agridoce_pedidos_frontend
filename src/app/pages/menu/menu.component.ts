@@ -1,4 +1,4 @@
-import { Component, WritableSignal, inject, signal } from '@angular/core';
+import { Component, HostListener, WritableSignal, inject, signal } from '@angular/core';
 import { InputIcon } from 'primeng/inputicon';
 import { IconField } from 'primeng/iconfield';
 import { InputTextModule } from 'primeng/inputtext';
@@ -55,7 +55,12 @@ export class MenuComponent {
   public filteredProdutos: WritableSignal<IProduto[]> = signal([]);
   readonly isVisible: WritableSignal<boolean> = signal(true);
   protected images: WritableSignal<{ image: string, id: number }[] | undefined> = signal(undefined);
+  protected isMobile: WritableSignal<boolean> = signal(false);
 
+  @HostListener('window: resize', ['$event'])
+  onResize(event: any) {
+    this.isMobile.set(window.innerWidth < 768)
+  }
   async ngOnInit() {
     this.categories.set([
       { nome: 'Todos', outlined: false, icon: 'list' },

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, HostListener, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IMenuItems } from '../../models/IMenuItems';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -27,6 +27,12 @@ export class MenuBarComponent {
   readonly totalItens: WritableSignal<number> = signal(0);
   private authService = inject(AuthService);
   readonly loggedIn: WritableSignal<boolean> = signal(false);
+  protected isMobile: WritableSignal<boolean> = signal(false);
+
+  @HostListener('window: resize', ['$event'])
+  onResize(event: any) {
+    this.isMobile.set(window.innerWidth < 768)
+  }
 
   constructor() {
     effect(() => {
@@ -42,8 +48,8 @@ export class MenuBarComponent {
     this.loggedIn.set(this.authService.isLogged());
     this.menuItems.set([
       this.loggedIn()
-      ? { label: 'Perfil', icon: 'person', route: '/profile' }
-      : { label: 'Login', icon: 'person', route: '/login' },
+        ? { label: 'Perfil', icon: 'person', route: '/profile' }
+        : { label: 'Login', icon: 'person', route: '/login' },
       {
         label: 'Cardápio',
         icon: 'manage_search',

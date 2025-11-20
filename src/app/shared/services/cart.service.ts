@@ -69,6 +69,7 @@ export class CartService {
         cartItem.quantidade = novaQuantidade;
         this.cartItems.set([...this.cartItems()]);
         this.saveCart();
+        this.cartSubject.next(this.cartItems())
       }
     } else if (novaQuantidade > 0) {
       this.addToCart({ ...produto });
@@ -90,7 +91,8 @@ export class CartService {
   }
 
   private saveCart() {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.cartItems()));
+   const items =  localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.cartItems()));
+    console.log(`item do carrinho`, items)
   }
 
   private loadCart(): ICartItem[] {

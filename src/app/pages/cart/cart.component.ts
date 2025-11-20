@@ -33,7 +33,7 @@ export class CartComponent {
   public cart: WritableSignal<any | null> = signal(null);
 
   public cartItems: WritableSignal<ICartItem[]> = signal([]);
-  public total: number = 0;
+  public total = signal(0);
   readonly isLogged: WritableSignal<string> = signal('');
   constructor() {
     const isLogged = localStorage.getItem('isLogged')
@@ -56,7 +56,7 @@ export class CartComponent {
     this.loadingService.show()
     this.cartService.cart$.subscribe(items => {
       this.cartItems.set(items);
-      this.total = this.cartService.getTotal();
+      this.total.set(this.cartService.getTotal());
     })
     this.loadingService.hide()
   }

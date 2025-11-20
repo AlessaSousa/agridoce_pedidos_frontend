@@ -1,29 +1,35 @@
 <div class="page-container">
 
   <div class="header">
-    <div class="flex gap-2 align-items-center">
-      <img class='image-logo' src="assets/logo/logo-agridoce.svg">
-      <div class="flex flex-column line-height-2">
-        <span class="title">Agridoce</span>
-        <span class="text-sm">Delivery</span>
+    <div class="flex justify-content-between">
+      <div class="flex gap-2 align-items-center">
+        <img class='image-logo' src="assets/logo/logo-agridoce.svg">
+        <div class="flex flex-column line-height-2">
+          <span class="title">Agridoce</span>
+          <span class="text-sm">Delivery</span>
+        </div>
       </div>
+
+      @if(!isMobile()) {
+      <p-iconfield class="">
+        <p-inputicon styleClass="pi pi-search" />
+        <input styleClass="input-custom" type="text" pInputText placeholder="Buscar..." (input)="onSearch($event)" />
+      </p-iconfield>
+      }
     </div>
 
+    @if(images()?.length) {
+      <app-carousel class="p-4 pt-0" [images]="images()" />
+    }
 
-    <!-- @if(isVisible()) { -->
-    <!-- <span class="pl-4 font-bold text-xl">Os mais pedidos</span> -->
-    <app-carousel class="p-4 pt-0" [images]="images()" />
-    <!-- } -->
+    @if(isMobile()) {
+      <p-iconfield class="my-2 mb-4">
+        <p-inputicon styleClass="pi pi-search" />
+        <input styleClass="input-custom" type="text" pInputText placeholder="Buscar..." (input)="onSearch($event)" />
+      </p-iconfield>
+    }
 
-    <!-- @if(isVisible()) { -->
-    <p-iconfield class="my-2">
-      <p-inputicon styleClass="pi pi-search" />
-      <input styleClass="input-custom" type="text" pInputText placeholder="Buscar..." (input)="onSearch($event)" />
-    </p-iconfield>
-    <!-- } -->
-
-    <div class="content-category mt-4">
-      <!-- <span class="text-xl">Categorias</span> -->
+    <div class="content-category">
       <div class=" item-category flex my-2 gap-3 justify-content-between">
         @for(item of categories(); track $index) {
         <div class="cursor-pointer" [class]="item.outlined ? 'btn-category' : 'btn-category-selected'"

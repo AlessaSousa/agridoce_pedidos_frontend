@@ -33,3 +33,11 @@
 .title {
     font-family: "Cherry Bomb One", system-ui;
 }
+
+.cart-items {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 187px);
+    gap: 10px;
+}
