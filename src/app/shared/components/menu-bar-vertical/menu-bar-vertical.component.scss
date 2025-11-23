@@ -20,20 +20,49 @@
 
 :host ::ng-deep .p-menu {
     width: 100% !important;
+    background: none !important;
+    border: none !important;
 }
 
+/* ------------------------- */
+/* 🔥 ESTILO DO ITEM NORMAL  */
+/* ------------------------- */
 :host ::ng-deep .p-menuitem-link {
     border-radius: 8px;
-    transition: 0.3s;
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
+/* Hover */
 :host ::ng-deep .p-menuitem-link:hover {
     background: rgba(255, 255, 255, 0.4);
 }
-:host ::ng-deep .p-menu {
-    background: none;
+
+/* ------------------------- */
+/* ⭐ ESTILO DO ITEM ATIVO   */
+/* ------------------------- */
+:host ::ng-deep .p-menuitem-link.active {
+    background: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    transform: translateX(4px);
 }
 
+/* Ícone dentro do item ativo */
+:host ::ng-deep .p-menuitem-link.active .mat-icon {
+    color: var(--primary-color) !important;
+    filter: brightness(0.2);
+}
+
+/* Texto do item ativo */
+:host ::ng-deep .p-menuitem-link.active span {
+    color: #000;
+}
+
+/* ------------------------- */
+/* LOGO                      */
+/* ------------------------- */
 .logo-area {
     display: flex;
     justify-content: flex-start;
@@ -50,15 +79,37 @@
     font-family: "Cherry Bomb One", system-ui;
 }
 
+/* ------------------------- */
+/* ÍCONES Material           */
+/* ------------------------- */
 ::ng-deep .icon {
     .mat-icon {
         width: 30px;
         height: 30px;
-    }
-
-    .material-icons {
         font-size: 25px;
         color: #000;
+        transition: 0.2s;
     }
+}
 
+/* Badge do carrinho */
+:host ::ng-deep .p-badge {
+    font-size: 12px;
+    background: var(--primary-color);
+    color: white;
+}
+
+ul,
+li {
+    list-style: none;
+}
+.text, a {
+    text-decoration: none;
+    color: #000;
+}
+
+li.active {
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
 }

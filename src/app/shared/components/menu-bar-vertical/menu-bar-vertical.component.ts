@@ -10,6 +10,9 @@ import { IMenuItems } from '../../models/IMenuItems';
 import { AuthService } from '../../services/auth.service';
 import { MatIcon } from "@angular/material/icon";
 import { IS_MOBILE } from '../../services/is-mobile.service';
+import { CommonModule } from '@angular/common';
+import { LoadingService } from '../../services/loading.service';
+import { ToastService } from '../../services/toast.service';
 @Component({
   selector: 'app-menu-bar-vertical',
   imports: [
@@ -18,60 +21,112 @@ import { IS_MOBILE } from '../../services/is-mobile.service';
     RippleModule,
     AvatarModule,
     RouterModule,
-    MatIcon
-],
+    MatIcon,
+    CommonModule
+  ],
   templateUrl: './menu-bar-vertical.component.html',
   styleUrl: './menu-bar-vertical.component.scss'
 })
 export class MenuBarVerticalComponent {
   private router = inject(Router);
   private cartService = inject(CartService);
-  readonly menuItems: WritableSignal<IMenuItems[]> = signal([]);
-  readonly activeIndex: WritableSignal<number> = signal(1);
-  readonly totalItens: WritableSignal<number> = signal(0);
   private authService = inject(AuthService);
-  readonly loggedIn: WritableSignal<boolean> = signal(false);
   protected isMobile = inject(IS_MOBILE);
+  private loadingService = inject(LoadingService);
+  private toastService = inject(ToastService)
+
+  readonly menuItems = signal<IMenuItems[]>([]);
+  readonly activeIndex = signal<number>(0);
+  readonly totalItens = signal<number>(0);
 
   constructor() {
+
     effect(() => {
       const currentRoute = this.router.url;
-      const index = this.menuItems().findIndex(item => currentRoute.startsWith(item.route));
+
+      const index = this.menuItems().findIndex(item =>
+        currentRoute.startsWith(item.route)
+      );
+
+      console.log('index', index)
+      console.log('currente route', currentRoute)
       if (index !== -1) {
         this.activeIndex.set(index);
       }
-    })
+
+      if (index === -1 || currentRoute === '/') {
+        if (!this.loggedIn) {
+          this.router.navigate(['/menu'])
+          this.activeIndex.set(1)
+        } else {
+          this.router.navigate(['/menu'])
+          this.activeIndex.set(0)
+        }
+      }
+      console.log('active', this.activeIndex())
+      console.log('logged', this.loggedIn)
+    });
+
+    effect(() => {
+      const isLogged = this.authService.isLogged();
+
+      if (isLogged) {
+        this.menuItems.set([
+          { label: 'Cardápio', icon: 'manage_search', route: '/menu' },
+          { label: 'Carrinho', icon: 'shopping_bag', route: '/cart' },
+          { label: 'Sair', icon: 'logout', route: '/logout' },
+        ]);
+      } else {
+        this.menuItems.set([
+          { label: 'Login', icon: 'person', route: '/login' },
+          { label: 'Cardápio', icon: 'manage_search', route: '/menu' },
+          { label: 'Carrinho', icon: 'shopping_bag', route: '/cart' },
+        ]);
+      }
+    });
+  }
+
+
+  get loggedIn() {
+    return this.authService.isLogged();
   }
 
   ngOnInit() {
-    this.loggedIn.set(this.authService.isLogged());
-    this.menuItems.set([
-      this.loggedIn()
-        ? { label: 'Perfil', icon: 'person', route: '/profile' }
-        : { label: 'Login', icon: 'person', route: '/login' },
-      {
-        label: 'Cardápio',
-        icon: 'manage_search',
-        route: '/menu',
-      },
-      {
-        label: 'Carrinho',
-        icon: 'shopping_bag',
-        route: '/cart',
-      },
-    ]);
     this.getItemsCart();
   }
 
   setActive(index: number) {
+    console.log('index activate', index)
     this.activeIndex.set(index);
-    console.log('index', this.activeIndex())
+    if (this.activeIndex() === 2) {
+      this.logout()
+    }
   }
 
   getItemsCart() {
     this.cartService.cart$.subscribe(items => {
-      this.totalItens.set(items.length)
-      console.log('item lengh', this.totalItens())
-    })
+      this.totalItens.set(items.length);
+    });
+  }
+
+  logout() {
+    this.loadingService.show()
+    this.authService.logout()
+      .then((res) => {
+        this.menuItems.set([
+          { label: 'Login', icon: 'person', route: '/login' },
+
+          { label: 'Cardápio', icon: 'manage_search', route: '/menu' },
+
+          { label: 'Carrinho', icon: 'shopping_bag', route: '/cart' },
+        ]);
+        // this.router.navigate(['/login']);
+      })
+      .catch(() => {
+        this.toastService.showToastError('Erro ao sair da conta.')
+      })
+      .finally(() => {
+        this.loadingService.hide()
+      })
   }
 }

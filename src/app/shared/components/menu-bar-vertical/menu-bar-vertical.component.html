@@ -1,34 +1,37 @@
 <div class="side-nav">
-    <p-menu [model]="menuItems()" styleClass="w-full side-menu">
-        <ng-template #start>
-            <div class="flex gap-2 align-items-center my-2 px-4">
-                <img class='image-logo' src="assets/logo/logo-agridoce.svg">
-                <div class="flex flex-column line-height-2">
-                    <span class="title">Agridoce</span>
-                    <span class="text-sm">Delivery</span>
+    <div class="flex gap-2 align-items-center my-2 px-4">
+        <img class='image-logo' src="assets/logo/logo-agridoce.svg">
+        <div class="flex flex-column line-height-2">
+            <span class="title">Agridoce</span>
+            <span class="text-sm">Delivery</span>
+        </div>
+    </div>
+
+    <ul class="p-0 px-3">
+        @for (item of menuItems(); track item; let i = $index) {
+        <li [class.active]="i === activeIndex()" (click)="setActive(i)" class="my-3">
+            <a [routerLink]="item.route">
+                <div class="flex gap-2 icon align-items-center">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                    <span class="text">{{ item.label }}</span>
+                    @if(item.route === '/cart' && totalItens() > 0) {
+                    <p-badge class="bagde-icon" [value]="totalItens()" severity="info" />
+                    }
                 </div>
-            </div>
-        </ng-template>
-
-        <ng-template #submenuheader let-item>
-            <span class="text-primary font-bold px-4">{{ item.label }}</span>
-        </ng-template>
-
-        <ng-template #item let-item>
-            <a pRipple class="flex items-center p-menu-item-link px-4 py-2 icon" [routerLink]="item.route">
-                <mat-icon>{{item.icon}}</mat-icon>
-                <span class="ml-2">{{ item.label }}</span>
             </a>
-        </ng-template>
-<!-- 
+        </li>
 
-<ng-template #end>
-    <button pRipple
-        class="relative overflow-hidden w-full border-0 bg-transparent flex flex-column items-start p-4 hover:bg-surface-100 rounded-none cursor-pointer transition-colors duration-200">
-            <span class="font-bold">Desenvolvido pelos</span>
-            <span class="text-sm">Sobreviventes</span>
-    </button>
-</ng-template>
--->
-</p-menu>
+        <!-- TODO: implementar menut child -->
+        <!-- @for (child of item.children; track child; let idChild = $index) {
+        <li [class.active]="idChild === activeChildIndex()" (click)="setActiveChild(idChild)" class="my-3">
+            <a [routerLink]="child.route">
+                <div class="flex gap-2 icon align-items-center">
+                    <mat-icon>{{ child.icon }}</mat-icon>
+                    <span class="text">{{ child.label }}</span>
+                </div>
+            </a>
+        </li>
+        } -->
+        }
+    </ul>
 </div>
