@@ -10,6 +10,7 @@ import { CartService, ICartItem } from '../../shared/services/cart.service';
 import { LoadingService } from '../../shared/services/loading.service';
 import { MatIcon } from '@angular/material/icon';
 import { CardV2Component } from '../../shared/components/card-v2/card-v2.component';
+import { IS_MOBILE } from '../../shared/services/is-mobile.service';
 @Component({
   selector: 'app-cart',
   imports: [
@@ -28,6 +29,7 @@ export class CartComponent {
   private activateRoute = inject(ActivatedRoute);
   private cartService = inject(CartService);
   private loadingService = inject(LoadingService);
+  protected isMobile = inject(IS_MOBILE)
 
   public visible: WritableSignal<boolean> = signal(false);
   public cart: WritableSignal<any | null> = signal(null);

@@ -24,3 +24,9 @@
     background: var(--color-pink) !important;
     width: 100%;
 }
+
+::ng-deep .dialog-form .p-dialog-content {
+    background: var(--color-bg-body) !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}

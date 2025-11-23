@@ -19,9 +19,9 @@
             <span class="font-bold text-xl">{{total() | currency}}</span>
         </div>
     </div>
-    <div class="mb-6">
+    <div [class]="isMobile() ? 'mb-6' : ''">
         @if(cartItems().length) {
-            <div class="cart-items">
+            <div class="cart-items" [class.items-height]="isMobile()">
                 @for(item of cartItems(); track $index) {
                     <app-item [item]="item"/>
                 }
@@ -34,8 +34,10 @@
         }
     </div>
 
-    <app-dialog-form
-    [cart]="cartItems()"
-    [visible]="visible()"
-    (visibleChange)="closeDialog()"/>
+    @if(visible()) {
+        <app-dialog-form
+        [cart]="cartItems()"
+        [visible]="visible()"
+        (visibleChange)="closeDialog()"/>
+    }
 </div>

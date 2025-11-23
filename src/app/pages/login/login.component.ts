@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormLoginComponent } from '../../shared/components/form-login/form-login.component';
 import { FormRegisterComponent } from '../../shared/components/form-register/form-register.component';
 import { Router } from '@angular/router';
+import { IS_MOBILE } from '../../shared/services/is-mobile.service';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent {
   private router = inject(Router);
   readonly type: WritableSignal<string> = signal('');
   readonly formLogin: FormGroup;
+  protected isMobile = inject(IS_MOBILE)
 
   constructor() {
     this.formLogin = this.formBuilder.group({

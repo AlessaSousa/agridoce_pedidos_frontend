@@ -1,6 +1,6 @@
 <div class="page-login">
   @if(type() === '') {
-    <p-button class="btn-voltar" rounded icon="pi pi-arrow-left" (click)="goToMenu()"/>
+  <p-button class="btn-voltar" rounded icon="pi pi-arrow-left" (click)="goToMenu()" />
   }
   <div class="image-logo">
     <img class='' src="assets/logo/logo-agridoce.svg">
@@ -13,22 +13,28 @@
 
 
   @if(type() === 'login') {
-  <div class="form-login-content p-4 flex flex-column justify-content-around">
-    <div class="flex gap-2">
-      <p-button icon="pi pi-arrow-left" rounded (click)="showForm('')" />
-      <span class="text-4xl font-bold">Login</span>
+  <div class="flex align-items-center justify-content-center w-full">
+    <div class="form-login-content p-4 flex flex-column justify-content-around" [class.form-mob]="isMobile()"
+      [class.form-desk]="!isMobile()">
+      <div class="flex gap-2">
+        <p-button icon="pi pi-arrow-left" rounded (click)="showForm('')" />
+        <span class="text-4xl font-bold">Login</span>
+      </div>
+      <app-form-login />
     </div>
-    <app-form-login />
   </div>
   }
 
   @if(type() === 'register') {
-  <div class="form-register-content p-4 flex flex-column justify-content-around">
-     <div class="flex gap-2">
-      <p-button icon="pi pi-arrow-left" rounded (click)="showForm('')" />
-      <span class="text-4xl font-bold">Register</span>
+  <div class="flex align-items-center justify-content-center w-full">
+    <div class="form-register-content p-4 flex flex-column justify-content-around" [class.form-mob]="isMobile()"
+      [class.form-desk]="!isMobile()">
+      <div class="flex gap-2">
+        <p-button icon="pi pi-arrow-left" rounded (click)="showForm('')" />
+        <span class="text-4xl font-bold">Register</span>
+      </div>
+      <app-form-register (backToLogin)="backToLogin($event)" />
     </div>
-    <app-form-register (backToLogin)="backToLogin($event)" />
   </div>
   }
   @if(type() === '') {

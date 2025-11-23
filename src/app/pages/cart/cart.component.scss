@@ -38,6 +38,9 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 187px);
     gap: 10px;
+}
+
+.items-height {
+    height: calc(100vh - 187px);
 }

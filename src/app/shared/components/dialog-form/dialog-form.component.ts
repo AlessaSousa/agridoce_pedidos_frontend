@@ -13,6 +13,8 @@ import { CartService, ICartItem, IItemFinalizado } from '../../services/cart.ser
 import { SharedService } from '../../services/shared.service';
 import { ToastService } from '../../services/toast.service';
 import { IProduto } from '../../models/IProduto';
+import { IS_MOBILE } from '../../services/is-mobile.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-dialog-form',
@@ -37,6 +39,8 @@ export class DialogFormComponent {
   private cartService = inject(CartService);
   private sharedService = inject(SharedService);
   private toastService = inject(ToastService);
+  protected isMobile = inject(IS_MOBILE);
+  private loadingService = inject(LoadingService);
 
   public visible: InputSignal<boolean> = input.required();
   public visibleChange: OutputEmitterRef<boolean> = output();
@@ -164,6 +168,7 @@ export class DialogFormComponent {
       } else {
         this.closeDialog()
         console.log('Dados usuário salvo', formulario)
+        this.loadingService.show()
         this.sharedService.createPedido(formulario)
           .then((res) => {
             this.toastService.showToastSuccess('Pedido realizado.')
@@ -173,6 +178,9 @@ export class DialogFormComponent {
           .catch((err) => {
             console.log('erro ao criar pedido', err)
             this.toastService.showToastError('Erro ao criar pedido.')
+          })
+          .finally(() => {
+            this.loadingService.hide()
           })
       }
     }

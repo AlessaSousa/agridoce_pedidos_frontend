@@ -1,13 +1,13 @@
 <p-dialog 
 styleClass="dialog-form"
-position="bottom"
+[position]="isMobile() ? 'bottom' : 'center'"
 header="Dados de entrega"
 [modal]="true"
 [(visible)]="_visible"
 (onHide)="closeDialog()"
 [draggable]="false"
 class="w-full"
-[breakpoints]="{ '1199px': '75vw', '575px': '100vw' }"
+[style]="{ width: isMobile() ? '30rem' : '40rem'}"
 >
 
 <div [formGroup]="formUser" class="mt-4 container-form flex flex-column gap-2">
