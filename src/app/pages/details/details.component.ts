@@ -10,6 +10,7 @@ import { CartService } from '../../shared/services/cart.service';
 import { LoadingService } from '../../shared/services/loading.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { CardV2Component } from '../../shared/components/card-v2/card-v2.component';
+import { IS_MOBILE } from '../../shared/services/is-mobile.service';
 
 @Component({
   selector: 'app-item-details',
@@ -33,7 +34,9 @@ export class DetailsComponent {
 
   public detail: WritableSignal<IProdutoWithQuantity | undefined> = signal(undefined);
   public produtoId: WritableSignal<number> = signal(0);
-  public products: WritableSignal<IProduto[]> = signal([])
+  public products: WritableSignal<IProduto[]> = signal([]);
+  protected isMobile = inject(IS_MOBILE);
+
   constructor() {
     this.activateRoute.params.subscribe(params => {
       this.produtoId.set(params['id'])

@@ -1,12 +1,9 @@
 <div class="page-detail">
+    @if(isMobile()) {
     <div>
-        <!-- <div class="title-header mb-2"> -->
-            <!-- <span>Agridoce Delivery</span> -->
-        <!-- </div> -->
-        
         <div class="content-image mb-2">
             <img [src]="detail()?.fotoProd">
-            <p-button class="btn-back" icon="pi pi-arrow-left" rounded (click)="goToMenu()"/>
+            <p-button class="btn-back" icon="pi pi-arrow-left" rounded (click)="goToMenu()" />
         </div>
 
         <div class="content-description flex flex-column gap-3">
@@ -22,41 +19,53 @@
             </div>
         </div>
     </div>
+    } @else {
+    <div class="grid p-1 m-0">
+        <div class="content-image col-6 p-3">
+            <img [src]="detail()?.fotoProd" class=" border-round-lg">
+            <p-button class="btn-back" icon="pi pi-arrow-left" rounded (click)="goToMenu()" />
+        </div>
+
+        <div class="content-description flex flex-column gap-3 col-6">
+            <div class="flex justify-content-between">
+                <span class="font-bold text-xl">{{detail()?.nomeProduto | titlecase}}</span>
+                <span class="text-xl">{{detail()?.precoProd | currency}}</span>
+            </div>
+            <!-- <span class="text-sm">{{detail().descricaoProduto}}</span> -->
+
+            <div class="border-ingrediente flex flex-column h-full">
+                <span class="font-bold mb-1">Descrição</span>
+                <span>{{detail()?.descricaoProduto| uppercase}}</span>
+            </div>
+        </div>
+    </div>
+    }
     <div class="content-add-more flex flex-column gap-2 pb-6">
         <span class="font-bold text-xl">Adicione também</span>
-        @for (item of products(); track $index) {
-            <app-card-v2 [product]="item" (click)="getProductById(item.id)"/>
-        }
+        <div class="grid">
+            @for (item of products(); track $index) {
+            <app-card-v2 class="col-12 md:col-6 cursor-pointer" [product]="item" (click)="getProductById(item.id)" />
+            }
+        </div>
 
     </div>
 
-    <div class="content-actions">
-            <!-- <span class="font-bold text-2xl">{{detail().precoProd| currency}}</span> -->
-            <p-inputnumber
-            [ngModel]="detail()?.quantidade" 
-            [showButtons]="true" 
-            buttonLayout="horizontal" 
-            spinnerMode="horizontal"
-            decrementButtonClass="decrement-counter"
-            incrementButtonClass="increment-counter"
-            inputId="horizontal"
-            styleClass="input-counter"
-            [inputStyle]="{ width: '3rem' }"
-            (ngModelChange)="updateQuantity($event, detail()!)"
-             [min]="1"
-            >
-                <ng-template #incrementbuttonicon>
-                    <span class="pi pi-plus"></span>
-                </ng-template>
-                <ng-template #decrementbuttonicon>
-                    <span class="pi pi-minus" [class.disabled]="detail()?.quantidade === 1"></span>
-                </ng-template>
-            </p-inputnumber>
-            <p-button
-            size="small"
+    <div class="content-actions" [style]="{width: isMobile() ? '100%' : '83%'}">
+        <!-- <span class="font-bold text-2xl">{{detail().precoProd| currency}}</span> -->
+        <p-inputnumber [ngModel]="detail()?.quantidade" [showButtons]="true" buttonLayout="horizontal"
+            spinnerMode="horizontal" decrementButtonClass="decrement-counter" incrementButtonClass="increment-counter"
+            inputId="horizontal" styleClass="input-counter" [inputStyle]="{ width: '3rem' }"
+            (ngModelChange)="updateQuantity($event, detail()!)" [min]="1">
+            <ng-template #incrementbuttonicon>
+                <span class="pi pi-plus"></span>
+            </ng-template>
+            <ng-template #decrementbuttonicon>
+                <span class="pi pi-minus" [class.disabled]="detail()?.quantidade === 1"></span>
+            </ng-template>
+        </p-inputnumber>
+        <p-button size="small"
             [label]="'Adicionar  ' + (((detail()?.precoProd ?? 0) * (detail()?.quantidade ?? 1)) | currency:'BRL')"
-            (click)="addItem(detail()!)"
-            />
+            (click)="addItem(detail()!)" />
 
-        </div>
+    </div>
 </div>

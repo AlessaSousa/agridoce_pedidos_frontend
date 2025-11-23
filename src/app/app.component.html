@@ -1,17 +1,24 @@
-<app-loading/>
+<app-loading />
 @if(isMobile()) {
-    <div class="container-main">
-        <p-toast position="top-center" key="tc" class="ui-toast"></p-toast>
-        <router-outlet />
-        @if(showNavBar()) {
-            <app-menu-bar/>
-        }
-    </div>
+<div class="container-main">
+    <p-toast position="top-center" key="tc" class="ui-toast"></p-toast>
+    <router-outlet />
+    @if(showNavBar()) {
+    <app-menu-bar />
+    }
+</div>
 } @else {
-    <!-- @if(showNavBar()){ -->
-        <app-menu-bar-vertical/>
-    <!-- } -->
+<!-- <app-menu-bar-vertical/>
     <div class="router">
         <router-outlet />
+    </div>  -->
+
+    <div class="grid m-0 p-0">
+        <div class="col-2 m-0 p-0">
+            <app-menu-bar-vertical  />
+        </div>
+        <div class="col-10 m-0 p-0">
+            <router-outlet />
+        </div>
     </div>
 }

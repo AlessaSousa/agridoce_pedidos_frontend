@@ -1,14 +1,14 @@
 <p-carousel
   [value]="images()!"
-  [numVisible]="1"
+  [numVisible]="isMobile() ? 1 : 3"
   [numScroll]="1"
   [circular]="true"
   [autoplayInterval]="4000"
   [showNavigators]="false"
-  [showIndicators]="true"
+  [showIndicators]="isMobile() ? true : false"
   containerClass="custom-carousel"
 >
   <ng-template pTemplate="item" let-item>
-    <img [src]="item.image" class="carousel-image" (click)="showDetailProduct(item.id)"/>
+    <img [src]="item.image" class="carousel-image" [class]="!isMobile() ? 'px-2' : ''" (click)="showDetailProduct(item.id)"/>
   </ng-template>
 </p-carousel>

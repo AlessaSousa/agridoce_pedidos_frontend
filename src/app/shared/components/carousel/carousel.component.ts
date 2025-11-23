@@ -2,6 +2,7 @@ import { Component, effect, inject, input, InputSignal } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { IS_MOBILE } from '../../services/is-mobile.service';
 
 @Component({
   selector: 'app-carousel',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CarouselComponent {
   private router = inject(Router);
+  protected isMobile = inject(IS_MOBILE)
   public images: InputSignal<{image: string, id: number}[] | undefined> = input();
 
   constructor() {
