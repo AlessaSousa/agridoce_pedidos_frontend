@@ -1,5 +1,5 @@
 <div class="page-login">
-  @if(type() === '') {
+  @if(type() === '' && isMobile()) {
   <p-button class="btn-voltar" rounded icon="pi pi-arrow-left" (click)="goToMenu()" />
   }
   <div class="image-logo">
