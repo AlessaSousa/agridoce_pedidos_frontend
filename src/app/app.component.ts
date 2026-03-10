@@ -1,23 +1,26 @@
-import { Component, HostListener, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { MenuBarComponent } from './shared/components/menu-bar/menu-bar.component';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { LoadingComponent } from "./shared/components/loading/loading.component";
-import { MenuBarVerticalComponent } from './shared/components/menu-bar-vertical/menu-bar-vertical.component';
 import { IS_MOBILE } from './shared/services/is-mobile.service';
+import { MenuComponent } from "./pages/menu/menu.component";
+import { MenuBarComponent } from "./shared/components/menu-bar/menu-bar.component";
+import { MenuBarVerticalComponent } from "./shared/components/menu-bar-vertical/menu-bar-vertical.component";
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
-    MenuBarComponent,
     CommonModule,
     ToastModule,
     LoadingComponent,
+    RouterOutlet,
+    MenuComponent,
+    MenuBarComponent,
     MenuBarVerticalComponent
-  ],
+],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  standalone: true
 })
 export class AppComponent {
   private router = inject(Router);

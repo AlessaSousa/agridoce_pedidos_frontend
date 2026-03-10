@@ -22,7 +22,7 @@ body {
     outline-color: transparent;
     box-shadow: none !important;
     width: 100%;
-    height: 50px;
+    height: 35px;
 }
 
 .p-floatlabel-on:has(input:focus) label {
@@ -31,6 +31,7 @@ body {
 
 .p-inputicon {
     color: var(--color-text-input) !important;
+    padding: 0 0 0 5px !important;
 }
 
 // button 

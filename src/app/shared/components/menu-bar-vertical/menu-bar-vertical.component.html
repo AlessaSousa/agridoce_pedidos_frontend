@@ -7,10 +7,10 @@
         </div>
     </div>
 
-    <ul class="p-0 px-3">
+    <ul class="p-0 px-5">
         @for (item of menuItems(); track item; let i = $index) {
         <li [class.active]="i === activeIndex()" (click)="setActive(i)" class="my-3">
-            <a [routerLink]="item.route">
+            <a [routerLink]="item.route" class="relative">
                 <div class="flex gap-2 icon align-items-center">
                     <mat-icon>{{ item.icon }}</mat-icon>
                     <span class="text">{{ item.label }}</span>

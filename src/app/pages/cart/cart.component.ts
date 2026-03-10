@@ -19,8 +19,7 @@ import { IS_MOBILE } from '../../shared/services/is-mobile.service';
     DialogFormComponent,
     FormsModule,
     CommonModule,
-    MatIcon,
-    CardV2Component
+    MatIcon
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'

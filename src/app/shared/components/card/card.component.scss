@@ -17,7 +17,10 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-
+    &:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+    }
 }
 
 .ellipsis {
