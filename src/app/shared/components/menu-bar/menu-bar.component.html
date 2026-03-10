@@ -27,7 +27,7 @@
 <!-- From Uiverse.io by Admin12121 -->
 <nav class="menu">
     @for(item of menuItems(); track item; let i = $index) {
-    <a [routerLink]="item.route" class="link relative mx-1">
+    <a [routerLink]="item.route" class="link relative mx-1" [class.active]="i === activeIndex()" (click)="setActive(i)">
             <span class="link-icon text-2xl">
                 <mat-icon>{{item.icon}}</mat-icon>
             </span>

@@ -14,7 +14,6 @@ import { MenuBarVerticalComponent } from "./shared/components/menu-bar-vertical/
     ToastModule,
     LoadingComponent,
     RouterOutlet,
-    MenuComponent,
     MenuBarComponent,
     MenuBarVerticalComponent
 ],
