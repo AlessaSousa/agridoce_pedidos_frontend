@@ -1,5 +1,5 @@
 import { Component, effect, HostListener, inject, signal, WritableSignal } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 import { BadgeModule } from 'primeng/badge';
 import { MenuModule } from 'primeng/menu';
 import { RippleModule } from 'primeng/ripple';
@@ -13,6 +13,7 @@ import { IS_MOBILE } from '../../services/is-mobile.service';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
+import {ConfirmPopup} from 'primeng/confirmpopup';
 @Component({
   selector: 'app-menu-bar-vertical',
   imports: [
@@ -22,10 +23,12 @@ import { ToastService } from '../../services/toast.service';
     AvatarModule,
     RouterModule,
     MatIcon,
-    CommonModule
+    CommonModule,
+    ConfirmPopup,
   ],
   templateUrl: './menu-bar-vertical.component.html',
-  styleUrl: './menu-bar-vertical.component.scss'
+  styleUrl: './menu-bar-vertical.component.scss',
+    providers: [ConfirmationService]
 })
 export class MenuBarVerticalComponent {
   private router = inject(Router);
@@ -33,7 +36,8 @@ export class MenuBarVerticalComponent {
   private authService = inject(AuthService);
   protected isMobile = inject(IS_MOBILE);
   private loadingService = inject(LoadingService);
-  private toastService = inject(ToastService)
+  private toastService = inject(ToastService);
+  private confirmationService = inject(ConfirmationService);
 
   readonly menuItems = signal<IMenuItems[]>([]);
   readonly activeIndex = signal<number>(0);
@@ -95,11 +99,30 @@ export class MenuBarVerticalComponent {
     this.getItemsCart();
   }
 
-  setActive(index: number) {
+  setActive(index: number, event: Event) {
     console.log('index activate', index)
     this.activeIndex.set(index);
     if (this.activeIndex() === 2) {
-      this.logout()
+      // this.logout()
+      this.confirmationService.confirm({
+        target: event.target!,
+        message: 'Deseja sair?',
+        header: 'Confirmar Ação',
+        icon: 'pi pi-info-circle',
+        rejectButtonProps: {
+          label: 'Não',
+          severity: 'danger',
+          // icon: 'pi pi-times'
+        },
+        acceptButtonProps: {
+          label: 'Sim',
+          severity: 'primary',
+          // icon: 'pi pi-check-circle'
+        },
+        accept: () => {
+          this.logout();
+        }
+      })
     }
   }
 

@@ -9,7 +9,7 @@
 
     <ul class="p-0 px-5">
         @for (item of menuItems(); track item; let i = $index) {
-        <li [class.active]="i === activeIndex()" (click)="setActive(i)" class="my-3">
+        <li [class.active]="i === activeIndex()" (click)="setActive(i, $event)" class="my-3">
             <a [routerLink]="item.route" class="relative">
                 <div class="flex gap-2 icon align-items-center">
                     <mat-icon>{{ item.icon }}</mat-icon>
@@ -20,6 +20,7 @@
                 </div>
             </a>
         </li>
+        <p-confirmpopup/>
 
         <!-- TODO: implementar menut child -->
         <!-- @for (child of item.children; track child; let idChild = $index) {

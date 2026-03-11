@@ -167,7 +167,7 @@
 
 /* From Uiverse.io by Admin12121 */
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .menu {
         padding: 0.5rem;
         background-color: var(--color-pink);
@@ -182,7 +182,7 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 70px;
+        width: 60px;
         height: 50px;
         border-radius: 8px;
         position: relative;

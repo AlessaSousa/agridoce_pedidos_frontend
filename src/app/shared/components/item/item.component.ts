@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputNumber } from 'primeng/inputnumber';
 import { IProduto } from '../../models/IProduto';
 import { CartService, ICartItem } from '../../services/cart.service';
+import { IS_MOBILE } from '../../services/is-mobile.service';
 
 @Component({
   selector: 'app-item',
@@ -19,6 +20,7 @@ import { CartService, ICartItem } from '../../services/cart.service';
 })
 export class ItemComponent {
   private cartService = inject(CartService);
+  protected isMobile = inject(IS_MOBILE);
   public item: InputSignal<ICartItem | undefined> = input();
 
   removeItem(id?: number) {

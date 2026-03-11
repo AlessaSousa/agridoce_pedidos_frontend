@@ -3,10 +3,12 @@
   <div class="col">
     <div class="flex justify-content-between mb-2">
       <div class="flex flex-column">
-        <span class="font-bold">{{ item()?.produto?.nomeProduto }}</span>
-        <span class="text-sm text-gray-500 descricao-ellipsis">
-          {{ item()?.produto?.descricaoProduto }}
-        </span>
+        <div class="flex flex-column">
+          <span class="font-bold">{{ item()?.produto?.nomeProduto }}</span>
+          <span class="text-sm text-gray-500 descricao-ellipsis">
+            {{ item()?.produto?.descricaoProduto }}
+          </span>
+        </div>
         <div class="flex mt-2 justify-content-between align-items-center">
           <!-- <span class="font-bold">{{ item()?.quantidade }}x</span> -->
             <p-inputnumber

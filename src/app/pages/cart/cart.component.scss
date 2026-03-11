@@ -34,13 +34,18 @@
     font-family: "Cherry Bomb One", system-ui;
 }
 
-.cart-items {
+.container-card-mobile {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.items-height {
     height: calc(100vh - 187px);
 }
+
+.container-card-desktop {
+    display: flex;
+    overflow-y: auto;
+}
+// .card-cart {
+//     width: 200px;
+// }
