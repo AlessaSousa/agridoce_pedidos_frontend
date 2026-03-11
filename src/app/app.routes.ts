@@ -16,5 +16,17 @@ export const routes: Routes = [
     { path: 'final', component: CompletedComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '' },
+
+
+// TODO: MODIFICAR PARA LAZY LOADING 
+ 
+//     { path: '', loadChildren: () => import('./pages/splash/splash.component').then(m => m.SplashComponent) },
+//     { path: 'menu', loadChildren: () => import('./pages/menu/menu.component').then(m => m.MenuComponent) },
+//     { path: 'cart', loadChildren: () => import('./pages/cart/cart.component').then(m => m.CartComponent) },
+//     { path: 'detail/:id', loadChildren: () => import('./pages/details/details.component').then(m => m.DetailsComponent) },
+//     { path: 'final', loadChildren: () => import('./pages/completed/completed.component').then(m => m.CompletedComponent), canActivate: [AuthGuard] },
+//     { path: 'login', loadChildren: () => import('./pages/login/login.component').then(m => m.LoginComponent) },
+//     { path: 'profile', loadChildren: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent), canActivate: [AuthGuard] },
+//     { path: '**', redirectTo: '' },
 ];
